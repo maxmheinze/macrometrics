@@ -1,0 +1,16 @@
+---
+title: '**Advanced Macroeconometrics -- Assignment 1**'
+author: 
+  - "Siegfried Hammer (h12229325@wu.ac.at)"
+  - "Max Heinze (h11742049@wu.ac.at)"
+  - "Tim Koenders (h12215486@wu.ac.at)"
+date: "April 19, 2023"
+output: pdf_document
+papersize: a4
+geomatry: margin = 2cm
+urlcolor: Mahogany
+---
+
+# Exercise 1
+
+Text
