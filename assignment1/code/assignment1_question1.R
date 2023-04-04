@@ -5,7 +5,8 @@ rm(list = ls())
 gc()
 
 pacman::p_load(
-  tidyverse
+  tidyverse,
+  urca
   )
 
 
@@ -92,3 +93,31 @@ ind_prod %>%
   theme_bw()
 
 ggsave("./assignment1/output/plot_yoy.png", plot = last_plot(), width = 6, height = 4)
+
+
+
+# Assess Properties using stats and urca packages -------------------------
+
+
+ur.df(ind_prod$log_transformed[!is.na(ind_prod$log_transformed)], type = "trend")
+
+# Plot ACF ----------------------------------------------------------------
+
+# ACF 
+stats::acf(ind_prod$log_transformed[!is.na(ind_prod$log_transformed)], main = "ACF of Logged Industrial Production")
+
+stats::acf(ind_prod$yoy_growth[!is.na(ind_prod$yoy_growth)], main = "ACF of YoY Growth of Industrial Production")
+
+#Dickey-Fuller Tests
+ur.df(ind_prod$log_transformed[!is.na(ind_prod$log_transformed)], type = "none")
+
+ur.df(ind_prod$yoy_growth[!is.na(ind_prod$yoy_growth)], type = "none")
+
+
+
+# Estimate AR model -------------------------------------------------------
+
+
+ar.ols(ind_prod$log_transformed[!is.na(ind_prod$log_transformed)])
+
+
