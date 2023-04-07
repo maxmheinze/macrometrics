@@ -121,5 +121,5 @@ ur.df(ind_prod$yoy_growth[!is.na(ind_prod$yoy_growth)], type = "none")
 ar.ols(ind_prod$log_transformed[!is.na(ind_prod$log_transformed)])
 
 
-
+# Function for the Dickey-Fuller test: urca::ur.df()
 
