@@ -20,10 +20,11 @@ knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 knitr::opts_chunk$set(tidy.opts = list(width.cutoff = 80), tidy = TRUE)
 ```
 
+```{=tex}
 \begin{tcolorbox}
 \centering \itshape The executable code that was used in compiling the assignment is available on GitHub at \url{https://github.com/maxmheinze/macrometrics}.
 \end{tcolorbox}
-
+```
 # Exercise 1
 
 First, we read in the data set, removing the first column indicating the recommended transformation.
@@ -128,4 +129,70 @@ ind_prod %>%
        y = "Year-on-Year Growth of Industrial Production") +
   theme_bw()
 ```
+
+The plots above depicts the logged time series of U.S. industrial production and its corresponding year-on-year growth rates. The logged time series of U.S. industrial production appears to exhibit a generally upward trend over time. The logged time series of U.S. industrial production also shows evidence of cyclical patterns, with periods of expansion and contraction occurring in a cyclical manner. There are also periodic fluctuations in the year-on-year growth rates, which suggests the presence of seasonality in U.S. industrial production. 
+
+Next assess the properties of both logged industrial production and its yearly growth rate.
+
+```{r, echo = TRUE, out.width="50%", fig.align='center'}
+# ACF plot and ADF test(s) of Logged Industrial Production
+
+stats::acf(ind_prod$log_transformed[!is.na(ind_prod$log_transformed)], main = "ACF of Logged Industrial Production")
+
+urtest1a = ur.df(ind_prod$log_transformed[!is.na(ind_prod$log_transformed)], type = "trend", selectlags = "AIC")
+summary(urtest1a)
+
+urtest2a = ur.df(ind_prod$log_transformed[!is.na(ind_prod$log_transformed)], type = "drift", selectlags = "AIC")
+summary(urtest2a)
+
+# ACF plot and ADF test(s) of Year-on-Year Growth Rate
+
+stats::acf(ind_prod$yoy_growth[!is.na(ind_prod$yoy_growth)], main = "ACF of YoY Growth of Industrial Production")
+
+urtest1b = ur.df(ind_prod$yoy_growth[!is.na(ind_prod$yoy_growth)], type = "trend", selectlags = "AIC")
+summary(urtest1b)
+
+urtest2b = ur.df(ind_prod$yoy_growth[!is.na(ind_prod$yoy_growth)], type = "drift", selectlags = "AIC")
+summary(urtest2b)
+
+```
+
+The ACF of Logged Industrial Production reveals a highly persistent nature of the time series with significant autocorrelation coefficients, particularly between Logged Industrial Production and its first five lags, which are extremely close to 1. The autocorrelation coefficients remain highly significant in the displayed laggs. This highly persistent nature suggests potential non-stationarity in the series. For a more appropriate procedure, we apply the Augmented Dickey-Fuller (ADF) unit root tests. 
+
+Type: "trend" (urtest1a)
+H0: The time series is random walk around a trend
+H1: The time series is trend-stationary
+
+As the coefficient of trend (tt) is insignificant, we never apply the ADF test with drift and trend. Instead, we move on to the second equation including only the drift component.
+
+Type: "drift" (urtest2a)
+H0: The time series is random walk around a drift 
+H1: The time series is (log-level) stationary around a drift
+
+As the drift component is significant, and the absolute value of the test-statistic (2.5263) is below all the critical values for conventional significance levels, we conclude that we fail to reject the null hypothesis that the time series is random walk around a drift. 
+
+Thus, we conclude that Logged Industrial Production is I(1).
+
+The ACF of YoY Growth rate of Industrial Production shows positive persistence, but to a lesser extent compared to the former series. The correlation coefficient decreases relatively quickly and even turns significantly negative after the 17th lag, indicating the presence of a pattern or cycle in the data at specific time lags. Now we apply the Augmented Dickey-Fuller (ADF) unit root tests. 
+
+Type: "trend" (urtest1b)
+H0: The time series is random walk around a trend
+H1: The time series is trend-stationary
+
+As the coefficient of trend (tt) is insignificant, we never apply the ADF test with drift and trend. Instead, we move on to the second equation including only the drift component.
+
+Type: "drift" (urtest2b)
+H0: The time series is random walk around a drift 
+H1: The time series is stationary around a drift
+
+As the drift component is significant, and the absolute value of the test-statistic (5.6443) is above all the critical values for conventional significance levels, we conclude that we reject the null hypothesis that the time series is random walk around a drift. 
+
+Thus, we conclude that the YoY Growth of Industrial Production is I(0). 
+
+
+
+
+
+
+
 
