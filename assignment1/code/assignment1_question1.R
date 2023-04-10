@@ -95,23 +95,29 @@ ind_prod %>%
 ggsave("./assignment1/output/plot_yoy.png", plot = last_plot(), width = 6, height = 4)
 
 
+# Assess Properties of Logged Industrial Production and its Year Growth Rate --
 
-# Assess Properties using stats and urca packages -------------------------
+# ACF plot and ADF test(s) of Logged Industrial Production
 
-
-ur.df(ind_prod$log_transformed[!is.na(ind_prod$log_transformed)], type = "trend")
-
-# Plot ACF ----------------------------------------------------------------
-
-# ACF 
 stats::acf(ind_prod$log_transformed[!is.na(ind_prod$log_transformed)], main = "ACF of Logged Industrial Production")
+
+urtest1a = ur.df(ind_prod$log_transformed[!is.na(ind_prod$log_transformed)], type = "trend", selectlags = "AIC")
+summary(urtest1a)
+
+urtest2a = ur.df(ind_prod$log_transformed[!is.na(ind_prod$log_transformed)], type = "drift", selectlags = "AIC")
+summary(urtest2a)
+
+# ACF plot and ADF test(s) of Year-on-Year Growth Rate
+
 
 stats::acf(ind_prod$yoy_growth[!is.na(ind_prod$yoy_growth)], main = "ACF of YoY Growth of Industrial Production")
 
-#Dickey-Fuller Tests
-ur.df(ind_prod$log_transformed[!is.na(ind_prod$log_transformed)], type = "none")
+urtest1b = ur.df(ind_prod$yoy_growth[!is.na(ind_prod$yoy_growth)], type = "trend", selectlags = "AIC")
+summary(urtest1b)
 
-ur.df(ind_prod$yoy_growth[!is.na(ind_prod$yoy_growth)], type = "none")
+urtest2b = ur.df(ind_prod$yoy_growth[!is.na(ind_prod$yoy_growth)], type = "drift", selectlags = "AIC")
+summary(urtest2b)
+
 
 
 
