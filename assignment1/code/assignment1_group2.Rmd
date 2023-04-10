@@ -237,10 +237,66 @@ If the AR model is capturing the underlying patterns wel, then as the YoY growth
 
 ```{r, echo = TRUE, out.width="50%", fig.align='center'}
 
-# Bonus -----------------------------------------------------------------------
+# Bonus (AR Model of (Logged) Industrial Production-----------------------------
 
+# Define function to calculate RMSE for AR model with given lag order
+calculate_rmse <- function(lag_order, holdout_period, ind_prod) {
+  
+  # Exclude the holdout period from the end of the sample
+  train_data <- ind_prod$log_transformed[1:(length(ind_prod$log_transformed) - holdout_period)]
+  
+  # Estimate AR model
+  ar_model <- ar.ols(train_data, aic = FALSE, order.max = lag_order)
+  
+  # Produce forecasts for the holdout period
+  forecasts <- predict(ar_model, n.ahead = holdout_period)
+  
+  # Extract predicted values for the holdout period
+  predicted_values <- forecasts$pred
+  
+  # Extract realized values for the holdout period
+  realized_values <- ind_prod$log_transformed[(length(ind_prod$log_transformed) - holdout_period + 1):length(ind_prod$log_transformed)]
+  
+  # Remove missing values from predicted_values and realized_values
+  predicted_values <- na.omit(predicted_values)
+  realized_values <- na.omit(realized_values)
+  
+  # Check and adjust length of predicted_values and realized_values
+  if (length(predicted_values) > length(realized_values)) {
+    predicted_values <- predicted_values[1:length(realized_values)]
+  } else if (length(realized_values) > length(predicted_values)) {
+    realized_values <- realized_values[1:length(predicted_values)]
+  }
+  
+  # Compute RMSE
+  rmse <- sqrt(mean((predicted_values - realized_values)^2))
+  return(rmse)
+}
+
+# Specify lag orders to compare
+lag_orders <- c(1, 2, 3, 4, 5, 6, 7, 8)
+
+# Specify holdout periods to compare
+holdout_periods <- c(6, 12, 24)
+
+# Initialize matrix to store RMSE results
+results <- matrix(NA, nrow = length(lag_orders), ncol = length(holdout_periods))
+
+# Iterate over lag orders and holdout periods to calculate RMSE for each model
+for (i in 1:length(lag_orders)) {
+  for (j in 1:length(holdout_periods)) {
+    rmse <- calculate_rmse(lag_orders[i], holdout_periods[j], ind_prod)
+    results[i, j] <- rmse
+  }
+}
+
+# Print RMSE results
+print(results)
 
 
 
 ```
 
+The AR Model with a holdout period of 12 months and a lag order of 2 performs the based among the alternatives as it minimizes the RMSE. When specifying a holdout period of 6 (24) months, we would, based on minimizing the RMSE, select an AR model with 6 (1) lags. Thus, the preferred specification (i.e. optimal lag order) depends on the selected holdout period. 
+
+ 
