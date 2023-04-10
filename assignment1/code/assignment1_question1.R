@@ -127,5 +127,5 @@ summary(urtest2b)
 ar.ols(ind_prod$log_transformed[!is.na(ind_prod$log_transformed)])
 
 
-
+# Function for the Dickey-Fuller test: urca::ur.df()
 
