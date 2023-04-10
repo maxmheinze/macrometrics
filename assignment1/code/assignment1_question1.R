@@ -94,10 +94,9 @@ ind_prod %>%
 
 ggsave("./assignment1/output/plot_yoy.png", plot = last_plot(), width = 6, height = 4)
 
+# Assessing time series properties --------------------------------------------
 
-# Assess Properties of Logged Industrial Production and its Year Growth Rate --
-
-# ACF plot and ADF test(s) of Logged Industrial Production
+# ACF plot and ADF test(s) of Logged Industrial Production 
 
 stats::acf(ind_prod$log_transformed[!is.na(ind_prod$log_transformed)], main = "ACF of Logged Industrial Production")
 
@@ -119,12 +118,43 @@ urtest2b = ur.df(ind_prod$yoy_growth[!is.na(ind_prod$yoy_growth)], type = "drift
 summary(urtest2b)
 
 
+# Estimating AR model -------------------------------------------------------
 
-# Estimate AR model -------------------------------------------------------
+ar_model_yoygrowth = ar.ols(ind_prod$yoy_growth[!is.na(ind_prod$yoy_growth)])
+summary(ar_model)
+
+# Generate forecasts for the next year
+forecasts <- predict(ar_model_yoygrowth, n.ahead = 12)
+print(forecasts)
+
+# Extract the forecasted values and the corresponding time period
+forecasted_values <- as.vector(forecasts$pred)
+time_period <- seq_along(forecasted_values) + length(ind_prod$yoy_growth)
+
+# Plot the forecasts
+plot(time_period, forecasted_values, type = "l", 
+     main = "AR Model Forecasts", xlab = "Time", ylab = "Forecasts")
+
+# Average YoY growth rate
+mean(ind_prod$yoy_growth[!is.na(ind_prod$yoy_growth)])
+
+# Forecast change in original time series based on forecasted year-on-year growth rate
+last_observed_original <- tail(ind_prod$original, n = 1)
+forecasted_change <- last_observed_original * forecasted_values
+
+# Combine original time series with forecasted change
+forecasted_original <- c(ind_prod$original, forecasted_change)
+
+# Define time periods for forecasted changes
+time_period_forecasted_change <- seq_along(forecasted_original)
+
+# Plot forecasted changes
+plot(time_period_forecasted_change, forecasted_original, type = "l", 
+     xlab = "Time Period", ylab = "Forecasted Changes",
+     main = "Forecasted Changes in Original Time Series")
+
+# Bonus -----------------------------------------------------------------------
 
 
-ar.ols(ind_prod$log_transformed[!is.na(ind_prod$log_transformed)])
 
-
-# Function for the Dickey-Fuller test: urca::ur.df()
 
