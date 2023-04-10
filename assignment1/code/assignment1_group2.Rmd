@@ -135,6 +135,9 @@ The plots above depicts the logged time series of U.S. industrial production and
 Next assess the properties of both logged industrial production and its yearly growth rate.
 
 ```{r, echo = TRUE, out.width="50%", fig.align='center'}
+
+# Assessing the time series properties ----------------------------------------
+
 # ACF plot and ADF test(s) of Logged Industrial Production
 
 stats::acf(ind_prod$log_transformed[!is.na(ind_prod$log_transformed)], main = "ACF of Logged Industrial Production")
@@ -189,10 +192,55 @@ As the drift component is significant, and the absolute value of the test-statis
 
 Thus, we conclude that the YoY Growth of Industrial Production is I(0). 
 
+```{r, echo = TRUE, out.width="50%", fig.align='center'}
+# Estimate AR model ---------------------------------------------------------
+
+ar_model_yoygrowth = ar.ols(ind_prod$yoy_growth[!is.na(ind_prod$yoy_growth)])
+summary(ar_model_yoygrowth)
+
+# Generate forecasts for the next year
+forecasts <- predict(ar_model_yoygrowth, n.ahead = 12)
+print(forecasts)
+
+# Extract the forecasted values and the corresponding time period
+forecasted_values <- as.vector(forecasts$pred)
+time_period <- seq_along(forecasted_values) + length(ind_prod$yoy_growth)
+
+# Plot the forecasts
+plot(time_period, forecasted_values, type = "l", 
+     main = "AR Model Forecasts", xlab = "Time", ylab = "Forecasts")
+
+# Average YoY growth rate
+mean(ind_prod$yoy_growth[!is.na(ind_prod$yoy_growth)])
+
+# Forecast change in original time series based on forecasted year-on-year growth rate
+last_observed_original <- tail(ind_prod$original, n = 1)
+forecasted_change <- last_observed_original * forecasted_values
+
+# Combine original time series with forecasted change
+forecasted_original <- c(ind_prod$original, forecasted_change)
+
+# Define time periods for forecasted changes
+time_period_forecasted_change <- seq_along(forecasted_original)
+
+# Plot forecasted changes
+plot(time_period_forecasted_change, forecasted_original, type = "l", 
+     xlab = "Time Period", ylab = "Forecasted Changes",
+     main = "Forecasted Changes in Original Time Series")
+
+```
+
+The lag order is determined by default in the ar.ols() function using the Akaike Information Criterion (AIC) as the method for order selection. AIC is a model selection criterion that balances model goodness of fit and complexity. Lower AIC values are preferred. The ar.ols() function computes the AIC value for different lag orders and selects the lag order that minimizes the AIC as the optimal lag order for the AR model. 
+
+
+If the AR model is capturing the underlying patterns wel, then as the YoY growth rate of industrial production is stationary, the forecasts are likely to converge towards their long-run average of around 0.026 (2.6%).
+
+```{r, echo = TRUE, out.width="50%", fig.align='center'}
+
+# Bonus -----------------------------------------------------------------------
 
 
 
 
-
-
+```
 
