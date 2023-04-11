@@ -130,9 +130,9 @@ ind_prod %>%
   theme_bw()
 ```
 
-The plots above depicts the logged time series of U.S. industrial production and its corresponding year-on-year growth rates. The logged time series of U.S. industrial production appears to exhibit a generally upward trend over time. The logged time series of U.S. industrial production also shows evidence of cyclical patterns, with periods of expansion and contraction occurring in a cyclical manner. There are also periodic fluctuations in the year-on-year growth rates, which suggests the presence of seasonality in U.S. industrial production. 
+The plots above depict the logged time series of U.S. industrial production and its year-on-year growth rates. The logged time series of U.S. industrial production appears to exhibit a generally upward trend over time. The logged time series of U.S. industrial production also shows evidence of cyclical patterns, with periods of expansion and contraction occurring in a cyclical manner. There are also periodic fluctuations in the year-on-year growth rates, which suggests the presence of seasonality in U.S. industrial production. 
 
-Next assess the properties of both logged industrial production and its yearly growth rate.
+Next we assess the properties of both logged industrial production and its yearly growth rate.
 
 ```{r, echo = TRUE, out.width="50%", fig.align='center'}
 
@@ -176,7 +176,7 @@ As the drift component is significant, and the absolute value of the test-statis
 
 Thus, we conclude that Logged Industrial Production is I(1).
 
-The ACF of YoY Growth rate of Industrial Production shows positive persistence, but to a lesser extent compared to the former series. The correlation coefficient decreases relatively quickly and even turns significantly negative after the 17th lag, indicating the presence of a pattern or cycle in the data at specific time lags. Now we apply the Augmented Dickey-Fuller (ADF) unit root tests. 
+The ACF of YoY Growth rate of Industrial Production shows positive persistence, but to a lesser degree than the former series. The correlation coefficient decreases relatively quickly and even turns significantly negative after the 17th lag, indicating the presence of a pattern or cycle in the data at specific time lags. Now we apply the Augmented Dickey-Fuller (ADF) unit root tests. 
 
 Type: "trend" (urtest1b)
 H0: The time series is random walk around a trend
