@@ -22,6 +22,8 @@ coefficients <- coef(var_model)
 residuals <- resid(var_model)
 print(coefficients)
 
+summary(var_model) #checked
+
 # Computing impulse response function
 
 irf1 <- irf(var_model, impulse = "oil_prod_change", response = "oil_price_real", n.ahead = 15)
@@ -31,4 +33,40 @@ irf3 <- irf(var_model, impulse = "oil_price_real", response = "oil_price_real", 
 #Plotting the IRFs to recreate Figure 1
 plot(irf1, main="Oil supply shock")
 plot(irf2, main="Aggregate demand shock")
-plot(irf2, main="Oil-specific demand shock")
+plot(irf3, main="Oil-specific demand shock") # NOT CORRECT
+
+
+
+# Replicating Figure 3 ----------------------------------------------------
+
+irf4 <- irf(var_model, impulse = "oil_price_real", response = "div_growth_change_real", 
+            cumulative = TRUE, n.ahead = 15)
+
+plot(irf4, ylim = c(-3,3))
+
+
+irf5 <- irf(var_model, impulse = "econ_act_real", response = "div_growth_change_real", 
+            cumulative = TRUE, n.ahead = 15)
+
+plot(irf5, ylim = c(-3,3))
+
+
+irf6 <- irf(var_model, impulse = "oil_prod_change", response = "div_growth_change_real", 
+            cumulative = TRUE, n.ahead = 15)
+
+plot(irf6) # NOT CORRECT
+
+
+
+# Replicating Table 2 -----------------------------------------------------
+
+table_2 <- fevd(var_model, n.ahead = 1000)$div_growth_change_real %>%
+  `*`(100) %>%
+  cbind(horizon = 1:1000) %>%
+  as_tibble() %>%
+  dplyr::relocate(horizon, .before = oil_prod_change) %>%
+  dplyr::filter(horizon %in% c(1, 2, 3, 12, 1000)) %>%
+  mutate(horizon = ifelse(horizon == 1000, Inf, horizon))
+
+table_2
+
