@@ -70,3 +70,31 @@ table_2 <- fevd(var_model, n.ahead = 1000)$div_growth_change_real %>%
 
 table_2
 
+
+
+# Stock Market Returns ----------------------------------------------------
+
+fred <- read.csv("./assignment1/data/fred.csv")[-1,]
+
+
+fred_kp <- fred[169:576,] %>% # only choosing 1.1973 to 12.2006
+  as_tibble() %>%
+  dplyr::select(S.P.500, CPIAUCSL)
+
+
+sp_kp <- ts_explode(fred_kp$S.P.500) %>%
+  `colnames<-`(c("sp500", "sp500_log", "sp500_mom", "sp500_momlog", "sp500_yoy", "sp500_yoylag")) %>%
+  `[`(-1,) %>% # Kilian&Park data set has only 407 rows so maybe they also omitted the first?
+  as_tibble()
+
+cpi_kp <- ts_explode(fred_kp$CPIAUCSL) %>%
+  `colnames<-`(c("cpi", "cpi_log", "cpi_mom", "cpi_momlog", "cpi_yoy", "cpi_yoylag")) %>%
+  `[`(-1,) %>%
+  as_tibble()
+
+real_stock_returns <- sp_kp$sp500_momlog-cpi_kp$cpi_mom
+
+kpdata_2 <- cbind(kpdata, 100*real_stock_returns)
+
+
+# Does this make sense?? 

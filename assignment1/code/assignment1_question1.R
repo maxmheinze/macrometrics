@@ -34,16 +34,18 @@ ts_explode <- function(input_vector, start_with_latest = FALSE) {
   original <- input_vector
   log_transformed <- log(input_vector)
   mom_growth <- input_vector/dplyr::lag(input_vector, 1) - 1
+  mom_growth_log <- log(input_vector/dplyr::lag(input_vector, 1))
   yoy_growth <- input_vector/dplyr::lag(input_vector, 12) - 1
   yoy_growth_lagged <- dplyr::lag(input_vector, 12)/dplyr::lag(input_vector, 24) - 1
   
   # Create a data frame to export, reverse ordering back to original in case start_with_latest = TRUE was specified
   export_df <- if (start_with_latest == FALSE) {
-    data.frame(original, log_transformed, mom_growth, yoy_growth, yoy_growth_lagged)
+    data.frame(original, log_transformed, mom_growth, mom_growth_log, yoy_growth, yoy_growth_lagged)
   } else {
     data.frame(original = rev(original), 
                log_transformed = rev(log_transformed), 
-               mom_growth = rev(mom_growth), 
+               mom_growth = rev(mom_growth),
+               mom_growth_log = rev(mom_growth_log),
                yoy_growth = rev(yoy_growth), 
                yoy_growth_lagged = rev(yoy_growth_lagged))
   }
