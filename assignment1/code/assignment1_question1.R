@@ -121,7 +121,7 @@ summary(urtest2b)
 # Estimating AR model -------------------------------------------------------
 
 ar_model_yoygrowth = ar.ols(ind_prod$yoy_growth[!is.na(ind_prod$yoy_growth)])
-summary(ar_model)
+summary(ar_model_yoygrowth)
 
 # Generate forecasts for the next year
 forecasts <- predict(ar_model_yoygrowth, n.ahead = 12)
@@ -208,3 +208,4 @@ for (i in 1:length(lag_orders)) {
 
 # Print RMSE results
 print(results)
+
