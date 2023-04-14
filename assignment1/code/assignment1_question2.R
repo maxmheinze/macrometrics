@@ -27,13 +27,21 @@ summary(var_model) #checked
 # Computing impulse response function
 
 irf1 <- irf(var_model, impulse = "oil_prod_change", response = "oil_price_real", n.ahead = 15)
+irf1$irf$oil_prod_change <- irf1$irf$oil_prod_change * (-1) # Switching signs of shock
+irf1$Lower$oil_prod_change <- irf1$Lower$oil_prod_change * (-1) # and of the CIs
+irf1$Upper$oil_prod_change <- irf1$Upper$oil_prod_change * (-1)
+
 irf2 <- irf(var_model, impulse = "econ_act_real", response = "oil_price_real", n.ahead = 15)
+
 irf3 <- irf(var_model, impulse = "oil_price_real", response = "oil_price_real", n.ahead = 15)
 
 #Plotting the IRFs to recreate Figure 1
-plot(irf1, main="Oil supply shock")
-plot(irf2, main="Aggregate demand shock")
-plot(irf3, main="Oil-specific demand shock") # NOT CORRECT
+
+plot(irf1, main="Oil supply shock", ylab="Real price of oil")
+
+plot(irf2, main="Aggregate demand shock", ylab="Real price of oil")
+
+plot(irf3, main="Oil-specific demand shock", ylab="Real price of oil") # NOT CORRECT
 
 
 
@@ -42,19 +50,23 @@ plot(irf3, main="Oil-specific demand shock") # NOT CORRECT
 irf4 <- irf(var_model, impulse = "oil_price_real", response = "div_growth_change_real", 
             cumulative = TRUE, n.ahead = 15)
 
-plot(irf4, ylim = c(-3,3))
+plot(irf4, ylim = c(-3,3), main="Oil-specific demand shock", ylab="Cumulative Real Dividends (Percent)")
 
 
 irf5 <- irf(var_model, impulse = "econ_act_real", response = "div_growth_change_real", 
             cumulative = TRUE, n.ahead = 15)
 
-plot(irf5, ylim = c(-3,3))
+plot(irf5, ylim = c(-3,3),  main="Aggregate demand shock", ylab="Cumulative Real Dividends (Percent)")
 
 
 irf6 <- irf(var_model, impulse = "oil_prod_change", response = "div_growth_change_real", 
             cumulative = TRUE, n.ahead = 15)
 
-plot(irf6) # NOT CORRECT
+irf6$irf$oil_prod_change <- (-1)*irf6$irf$oil_prod_change # Switching signs of shock
+irf6$Lower$oil_prod_change <- (-1)*irf6$Lower$oil_prod_change # and of the CIs
+irf6$Upper$oil_prod_change <- (-1)*irf6$Upper$oil_prod_change
+
+plot(irf6, ylim = c(-3,3), main="Oil supply shock", ylab="Cumulative Real Dividends (Percent)")
 
 
 
