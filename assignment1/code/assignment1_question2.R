@@ -24,16 +24,20 @@ print(coefficients)
 
 summary(var_model)
 
-# Computing impulse response function
+# Computing impulse response function with recursive-design wild bootstrap
 
-irf1 <- irf(var_model, impulse = "oil_prod_change", response = "oil_price_real", n.ahead = 15)
+set.seed(123) # for reproducibility
+
+nboot <- 1000 # number of bootstrap replications
+irf1 <- irf(var_model, impulse = "oil_prod_change", response = "oil_price_real", n.ahead = 15, boot = TRUE, nboot = nboot, ci = 0.95, boot.type = "rdwb")
 irf1$irf$oil_prod_change <- irf1$irf$oil_prod_change * (-1) # Switching signs of shock
 irf1$Lower$oil_prod_change <- irf1$Lower$oil_prod_change * (-1) # and of the CIs
 irf1$Upper$oil_prod_change <- irf1$Upper$oil_prod_change * (-1)
 
-irf2 <- irf(var_model, impulse = "econ_act_real", response = "oil_price_real", n.ahead = 15)
+irf2 <- irf(var_model, impulse ="econ_act_real", response = "oil_price_real", n.ahead = 15, boot = TRUE, nboot = nboot, ci = 0.95, boot.type = "rdwb")
 
-irf3 <- irf(var_model, impulse = "oil_price_real", response = "oil_price_real", n.ahead = 15)
+irf3 <- irf(var_model, impulse = "oil_price_real", response = "oil_price_real", n.ahead = 15, boot = TRUE, nboot = nboot, ci = 0.95, boot.type = "rdwb")
+
 
 #Plotting the IRFs to recreate Figure 1
 
@@ -44,21 +48,23 @@ plot(irf2, main="Aggregate demand shock", ylab="Real price of oil")
 plot(irf3, main="Oil-specific demand shock", ylab="Real price of oil") 
 
 
+# Replicating Lower Panel Figure 3 ----------------------------------------------------
 
-# Replicating Figure 3 ----------------------------------------------------
+set.seed(123) # for reproducibility
 
+nboot <- 1000 # number of bootstrap replications
 irf4 <- irf(var_model, impulse = "oil_prod_change", response = "div_growth_change_real", 
-            cumulative = TRUE, n.ahead = 15)
+            cumulative = TRUE, n.ahead = 15, boot = TRUE, nboot = nboot, ci = 0.95, boot.type = "rdwb")
 
 irf4$irf$oil_prod_change <- (-1)*irf4$irf$oil_prod_change # Switching signs of shock
 irf4$Lower$oil_prod_change <- (-1)*irf4$Lower$oil_prod_change # and of the CIs
 irf4$Upper$oil_prod_change <- (-1)*irf4$Upper$oil_prod_change
 
 irf5 <- irf(var_model, impulse = "econ_act_real", response = "div_growth_change_real", 
-            cumulative = TRUE, n.ahead = 15)
+            cumulative = TRUE, n.ahead = 15, boot = TRUE, nboot = nboot, ci = 0.95, boot.type = "rdwb")
 
 irf6 <- irf(var_model, impulse = "oil_price_real", response = "div_growth_change_real", 
-            cumulative = TRUE, n.ahead = 15)
+            cumulative = TRUE, n.ahead = 15, boot = TRUE, nboot = nboot, ci = (0.95), boot.type = "rdwb")
 
 
 plot(irf4, ylim = c(-3,3), main="Oil supply shock", ylab="Cumulative Real Dividends (Percent)")
@@ -95,7 +101,7 @@ fred_kp <- fred[169:576,] %>% # only choosing 1.1973 to 12.2006
 
 sp_kp <- ts_explode(fred_kp$S.P.500) %>%
   magrittr::set_colnames(c("sp500", "sp500_log", "sp500_mom", "sp500_momlog", "sp500_yoy", "sp500_yoylag")) %>%
-  magrittr::extract(-1,) %>% # Kilian&Park data set has only 407 rows so maybe they also omitted the first?
+  magrittr::extract(-1,) %>% 
   as_tibble()
 
 cpi_kp <- ts_explode(fred_kp$CPIAUCSL) %>%
@@ -114,22 +120,23 @@ kpdata_2 <- cbind(kpdata, real_stock_returns = 100*real_stock_returns)
 
 var_model_2 <- VAR(kpdata_2, p = 24, type = "const")
 
-print(coefficients)
-
 summary(var_model_2)
 
 
 
 # Replicating Figure 1 ----------------------------------------------------
 
-irf7 <- irf(var_model_2, impulse = "oil_prod_change", response = "oil_price_real", n.ahead = 15)
+set.seed(123) # for reproducibility
+
+nboot <- 1000 # number of bootstrap replications
+irf7 <- irf(var_model_2, impulse = "oil_prod_change", response = "oil_price_real", n.ahead = 15, boot = TRUE, nboot = nboot, ci = 0.95, boot.type = "rdwb")
 irf7$irf$oil_prod_change <- irf7$irf$oil_prod_change * (-1) # Switching signs of shock
 irf7$Lower$oil_prod_change <- irf7$Lower$oil_prod_change * (-1) # and of the CIs
 irf7$Upper$oil_prod_change <- irf7$Upper$oil_prod_change * (-1)
 
-irf8 <- irf(var_model_2, impulse = "econ_act_real", response = "oil_price_real", n.ahead = 15)
+irf8 <- irf(var_model_2, impulse = "econ_act_real", response = "oil_price_real", n.ahead = 15, boot = TRUE, nboot = nboot, ci = 0.95, boot.type = "rdwb")
 
-irf9 <- irf(var_model_2, impulse = "oil_price_real", response = "oil_price_real", n.ahead = 15)
+irf9 <- irf(var_model_2, impulse = "oil_price_real", response = "oil_price_real", n.ahead = 15, boot = TRUE, nboot = nboot, ci = 0.95, boot.type = "rdwb")
 
 
 plot(irf7, ylim = c(-6,12), main="Oil supply shock", ylab="Real price of oil")
@@ -139,27 +146,31 @@ plot(irf8, ylim = c(-6,12),  main="Aggregate demand shock", ylab="Real price of 
 plot(irf9, ylim = c(-6,12), main="Oil-specific demand shock", ylab="Real price of oil")
 
 
-# Replicating Figure 3 ----------------------------------------------------
+# Replicating Upper Panel Figure 3 ----------------------------------------------------
+
+set.seed(123) # for reproducibility
+
+nboot <- 1000 # number of bootstrap replications
 
 irf10 <- irf(var_model_2, impulse = "oil_prod_change", response = "real_stock_returns", 
-             cumulative = TRUE, n.ahead = 15)
+             cumulative = TRUE, n.ahead = 15, boot = TRUE, nboot = nboot, ci = 0.95, boot.type = "rdwb")
 
 irf10$irf$oil_prod_change <- (-1)*irf10$irf$oil_prod_change # Switching signs of shock
 irf10$Lower$oil_prod_change <- (-1)*irf10$Lower$oil_prod_change # and of the CIs
 irf10$Upper$oil_prod_change <- (-1)*irf10$Upper$oil_prod_change
 
 irf11 <- irf(var_model_2, impulse = "econ_act_real", response = "real_stock_returns", 
-             cumulative = TRUE, n.ahead = 15)
+             cumulative = TRUE, n.ahead = 15, boot = TRUE, nboot = nboot, ci = 0.95, boot.type = "rdwb")
 
 irf12 <- irf(var_model_2, impulse = "oil_price_real", response = "real_stock_returns", 
-             cumulative = TRUE, n.ahead = 15)
+             cumulative = TRUE, n.ahead = 15, boot = TRUE, nboot = nboot, ci = 0.95, boot.type = "rdwb")
 
 
-plot(irf10, ylim = c(-3,3), main="Oil supply shock", ylab="Cumulative Real Dividends (Percent)")
+plot(irf10, ylim = c(-3,3), main="Oil supply shock", ylab="Cumulative Real Stock Returns (Percent)")
 
-plot(irf11, ylim = c(-3,3),  main="Aggregate demand shock", ylab="Cumulative Real Dividends (Percent)")
+plot(irf11, ylim = c(-3,3),  main="Aggregate demand shock", ylab="Cumulative Real Stock Returns (Percent)")
 
-plot(irf12, ylim = c(-3,3), main="Oil-specific demand shock", ylab="Cumulative Real Dividends (Percent)")
+plot(irf12, ylim = c(-3,3), main="Oil-specific demand shock", ylab="Cumulative Real Stock Returns (Percent)")
 
 # Replicating Table 1 -----------------------------------------------------
 
