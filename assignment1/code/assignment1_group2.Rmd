@@ -1,9 +1,9 @@
 ---
 title: '**Advanced Macroeconometrics -- Assignment 1**'
 author: 
-  - "Siegfried Hammer (h12229325@wu.ac.at)"
-  - "Max Heinze (h11742049@wu.ac.at)"
-  - "Tim Koenders (h12215486@wu.ac.at)"
+  - "Siegfried Hammer (h12229325@s.wu.ac.at)"
+  - "Max Heinze (h11742049@s.wu.ac.at)"
+  - "Tim Koenders (h12215486@s.wu.ac.at)"
 date: "April 19, 2023"
 output: 
   pdf_document:
@@ -339,14 +339,19 @@ residuals <- resid(var_model)
 ```{r, fig.show="hold", out.width="30%", fig.align="center"}
 # Replicating Figure 1 ----------------------------------------------------
 
-irf1 <- irf(var_model, impulse = "oil_prod_change", response = "oil_price_real", n.ahead = 15)
+# Computing impulse response function with recursive-design wild bootstrap
+
+set.seed(123) # for reproducibility
+
+nboot <- 1000 # number of bootstrap replications
+irf1 <- irf(var_model, impulse = "oil_prod_change", response = "oil_price_real", n.ahead = 15, boot = TRUE, nboot = nboot, ci = 0.95, boot.type = "rdwb")
 irf1$irf$oil_prod_change <- irf1$irf$oil_prod_change * (-1) # Switching signs of shock
 irf1$Lower$oil_prod_change <- irf1$Lower$oil_prod_change * (-1) # and of the CIs
 irf1$Upper$oil_prod_change <- irf1$Upper$oil_prod_change * (-1)
 
-irf2 <- irf(var_model, impulse = "econ_act_real", response = "oil_price_real", n.ahead = 15)
+irf2 <- irf(var_model, impulse ="econ_act_real", response = "oil_price_real", n.ahead = 15, boot = TRUE, nboot = nboot, ci = 0.95, boot.type = "rdwb")
 
-irf3 <- irf(var_model, impulse = "oil_price_real", response = "oil_price_real", n.ahead = 15)
+irf3 <- irf(var_model, impulse = "oil_price_real", response = "oil_price_real", n.ahead = 15, boot = TRUE, nboot = nboot, ci = 0.95, boot.type = "rdwb")
 
 
 plot(irf1, main="Oil supply shock", ylab="Real price of oil")
@@ -356,24 +361,37 @@ plot(irf2, main="Aggregate demand shock", ylab="Real price of oil")
 plot(irf3, main="Oil-specific demand shock", ylab="Real price of oil") 
 ```
 
+The IRF plots show the responses of the real price of oil to the oil supply shock, the aggregate demand shock, and the oil-market specific demand shock.The oil supply shock is represented by a negative one standard deviation shock, while the other two shocks are positive and would raise the real price of oil. Differently from Kilian and Park (2009), the plots display only the two-standard error bands. The confidence intervals were constructed using a recursive-design wild bootstrap. 
+
+Similar to the results in Kilian and Park (2009), the key finding is that the three shocks have different impacts on the real price of oil.
+
+
+
+
+
+
+
 ## Replicating the Lower Panel of Figure 3
 
 
 ```{r, fig.show="hold", out.width="30%", fig.align="center"}
 # Replicating Figure 3 ----------------------------------------------------
 
+set.seed(123) # for reproducibility
+
+nboot <- 1000 # number of bootstrap replications
 irf4 <- irf(var_model, impulse = "oil_prod_change", response = "div_growth_change_real", 
-            cumulative = TRUE, n.ahead = 15)
+            cumulative = TRUE, n.ahead = 15, boot = TRUE, nboot = nboot, ci = 0.95, boot.type = "rdwb")
 
 irf4$irf$oil_prod_change <- (-1)*irf4$irf$oil_prod_change # Switching signs of shock
 irf4$Lower$oil_prod_change <- (-1)*irf4$Lower$oil_prod_change # and of the CIs
 irf4$Upper$oil_prod_change <- (-1)*irf4$Upper$oil_prod_change
 
 irf5 <- irf(var_model, impulse = "econ_act_real", response = "div_growth_change_real", 
-            cumulative = TRUE, n.ahead = 15)
+            cumulative = TRUE, n.ahead = 15, boot = TRUE, nboot = nboot, ci = 0.95, boot.type = "rdwb")
 
 irf6 <- irf(var_model, impulse = "oil_price_real", response = "div_growth_change_real", 
-            cumulative = TRUE, n.ahead = 15)
+            cumulative = TRUE, n.ahead = 15, boot = TRUE, nboot = nboot, ci = (0.95), boot.type = "rdwb")
 
 
 plot(irf4, ylim = c(-3,3), main="Oil supply shock", ylab="Cumulative Real Dividends (Percent)")
@@ -383,6 +401,9 @@ plot(irf5, ylim = c(-3,3),  main="Aggregate demand shock", ylab="Cumulative Real
 plot(irf6, ylim = c(-3,3), main="Oil-specific demand shock", ylab="Cumulative Real Dividends (Percent)")
 
 ```
+
+The above code replicates the cumulative responses of the dividend-growth rate to each shock. Differently from Kilian and Park (2009), the plots display only the two-standard error bands. The confidence intervals were constructed using a recursive-design wild bootstrap. From the plots, we observe that an oil supply shock result in a significant and negative impact on real dividends, which becomes apparent after five months. Positive aggregate demand shocks have a persistent positive effect on real dividends, with the effect being significant in most horizons. Conversely, positive shocks to precautionary demand lead to a persistent negative effect on real dividends, with the impact being significant across all horizons. 
+ 
 
 ## Replicating Table 2
 
@@ -401,6 +422,10 @@ knitr::kable(table_2)
 
 ```
 
+The dividend growth shock has the highest contribution to the forecast error variance, with a percentage of 77.1% at an infinite horizon, while the oil supply shock, oil demand shock, and oil-specific demand shock have smaller contributions. This suggests that the dividend growth shock is the most important factor driving the variability of U.S. real dividend growth over the long run, while oil-related shocks play a relatively smaller role. Specifically, as noted by Kilian and Park (2009), in the long run, shocks affecting the crude oil market account for 23% of the variability in real divident growth, and more than two-thirds of this variability is attributed to oil demand shock. However. the combined impact of these shocks is only 2%. 
+
+
+
 ## Creating a Stock Returns Variable
 
 ```{r}
@@ -416,7 +441,7 @@ fred_kp <- fred[169:576,] %>% # only choosing 1.1973 to 12.2006
 
 sp_kp <- ts_explode(fred_kp$S.P.500) %>%
   magrittr::set_colnames(c("sp500", "sp500_log", "sp500_mom", "sp500_momlog", "sp500_yoy", "sp500_yoylag")) %>%
-  magrittr::extract(-1,) %>% # Kilian&Park data set has only 407 rows so maybe they also omitted the first?
+  magrittr::extract(-1,) %>% 
   as_tibble()
 
 cpi_kp <- ts_explode(fred_kp$CPIAUCSL) %>%
@@ -430,25 +455,29 @@ kpdata_2 <- cbind(kpdata, real_stock_returns = 100*real_stock_returns)
 
 ```
 
+
+
 ```{r}
 # Re-estimating the model -------------------------------------------------
 
 var_model_2 <- VAR(kpdata_2, p = 24, type = "const")
 ```
 
-## Replicating Figure 1 (Again)
 
 ```{r, fig.show="hold", out.width="30%", fig.align="center"}
 # Replicating Figure 1 ----------------------------------------------------
 
-irf7 <- irf(var_model_2, impulse = "oil_prod_change", response = "oil_price_real", n.ahead = 15)
+set.seed(123) # for reproducibility
+
+nboot <- 1000 # number of bootstrap replications
+irf7 <- irf(var_model_2, impulse = "oil_prod_change", response = "oil_price_real", n.ahead = 15, boot = TRUE, nboot = nboot, ci = 0.95, boot.type = "rdwb")
 irf7$irf$oil_prod_change <- irf7$irf$oil_prod_change * (-1) # Switching signs of shock
 irf7$Lower$oil_prod_change <- irf7$Lower$oil_prod_change * (-1) # and of the CIs
 irf7$Upper$oil_prod_change <- irf7$Upper$oil_prod_change * (-1)
 
-irf8 <- irf(var_model_2, impulse = "econ_act_real", response = "oil_price_real", n.ahead = 15)
+irf8 <- irf(var_model_2, impulse = "econ_act_real", response = "oil_price_real", n.ahead = 15, boot = TRUE, nboot = nboot, ci = 0.95, boot.type = "rdwb")
 
-irf9 <- irf(var_model_2, impulse = "oil_price_real", response = "oil_price_real", n.ahead = 15)
+irf9 <- irf(var_model_2, impulse = "oil_price_real", response = "oil_price_real", n.ahead = 15, boot = TRUE, nboot = nboot, ci = 0.95, boot.type = "rdwb")
 
 
 plot(irf7, ylim = c(-6,12), main="Oil supply shock", ylab="Real price of oil")
@@ -456,6 +485,9 @@ plot(irf7, ylim = c(-6,12), main="Oil supply shock", ylab="Real price of oil")
 plot(irf8, ylim = c(-6,12),  main="Aggregate demand shock", ylab="Real price of oil")
 
 plot(irf9, ylim = c(-6,12), main="Oil-specific demand shock", ylab="Real price of oil")
+
+
+
 ```
 
 ## Replicating the Upper Panel of Figure 3
@@ -463,27 +495,34 @@ plot(irf9, ylim = c(-6,12), main="Oil-specific demand shock", ylab="Real price o
 ```{r, fig.show="hold", out.width="30%", fig.align="center"}
 # Replicating Figure 3 ----------------------------------------------------
 
+set.seed(123) # for reproducibility
+
+nboot <- 1000 # number of bootstrap replications
+
 irf10 <- irf(var_model_2, impulse = "oil_prod_change", response = "real_stock_returns", 
-            cumulative = TRUE, n.ahead = 15)
+             cumulative = TRUE, n.ahead = 15, boot = TRUE, nboot = nboot, ci = 0.95, boot.type = "rdwb")
 
 irf10$irf$oil_prod_change <- (-1)*irf10$irf$oil_prod_change # Switching signs of shock
 irf10$Lower$oil_prod_change <- (-1)*irf10$Lower$oil_prod_change # and of the CIs
 irf10$Upper$oil_prod_change <- (-1)*irf10$Upper$oil_prod_change
 
 irf11 <- irf(var_model_2, impulse = "econ_act_real", response = "real_stock_returns", 
-            cumulative = TRUE, n.ahead = 15)
+             cumulative = TRUE, n.ahead = 15, boot = TRUE, nboot = nboot, ci = 0.95, boot.type = "rdwb")
 
 irf12 <- irf(var_model_2, impulse = "oil_price_real", response = "real_stock_returns", 
-            cumulative = TRUE, n.ahead = 15)
+             cumulative = TRUE, n.ahead = 15, boot = TRUE, nboot = nboot, ci = 0.95, boot.type = "rdwb")
 
 
-plot(irf10, ylim = c(-3,3), main="Oil supply shock", ylab="Cumulative Real Dividends (Percent)")
+plot(irf10, ylim = c(-3,3), main="Oil supply shock", ylab="Cumulative Real Stock Returns (Percent)")
 
-plot(irf11, ylim = c(-3,3),  main="Aggregate demand shock", ylab="Cumulative Real Dividends (Percent)")
+plot(irf11, ylim = c(-3,3),  main="Aggregate demand shock", ylab="Cumulative Real Stock Returns (Percent)")
 
-plot(irf12, ylim = c(-3,3), main="Oil-specific demand shock", ylab="Cumulative Real Dividends (Percent)")
+plot(irf12, ylim = c(-3,3), main="Oil-specific demand shock", ylab="Cumulative Real Stock Returns (Percent)")
 
 ```
+
+The upper panel of figure 3 displays the cumulative impulse responses of the created variable real stock returns to the three demand and supply shocks in the crude oil market. The results are qualitatively similar to the ones from Kilian and Park (2009). Oil supply shocks still have little effect on cumulative U.S. stock returns while a positive shock in global demand has a smaller effect, and turns negative sooner. Similar to the results in Kilian and Park (2009), an increase in the precautionary demand for oil causes persistently negative U.S. stock returns. 
+
 
 ## Replicating Table 1
 
@@ -502,7 +541,7 @@ table_1 <- fevd(var_model_2, n.ahead = 1000)$real_stock_returns %>%
 knitr::kable(table_1)
 ```
 
-
+Table 1 reveals that, similar to the results in Kilian and Park (2009), in the short run, the impact of oil supply, aggregate demand, and oil-specific demand shocks is very small with around 96% of the variation in U.S. stock returns associated with other shocks than those in the global crude oil market. However, we also see that as the horizon increases, the explanatory power of the oil shocks increases. 
 
 
  
