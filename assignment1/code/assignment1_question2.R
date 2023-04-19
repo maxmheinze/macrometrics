@@ -41,11 +41,11 @@ irf3 <- irf(var_model, impulse = "oil_price_real", response = "oil_price_real", 
 
 #Plotting the IRFs to recreate Figure 1
 
-plot(irf1, main="Oil supply shock", ylab="Real price of oil")
+plot(irf1, ylim = c(-6,12), main="Oil supply shock", ylab="Real price of oil")
 
-plot(irf2, main="Aggregate demand shock", ylab="Real price of oil")
+plot(irf2, ylim = c(-6,12), main="Aggregate demand shock", ylab="Real price of oil")
 
-plot(irf3, main="Oil-specific demand shock", ylab="Real price of oil") 
+plot(irf3, ylim = c(-6,12), main="Oil-specific demand shock", ylab="Real price of oil") 
 
 
 # Replicating Lower Panel Figure 3 ----------------------------------------------------
@@ -141,7 +141,7 @@ irf9 <- irf(var_model_2, impulse = "oil_price_real", response = "oil_price_real"
 
 plot(irf7, ylim = c(-6,12), main="Oil supply shock", ylab="Real price of oil")
 
-plot(irf8, ylim = c(-6,12),  main="Aggregate demand shock", ylab="Real price of oil")
+plot(irf8, ylim = c(-6,12), main="Aggregate demand shock", ylab="Real price of oil")
 
 plot(irf9, ylim = c(-6,12), main="Oil-specific demand shock", ylab="Real price of oil")
 
