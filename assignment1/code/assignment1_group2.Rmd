@@ -150,39 +150,29 @@ The plots above depict the logged time series of U.S. industrial production and 
 
 ## Assessing Properties
 
-Next we assess the properties of both logged industrial production and its yearly growth rate.
+Next we assess the properties of both logged industrial production and its yearly growth rate. We start with logged industrial production:
 
 ```{r, echo = TRUE, out.width="50%", fig.align='center'}
 
-# Assessing the time series properties ----------------------------------------
 
-# ACF plot and ADF test(s) of Logged Industrial Production
+# ACF plot of Logged Industrial Production
 
 stats::acf(ind_prod$log_transformed[!is.na(ind_prod$log_transformed)], main = "ACF of Logged Industrial Production")
 
-urtest1a = ur.df(ind_prod$log_transformed[!is.na(ind_prod$log_transformed)], type = "trend", selectlags = "AIC")
-summary(urtest1a)
-
-urtest2a = ur.df(ind_prod$log_transformed[!is.na(ind_prod$log_transformed)], type = "drift", selectlags = "AIC")
-summary(urtest2a)
-
-# ACF plot and ADF test(s) of Year-on-Year Growth Rate
-
-stats::acf(ind_prod$yoy_growth[!is.na(ind_prod$yoy_growth)], main = "ACF of YoY Growth of Industrial Production")
-
-urtest1b = ur.df(ind_prod$yoy_growth[!is.na(ind_prod$yoy_growth)], type = "trend", selectlags = "AIC")
-summary(urtest1b)
-
-urtest2b = ur.df(ind_prod$yoy_growth[!is.na(ind_prod$yoy_growth)], type = "drift", selectlags = "AIC")
-summary(urtest2b)
-
 ```
 
-The ACF of Logged Industrial Production reveals a highly persistent nature of the time series with significant autocorrelation coefficients, particularly between Logged Industrial Production and its first five lags, which are extremely close to 1. The autocorrelation coefficients remain highly significant in the displayed laggs. This highly persistent nature suggests potential non-stationarity in the series. For a more appropriate procedure, we apply the Augmented Dickey-Fuller (ADF) unit root tests. 
+The ACF of Logged Industrial Production reveals a highly persistent nature of the time series with significant autocorrelation coefficients, particularly between Logged Industrial Production and its first five lags, which are extremely close to 1. The autocorrelation coefficients remain highly significant in the displayed laggs. This highly persistent nature suggests potential non-stationarity in the series. For a more appropriate procedure, we apply the Augmented Dickey-Fuller (ADF) unit root tests.
 
 Type: "trend" (urtest1a)
 H0: The time series is random walk around a trend
 H1: The time series is trend-stationary
+
+```{r, echo = TRUE, out.width="50%", fig.align='center'}
+#ADF test 1a) of Logged Industrial Production
+urtest1a = ur.df(ind_prod$log_transformed[!is.na(ind_prod$log_transformed)], type = "trend", selectlags = "AIC")
+summary(urtest1a)
+```
+
 
 As the coefficient of trend (tt) is insignificant, we never apply the ADF test with drift and trend. Instead, we move on to the second equation including only the drift component.
 
@@ -190,9 +180,22 @@ Type: "drift" (urtest2a)
 H0: The time series is random walk around a drift 
 H1: The time series is (log-level) stationary around a drift
 
+```{r, echo = TRUE, out.width="50%", fig.align='center'}
+#ADF test 2a) of Logged Industrial Production
+urtest2a = ur.df(ind_prod$log_transformed[!is.na(ind_prod$log_transformed)], type = "drift", selectlags = "AIC")
+summary(urtest2a)
+```
+
 As the drift component is significant, and the absolute value of the test-statistic (2.5263) is below all the critical values for conventional significance levels, we conclude that we fail to reject the null hypothesis that the time series is random walk around a drift. 
 
 Thus, we conclude that Logged Industrial Production is I(1).
+
+Next we assess the ACF of the yearly growth rate of Instustrial production:
+
+```{r, echo = TRUE, out.width="50%", fig.align='center'}
+#ACF plot of Year-on-Year Growth Rate
+stats::acf(ind_prod$yoy_growth[!is.na(ind_prod$yoy_growth)], main = "ACF of YoY Growth of Industrial Production")
+```
 
 The ACF of YoY Growth rate of Industrial Production shows positive persistence, but to a lesser degree than the former series. The correlation coefficient decreases relatively quickly and even turns significantly negative after the 17th lag, indicating the presence of a pattern or cycle in the data at specific time lags. Now we apply the Augmented Dickey-Fuller (ADF) unit root tests. 
 
@@ -200,11 +203,23 @@ Type: "trend" (urtest1b)
 H0: The time series is random walk around a trend
 H1: The time series is trend-stationary
 
+```{r, echo = TRUE, out.width="50%", fig.align='center'}
+#ADF test 1b) of Year-on-Year Growth Rate
+urtest1b = ur.df(ind_prod$yoy_growth[!is.na(ind_prod$yoy_growth)], type = "trend", selectlags = "AIC")
+summary(urtest1b)
+```
+
 As the coefficient of trend (tt) is insignificant, we never apply the ADF test with drift and trend. Instead, we move on to the second equation including only the drift component.
 
 Type: "drift" (urtest2b)
 H0: The time series is random walk around a drift 
 H1: The time series is stationary around a drift
+
+```{r, echo = TRUE, out.width="50%", fig.align='center'}
+#ADF test 2b) of Year-on-Year Growth Rate
+urtest2b = ur.df(ind_prod$yoy_growth[!is.na(ind_prod$yoy_growth)], type = "drift", selectlags = "AIC")
+summary(urtest2b)
+```
 
 As the drift component is significant, and the absolute value of the test-statistic (5.6443) is above all the critical values for conventional significance levels, we conclude that we reject the null hypothesis that the time series is random walk around a drift. 
 
