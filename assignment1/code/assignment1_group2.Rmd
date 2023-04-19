@@ -56,7 +56,7 @@ colnames(kpdata) <- c("oil_prod_change", "econ_act_real", "oil_price_real", "div
 
 ## Creating the Function
 
-Next, we create the desired function `ts_explode()`. Along with the vector to be transformed, it asks for a specification of whether the data is ordered with the latest or earliest value first. It takes the earliest value first as default.
+Next, we create the desired function\footnote{In addition to the transformations asked in the assignment, we let it calculate log month-on-month growth, wich we use in Question 2 for the creation of the stock returns variable.} `ts_explode()`. Along with the vector to be transformed, it asks for a specification of whether the data is ordered with the latest or earliest value first. It takes the earliest value first as default.
 
 ```{r, echo = TRUE}
 # Create the function -----------------------------------------------------
@@ -161,11 +161,12 @@ stats::acf(ind_prod$log_transformed[!is.na(ind_prod$log_transformed)], main = "A
 
 ```
 
-The ACF of Logged Industrial Production reveals a highly persistent nature of the time series with significant autocorrelation coefficients, particularly between Logged Industrial Production and its first five lags, which are extremely close to 1. The autocorrelation coefficients remain highly significant in the displayed laggs. This highly persistent nature suggests potential non-stationarity in the series. For a more appropriate procedure, we apply the Augmented Dickey-Fuller (ADF) unit root tests.
+The ACF of Logged Industrial Production reveals a highly persistent nature of the time series with significant autocorrelation coefficients, particularly between Logged Industrial Production and its first five lags, which are extremely close to 1. The autocorrelation coefficients remain highly significant in the displayed lags. This highly persistent nature suggests potential non-stationarity in the series. For a more appropriate procedure, we apply the Augmented Dickey-Fuller (ADF) unit root tests.
 
-Type: "trend" (urtest1a)
-H0: The time series is random walk around a trend
-H1: The time series is trend-stationary
+### Type: "trend" (urtest1a)
+
+* $H_0:$ The time series is random walk around a trend
+* $H_1:$ The time series is trend-stationary
 
 ```{r, echo = TRUE, out.width="50%", fig.align='center'}
 #ADF test 1a) of Logged Industrial Production
@@ -176,9 +177,10 @@ summary(urtest1a)
 
 As the coefficient of trend (tt) is insignificant, we never apply the ADF test with drift and trend. Instead, we move on to the second equation including only the drift component.
 
-Type: "drift" (urtest2a)
-H0: The time series is random walk around a drift 
-H1: The time series is (log-level) stationary around a drift
+### Type: "drift" (urtest2a)
+
+* $H_0:$ The time series is random walk around a drift 
+* $H_1:$ The time series is (log-level) stationary around a drift
 
 ```{r, echo = TRUE, out.width="50%", fig.align='center'}
 #ADF test 2a) of Logged Industrial Production
@@ -188,7 +190,7 @@ summary(urtest2a)
 
 As the drift component is significant, and the absolute value of the test-statistic (2.5263) is below all the critical values for conventional significance levels, we conclude that we fail to reject the null hypothesis that the time series is random walk around a drift. 
 
-Thus, we conclude that Logged Industrial Production is I(1).
+Thus, we conclude that Logged Industrial Production is $I(1)$.
 
 Next we assess the ACF of the yearly growth rate of Instustrial production:
 
@@ -199,9 +201,10 @@ stats::acf(ind_prod$yoy_growth[!is.na(ind_prod$yoy_growth)], main = "ACF of YoY 
 
 The ACF of YoY Growth rate of Industrial Production shows positive persistence, but to a lesser degree than the former series. The correlation coefficient decreases relatively quickly and even turns significantly negative after the 17th lag, indicating the presence of a pattern or cycle in the data at specific time lags. Now we apply the Augmented Dickey-Fuller (ADF) unit root tests. 
 
-Type: "trend" (urtest1b)
-H0: The time series is random walk around a trend
-H1: The time series is trend-stationary
+### Type: "trend" (urtest1b)
+
+* $H_0:$ The time series is random walk around a trend
+* $H_1:$ The time series is trend-stationary
 
 ```{r, echo = TRUE, out.width="50%", fig.align='center'}
 #ADF test 1b) of Year-on-Year Growth Rate
@@ -211,9 +214,10 @@ summary(urtest1b)
 
 As the coefficient of trend (tt) is insignificant, we never apply the ADF test with drift and trend. Instead, we move on to the second equation including only the drift component.
 
-Type: "drift" (urtest2b)
-H0: The time series is random walk around a drift 
-H1: The time series is stationary around a drift
+### Type: "drift" (urtest2b)
+
+* $H_0:$ The time series is random walk around a drift 
+* $H_1:$ The time series is stationary around a drift
 
 ```{r, echo = TRUE, out.width="50%", fig.align='center'}
 #ADF test 2b) of Year-on-Year Growth Rate
@@ -223,7 +227,7 @@ summary(urtest2b)
 
 As the drift component is significant, and the absolute value of the test-statistic (5.6443) is above all the critical values for conventional significance levels, we conclude that we reject the null hypothesis that the time series is random walk around a drift. 
 
-Thus, we conclude that the YoY Growth of Industrial Production is I(0). 
+Thus, we conclude that the YoY Growth of Industrial Production is $I(0)$. 
 
 ## Estimating an AR Model
 
@@ -265,10 +269,10 @@ plot(time_period_forecasted_change, forecasted_original, type = "l",
 
 ```
 
-The lag order is determined by default in the ar.ols() function using the Akaike Information Criterion (AIC) as the method for order selection. AIC is a model selection criterion that balances model goodness of fit and complexity. Lower AIC values are preferred. The ar.ols() function computes the AIC value for different lag orders and selects the lag order that minimizes the AIC as the optimal lag order for the AR model. 
+The lag order is determined by default in the `ar.ols()` function using the Akaike Information Criterion (AIC) as the method for order selection. AIC is a model selection criterion that balances model goodness of fit and complexity. Lower AIC values are preferred. The `ar.ols()` function computes the AIC value for different lag orders and selects the lag order that minimizes the AIC as the optimal lag order for the AR model. 
 
 
-If the AR model is capturing the underlying patterns wel, then as the YoY growth rate of industrial production is stationary, the forecasts are likely to converge towards their long-run average of around 0.026 (2.6%).
+If the AR model is capturing the underlying patterns well, then as the YoY growth rate of industrial production is stationary, the forecasts are likely to converge towards their long-run average of around 0.026 (2.6%).
 
 ## Bonus Question
 
@@ -340,6 +344,8 @@ The AR Model with a holdout period of 12 months and a lag order of 2 performs th
 
 # Exercise 2
 
+We begin by estimating the VAR model the way Kilian & Park (2009) did:
+
 ```{r}
 
 # Estimating the VAR ------------------------------------------------------
@@ -350,6 +356,8 @@ residuals <- resid(var_model)
 ```
 
 ## Replicating Figure 1
+
+To replicate Figure 1, we compute impulse response functions the way the paper described and plot them:
 
 ```{r, fig.show="hold", out.width="30%", fig.align="center"}
 # Replicating Figure 1 ----------------------------------------------------
@@ -369,11 +377,11 @@ irf2 <- irf(var_model, impulse ="econ_act_real", response = "oil_price_real", n.
 irf3 <- irf(var_model, impulse = "oil_price_real", response = "oil_price_real", n.ahead = 15, boot = TRUE, nboot = nboot, ci = 0.95, boot.type = "rdwb")
 
 
-plot(irf1, main="Oil supply shock", ylab="Real price of oil")
+plot(irf1, ylim = c(-6,12), main="Oil supply shock", ylab="Real price of oil")
 
-plot(irf2, main="Aggregate demand shock", ylab="Real price of oil")
+plot(irf2, ylim = c(-6,12), main="Aggregate demand shock", ylab="Real price of oil")
 
-plot(irf3, main="Oil-specific demand shock", ylab="Real price of oil") 
+plot(irf3, ylim = c(-6,12), main="Oil-specific demand shock", ylab="Real price of oil") 
 ```
 
 The IRF plots show the responses of the real price of oil to the oil supply shock, the aggregate demand shock, and the oil-market specific demand shock.The oil supply shock is represented by a negative one standard deviation shock, while the other two shocks are positive and would raise the real price of oil. Differently from Kilian and Park (2009), the plots display only the two-standard error bands. The confidence intervals were constructed using a recursive-design wild bootstrap. 
@@ -387,6 +395,8 @@ Similar to the results in Kilian and Park (2009), the key finding is that the th
 
 
 ## Replicating the Lower Panel of Figure 3
+
+Next, we replicate the plots in the lower panel of Figure 3:
 
 
 ```{r, fig.show="hold", out.width="30%", fig.align="center"}
@@ -422,6 +432,8 @@ The above code replicates the cumulative responses of the dividend-growth rate t
 
 ## Replicating Table 2
 
+Finally, we replicate Table 2. Note that, in accordance with the paper, we output values as percentages (i.e., multiplied by 100):
+
 ```{r}
 # Replicating Table 2 -----------------------------------------------------
 
@@ -443,7 +455,7 @@ The dividend growth shock has the highest contribution to the forecast error var
 
 ## Creating a Stock Returns Variable
 
-```{r}
+```{r, warning=FALSE}
 # Stock Market Returns ----------------------------------------------------
 
 fred <- read.csv("./assignment1/data/fred.csv")[-1,]
@@ -478,6 +490,9 @@ kpdata_2 <- cbind(kpdata, real_stock_returns = 100*real_stock_returns)
 var_model_2 <- VAR(kpdata_2, p = 24, type = "const")
 ```
 
+## Replicating Figure 1
+
+Using our newly estimated VAR model, we replicate Figure 1 again:
 
 ```{r, fig.show="hold", out.width="30%", fig.align="center"}
 # Replicating Figure 1 ----------------------------------------------------
@@ -505,7 +520,11 @@ plot(irf9, ylim = c(-6,12), main="Oil-specific demand shock", ylab="Real price o
 
 ```
 
+Looking at the results, we conclude that the plots have not changed since we first replicated them before re-estimating the VAR model.
+
 ## Replicating the Upper Panel of Figure 3
+
+Next, we replicate the upper panel of Figure 3:
 
 ```{r, fig.show="hold", out.width="30%", fig.align="center"}
 # Replicating Figure 3 ----------------------------------------------------
@@ -540,6 +559,8 @@ The upper panel of figure 3 displays the cumulative impulse responses of the cre
 
 
 ## Replicating Table 1
+
+Finally, we replicate Table 1:
 
 ```{r}
 # Replicating Table 1 -----------------------------------------------------
