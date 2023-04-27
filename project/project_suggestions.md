@@ -8,7 +8,7 @@
 
 * Koch et al. (2022)
 
-## Kitagawa, Osaka, Blinder Uncertainty & Confounding
+## Kitagawa, Oaxaca, Blinder Uncertainty & Confounding
 
 * Elder et al. (2010)
 
