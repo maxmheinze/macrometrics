@@ -88,20 +88,19 @@ This time, we do not observe convergence of the cumulative mean. Rather, we obse
 \newpage
 
 # Exercise 2
-## Exercise 2.1 - Conjugate Prior to Binomial distributions 
-
+## Exercise 2.1
 A Covid test can be represented by a Bernoulli trial, where our random variable takes over value = 1 if test is *positive* and value = 0 if *negative*. As we conduct the tests for 20 colleagues, we have a sequence of Bernoulli trials, where the random variable now is the sum of all single Bernoulli trials. This random variable now follows a Binomial distribution. That is, our likelihood follows a Binomial distribution.\footnote{Bernoulli distribution is just a special case of a Binomial distribution with n=1.} 
 
 The class of conjugate priors for a Binomial distribution are Beta($\alpha$, $\beta$)  distributions where $\alpha$, $\beta$ $\in$ $\mathbb{R}_+$.
 
-Notice that we have vector of observations $y = (y_1,...,y_n)$ for n days, where $y_i$ contains 20 observations, one for each colleague. Thus $y_i \sim Binom(20,\theta)$ The likelihood is then the product of n such iid variables.
+Notice that we have vector of observations $y = (y_1,...,y_n)$ for n days, where $y_i$ contains 20 observations, one for each colleague. Thus $y_i \sim Binom(20,\theta)$ Since the n observations across time are iid the likelihood originates from $Binom(20n,\theta)$
 
 Thus the distribution of $y_i$, the likelihood function and our prior are respectively:
 
 $$
 \begin{aligned}
 p(y_i\mid\theta) = {20 \choose k_i} \theta^{k_i} (1-\theta)^{20-{k_i}}  \\
-p(y\mid\theta) = \prod_{i=1}^n p(y_i\mid\theta) \propto \theta^{S_n} (1-\theta)^{N-S_n}  \\
+p(y\mid\theta) = {N \choose S_n} \theta^{S_n} (1-\theta)^{N-{S_n}} \propto \theta^{S_n} (1-\theta)^{N-S_n}  \\
 p(\theta) = p(\theta\mid\alpha,\beta) = \frac{1}{B(\alpha,\beta)} \theta^{\alpha-1}(1-\theta)^{\beta-1} \propto \theta^{\alpha-1}(1-\theta)^{\beta-1}
 \end{aligned}
 $$
@@ -117,12 +116,11 @@ p(\theta|y) &\propto p(y|\theta) \cdot p(\theta)\\
 \implies p(\theta|y) &\sim Beta(\alpha + S_n, \beta + N- S_n)
 \end{aligned}
 $$
-Our posterior is proportional to a Beta distribution. Thus the Beta prior is indeed conjugate.
+Our posterior is proportional to a Beta distribution. Thus the Beta prior was indeed a conjugate prior.
 
 
-## Exercise 2.2 - Point Estimates for $\theta$
-
-30 observations for each of the 20 individuals result in a total of N=600 observations. In total, {S_n = 10} of the 600 observations/tests are positive. Then, given the fact that our prior as well as our posterior follows a beta distribution, we can look up the formulae of point estimators such as *mean*, *median*, *mode*, etc. for a beta distribution $Beta(\alpha, \beta)$. Applied to the case at hand, we obtain for the prior the following point estimators:
+## Exercise 2.2 + 2.3
+30 observations for each of the 20 individuals are in total 600 observations. In total, 10 of the 600 observations/tests are positive. Then, given the fact that our prior as well as our posterior follows a beta distribution, we can look up the formulae of point estimators such as *mean*, *median*, *mode*, etc. for a beta distribution $Beta(\alpha, \beta)$. Applied to the case at hand, we obtain for the prior the following point estimators:
 
 - Mean: $E[\theta] = \frac{\alpha_0}{\alpha_0+\beta_0}$
 - Median
@@ -132,25 +130,23 @@ Our posterior is proportional to a Beta distribution. Thus the Beta prior is ind
   - for $\alpha_0,\beta_0>1$: $\frac{\alpha_0-1}{\alpha_0+\beta_0-2}$
   - for $\alpha_0,\beta_0=1$: Any value $x\in(0,1)$ is mode.
   
-Note, that for posterior point estimators, we simply replace $\alpha_0$ by $\alpha_1 = \alpha_0+S_n$, and $\beta_0$ by $\beta_1 = \beta_0+N-S_n$, where $S_n = 10$ is the number of successes; i.e. positive test results, and $N=600$ is the number of observations again.
+Note, that for posterior point estimators, we simply replace $\alpha_0$ by $\alpha_1 = \alpha_0+S_n$, and $\beta_0$ by $\beta_1 = \beta_0+N-S_n$, where $S_n = 10$ is the number of successes; i.e. positive test results, and $N=600$ is the number of observations.
 
-## Exercise 2.3 - Impact of different prior information on point estimates
+To see how these point estimators change with different values for $\alpha_0$, and $\beta_0$, see the table underneath. This gives a first indication of how different beta priors affect the posterior.
 
-To see, how these point estimators change with different values for $\alpha_0$, and $\beta_0$, see the table underneath. Also, this table gives first indications of how different beta priors affect the posterior.
-
-```{r, include=TRUE,echo=FALSE, message=FALSE}
+```{r, include=TRUE,echo=FALSE, message=FALSE,warning=FALSE}
 m <- function(a,b){
-  round((a)/(a+b), 5)
+  round((a)/(a+b), 4)
   }
 
 med <- function(a,b){
-  round((a-1/3)/(a+b-2/3),5)
+  round((a-1/3)/(a+b-2/3),4)
   }
 
 mod <- function(a,b){
   ifelse(a == 1 & b == 1, 
           "any in (0,1)", 
-          round((a-1)/(a+b-2),5))
+          round((a-1)/(a+b-2),4))
   }
 
 a_1 = function(a, s_n = 10){
@@ -161,8 +157,8 @@ b_1 = function(b, s_n = 10, n = 600) {
   b+n-s_n
   }
 
-a_0 = c(1,0.1,0.1,5)
-b_0 = c(1,0.1,5,0.1)
+a_0 = c(1,2,10,0.5,1,2,10)
+b_0 = c(1,10,2,0.5,2,1,250)
 
 df = as.data.frame(cbind(a_0, b_0))
 
@@ -187,20 +183,22 @@ knitr::kable(tbl, caption = "Point estimators for various alpha and beta.")
 
 ```
 
-To visualise the impact different beta priors have on the posterior distribution, see the corresponding density plots that make use of the same $\alpha_0$ and $\beta_0$ shape parameters used in the table above. Note that we adjusted the x-axis limit of the posterior plots, to 0.1 rather than 1 as we wanted to precisely see what impact different beta priors have on the posterior. Of course, we only did that because there was not much going on in terms of posterior density weights on the range from 0.1 to 1, and thus, including the whole range from 0 to 1 would not allow us to clearly see the different impacts. 
+
+
+To visualise the impact different beta priors have on the posterior distribution, see the corresponding density plots that make use of selected $\alpha_0$ and $\beta_0$ shape parameters used in the table above. 
 
 ```{r}
 #define range
 p = seq(0,1, length=100)
 
 #plot several Beta distributions
-plot(p, dbeta(p, 2, 10), ylab='density', type ='l', col='red', main="Priors",ylim=c(0,10))
-a_0 = c(1,0.1,0.1,5)
-b_0 = c(1,0.1,5,0.1)
+plot(p, dbeta(p, a_0[1], b_0[1]), ylab='density', type ='l', col='black', main="Priors",ylim=c(0,10))
 
-lines(p, dbeta(p, 1, 1), col='black') 
-lines(p, dbeta(p, 10, 2), col='blue')
-lines(p, dbeta(p, 5, 5), col='green')
+
+lines(p, dbeta(p, a_0[2], b_0[2]), col='red') 
+lines(p, dbeta(p, a_0[3], b_0[3]), col='blue')
+lines(p, dbeta(p, a_0[4], b_0[4]), col='green')
+lines(p, dbeta(p, a_0[7], b_0[7]), col='purple')
 
 #add legend
 legend("topright", c('Beta(1, 1)','Beta(2, 10)','Beta(10,2)', 'Beta(0.5,0.5)'),
@@ -208,58 +206,6 @@ legend("topright", c('Beta(1, 1)','Beta(2, 10)','Beta(10,2)', 'Beta(0.5,0.5)'),
 
 
 ```
-
-
-```{r}
-#define range
-p = seq(0,1, length=100)
-
-#plot several Beta distributions
-plot(p, dbeta(p, 2, 10), ylab='density', type ='l', col='red', main="Priors",ylim=c(0,10))
-a_0 = c(1,0.1,0.1,5)
-b_0 = c(1,0.1,5,0.1)
-
-lines(p, dbeta(p, 1, 1), col='black') 
-lines(p, dbeta(p, 10, 2), col='blue')
-lines(p, dbeta(p, 5, 5), col='green')
-
-#add legend
-legend("topright", c('Beta(1, 1)','Beta(2, 10)','Beta(10,2)', 'Beta(0.5,0.5)'),
-       lty=c(1,1,1),col=c('black', 'red', 'blue', 'green'))
-
-```
-
-
-For $\alpha_0 = \beta_0 = 1$ the prior is simply a uniform(1,1) distribution. This uninformative prior gives us a posterior distribution which is narrowly centered around approx. 0.02. As we see in the graphs above, a change in the prior parameters changes the pattern for the posterior only slightly in absolute terms. For arbitrary values $\alpha_0 = \beta_0>1$ prior has the property that mean = median = mode\footnote{for $\alpha_0 = \beta_0=1$, mean = meadian = 0.5, and mode is any value in interval (0,1).}, but this does not hold for the posterior as $\alpha_1$ and $\beta_1$  are non-proportional linear combinations of $\alpha_0$ and $\beta_0$.   
-
-For an increase in $\alpha_0$ holding $\beta_0$ constant we see an increase in all posterior point estimates. If we increase $\beta_0$ holding $\alpha_0$ constant, estimates decrease.
-
-As to sources of prior information, information for this particular problem can stem from previous research. In a similar example in class, we had the probability of having the disease given by a value of 1 in 10,000. If this is what the literature agrees upon, we could take this value into account. However, as we are rather interested in a probability distribution rather than a single estimate, we could consult the literature again and see if this value of 1 in 10,000 is simply the mean of the prior distribution. If that is so, then we know from Exercise 2.1 that the class of conjugate priors for this problem follows a Beta distribution. So, taking this into account, we could agree on values for $\alpha_0$ and $\beta_0$ that give approximately a mean value of 1 in 10,000. 
-As to additional sources of prior information, technically, we could include any type of additional prior information such as information on symptoms (coughing, sore throat, fever, etc.) that a subject might have, or locations where the subject stayed at (crowded places, inside areas, etc.), or the simple fact whether or not a subject was wearing a mask. 
-
-## Exercise 2.4
-### 2.4a - The iid assumption for data
-
-Conducting n Covid-19 tests can be seen as conducting a sequence of n Bernoulli trials, where in each round we either obtain a positive (= value of 1) or a negative (= value of 0) test result. The sum of these Bernoulli trials follows a Binomial distribution, where the binomial random variable is defined as the number of "successes". Here, we define a "success" as obtaining a positive test result. Now, for a random variable to follow a Binomial distribution, it is necessary that the probability of "success" is \begin{itemize}
-\item[a)] the same in every Bernoulli trial, i.e., it is identically distributed; and
-\item[b)] is not affected by any previous (or future) outcome, i.e., the outcome in any Bernoulli trial is independent to any other outcome of any other Bernoulli trial in the sequence.
-\end{itemize}
-If these two conditions do not hold, then our random variable does not follow a Binomial distribution. Hence, they are necessary.
-
-However, in real life, things might be different, and these two conditions are likely to fail as is explained hereinafter. 
-First, the assumption of *identical distribution* might not be fulfilled in real life, because the situation outside of our trial can influence the probability of testing positive on a particular day. Ceteris paribus, on a day with high Covid incidence, the probability that one of our employees will get in contact with an infected person and contracts Covid is higher.
-Second, if one of our employees in the office tests positive on a particular day, then this employee will almost certainly test positive on the second day as well. The probability that other colleagues test positive on the second day increases, too. Hence the *independence* assumption is not fulfilled either.
-Therefore, the scope of inference based on a posterior derived using this likelihood function is limited.
-
-### 2.4b - Improving the model 
-
-In class, we used probabilities rather than probability distributions for the Covid-19 test example. If we make use of a Bayesian point estimator of $\theta$, e.g. the mean of the prior distribution, we can basically replicate the example from class with own values depending on our estimates from Exercise 2.3, for instance. However, rather than just picking a single point, we could also directly do it with a probability distribution. The procedure is analogous, and in the end, we could summarise the computed posterior distribution by means of a single point estimate -- again the mean of the distribution, for instance.
-
-As to re-testing, we can run several Covid-19 tests on a single individual, and update our prior information with the posterior obtained in the previous test. This procedure is called Bayesian updating. Depending on the size of the probability of a *false positive* and the *marginal probability* of having the disease, a test result obtained might be more or less informative. In class, we had a high probability of a *false positive* and a low *marginal probability* of having the disease, which led to the case that a positive test result was more informative than a negative one.
-
-As to extending the model, we could include any type of additional prior information such as taking into account symptoms (coughing, sore throat, fever, etc.) or stays at places which are crowded, inside, etc., and whether or not a mask was being worn, as was discussed in Exercise 2.3. 
-
-
 
 \newpage
 
