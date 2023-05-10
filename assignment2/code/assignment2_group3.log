@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.12.12)  10 MAY 2023 16:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.12.12)  10 MAY 2023 16:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -877,7 +877,7 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 169.
-<assignment2_group3_files/figure-latex/unnamed-chunk-1-1.pdf, id=55, 407.5225pt
+<assignment2_group3_files/figure-latex/unnamed-chunk-1-1.pdf, id=57, 407.5225pt
  x 283.0575pt>
 File: assignment2_group3_files/figure-latex/unnamed-chunk-1-1.pdf Graphic file 
 (type pdf)
@@ -886,7 +886,7 @@ Package pdftex.def Info: assignment2_group3_files/figure-latex/unnamed-chunk-1-
 1.pdf  used on input line 181.
 (pdftex.def)             Requested size: 338.59802pt x 235.18384pt.
 [2 <./assignment2_group3_files/figure-latex/unnamed-chunk-1-1.pdf>]
-<assignment2_group3_files/figure-latex/unnamed-chunk-2-1.pdf, id=77, 408.52625p
+<assignment2_group3_files/figure-latex/unnamed-chunk-2-1.pdf, id=79, 408.52625p
 t x 286.06876pt>
 File: assignment2_group3_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file 
 (type pdf)
@@ -955,7 +955,7 @@ Overfull \hbox (6.8336pt too wide) in paragraph at lines 386--387
  []
 
 [4]
-<assignment2_group3_files/figure-latex/unnamed-chunk-4-1.pdf, id=108, 436.63126
+<assignment2_group3_files/figure-latex/unnamed-chunk-4-1.pdf, id=110, 436.63126
 pt x 285.065pt>
 File: assignment2_group3_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file 
 (type pdf)
@@ -964,398 +964,407 @@ Package pdftex.def Info: assignment2_group3_files/figure-latex/unnamed-chunk-4-
 1.pdf  used on input line 433.
 (pdftex.def)             Requested size: 436.63019pt x 285.0643pt.
 [5 <./assignment2_group3_files/figure-latex/unnamed-chunk-4-1.pdf>]
-<assignment2_group3_files/figure-latex/unnamed-chunk-6-1.pdf, id=122, 437.635pt
- x 285.065pt>
-File: assignment2_group3_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file 
+<assignment2_group3_files/figure-latex/unnamed-chunk-5-1.pdf, id=124, 436.63126
+pt x 285.065pt>
+File: assignment2_group3_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file 
 (type pdf)
-<use assignment2_group3_files/figure-latex/unnamed-chunk-6-1.pdf>
-Package pdftex.def Info: assignment2_group3_files/figure-latex/unnamed-chunk-6-
-1.pdf  used on input line 445.
-(pdftex.def)             Requested size: 338.58932pt x 220.54901pt.
-<assignment2_group3_files/figure-latex/unnamed-chunk-7-1.pdf, id=123, 422.57875
-pt x 283.0575pt>
+<use assignment2_group3_files/figure-latex/unnamed-chunk-5-1.pdf>
+Package pdftex.def Info: assignment2_group3_files/figure-latex/unnamed-chunk-5-
+1.pdf  used on input line 453.
+(pdftex.def)             Requested size: 436.63019pt x 285.0643pt.
+[6 <./assignment2_group3_files/figure-latex/unnamed-chunk-5-1.pdf>] [7]
+<assignment2_group3_files/figure-latex/unnamed-chunk-7-1.pdf, id=148, 437.635pt
+ x 285.065pt>
 File: assignment2_group3_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file 
 (type pdf)
 <use assignment2_group3_files/figure-latex/unnamed-chunk-7-1.pdf>
 Package pdftex.def Info: assignment2_group3_files/figure-latex/unnamed-chunk-7-
-1.pdf  used on input line 447.
-(pdftex.def)             Requested size: 338.5922pt x 226.80046pt.
-[6 <./assignment2_group3_files/figure-latex/unnamed-chunk-6-1.pdf> <./assignmen
-t2_group3_files/figure-latex/unnamed-chunk-7-1.pdf>]
-<assignment2_group3_files/figure-latex/unnamed-chunk-8-1.pdf, id=149, 407.5225p
-t x 253.94875pt>
+1.pdf  used on input line 519.
+(pdftex.def)             Requested size: 338.58932pt x 220.54901pt.
+<assignment2_group3_files/figure-latex/unnamed-chunk-8-1.pdf, id=149, 422.57875
+pt x 283.0575pt>
 File: assignment2_group3_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file 
 (type pdf)
 <use assignment2_group3_files/figure-latex/unnamed-chunk-8-1.pdf>
 Package pdftex.def Info: assignment2_group3_files/figure-latex/unnamed-chunk-8-
-1.pdf  used on input line 517.
+1.pdf  used on input line 521.
+(pdftex.def)             Requested size: 338.5922pt x 226.80046pt.
+[8 <./assignment2_group3_files/figure-latex/unnamed-chunk-7-1.pdf> <./assignmen
+t2_group3_files/figure-latex/unnamed-chunk-8-1.pdf>]
+<assignment2_group3_files/figure-latex/unnamed-chunk-9-1.pdf, id=176, 407.5225p
+t x 253.94875pt>
+File: assignment2_group3_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file 
+(type pdf)
+<use assignment2_group3_files/figure-latex/unnamed-chunk-9-1.pdf>
+Package pdftex.def Info: assignment2_group3_files/figure-latex/unnamed-chunk-9-
+1.pdf  used on input line 591.
 (pdftex.def)             Requested size: 338.59802pt x 210.99828pt.
-[7 <./assignment2_group3_files/figure-latex/unnamed-chunk-8-1.pdf>]
+[9 <./assignment2_group3_files/figure-latex/unnamed-chunk-9-1.pdf>]
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 534.
+LaTeX Font Warning: Command \small invalid in math mode on input line 608.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 535.
+LaTeX Font Warning: Command \small invalid in math mode on input line 609.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 537.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 540.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 552.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 555.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 556.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 558.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 559.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 568.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 568.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 568.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 568.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 568.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 568.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 568.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 568.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 568.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 568.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 568.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 568.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 568.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 568.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 568.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 568.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 568.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 568.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 571.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 573.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 574.
-
-<assignment2_group3_files/figure-latex/unnamed-chunk-10-1.pdf, id=165, 650.43pt
- x 319.1925pt>
-File: assignment2_group3_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file
- (type pdf)
-<use assignment2_group3_files/figure-latex/unnamed-chunk-10-1.pdf>
-Package pdftex.def Info: assignment2_group3_files/figure-latex/unnamed-chunk-10
--1.pdf  used on input line 576.
-(pdftex.def)             Requested size: 483.71245pt x 237.3774pt.
-[8]
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 583.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 584.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 591.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 591.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 591.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 591.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 591.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 591.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 591.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 591.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 591.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 591.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 591.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 591.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 591.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 591.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 594.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 594.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 595.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 598.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 599.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 602.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 603.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 604.
+LaTeX Font Warning: Command \small invalid in math mode on input line 611.
 
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 614.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 614.
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 614.
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 614.
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 614.
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 614.
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 614.
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 614.
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 614.
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 614.
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 614.
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 614.
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 614.
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 614.
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 614.
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 614.
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 614.
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 614.
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 617.
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 617.
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 618.
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 620.
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 621.
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 622.
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
 
-<assignment2_group3_files/figure-latex/unnamed-chunk-11-1.pdf, id=174, 660.4675
-pt x 321.2pt>
-File: assignment2_group3_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file
- (type pdf)
-<use assignment2_group3_files/figure-latex/unnamed-chunk-11-1.pdf>
-Package pdftex.def Info: assignment2_group3_files/figure-latex/unnamed-chunk-11
--1.pdf  used on input line 624.
-(pdftex.def)             Requested size: 483.70941pt x 235.23862pt.
-[9 <./assignment2_group3_files/figure-latex/unnamed-chunk-10-1.pdf>]
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 626.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 629.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 630.
+
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 632.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 637.
+LaTeX Font Warning: Command \small invalid in math mode on input line 633.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 639.
+LaTeX Font Warning: Command \small invalid in math mode on input line 642.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 640.
+LaTeX Font Warning: Command \small invalid in math mode on input line 642.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 640.
+LaTeX Font Warning: Command \small invalid in math mode on input line 642.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 641.
+LaTeX Font Warning: Command \small invalid in math mode on input line 642.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 643.
+LaTeX Font Warning: Command \small invalid in math mode on input line 642.
 
-<assignment2_group3_files/figure-latex/unnamed-chunk-12-1.pdf, id=193, 407.5225
-pt x 288.07625pt>
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 642.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 642.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 642.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 642.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 642.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 642.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 642.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 642.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 642.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 642.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 642.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 642.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 642.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 645.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 647.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 648.
+
+<assignment2_group3_files/figure-latex/unnamed-chunk-11-1.pdf, id=190, 650.43pt
+ x 319.1925pt>
+File: assignment2_group3_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file
+ (type pdf)
+<use assignment2_group3_files/figure-latex/unnamed-chunk-11-1.pdf>
+Package pdftex.def Info: assignment2_group3_files/figure-latex/unnamed-chunk-11
+-1.pdf  used on input line 650.
+(pdftex.def)             Requested size: 483.71245pt x 237.3774pt.
+[10]
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 657.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 658.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 665.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 665.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 665.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 665.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 665.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 665.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 665.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 665.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 665.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 665.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 665.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 665.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 665.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 665.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 668.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 668.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 669.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 672.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 673.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 676.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 677.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 678.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 688.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 688.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 688.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 688.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 688.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 688.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 688.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 688.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 688.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 688.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 688.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 688.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 688.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 688.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 688.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 688.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 688.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 688.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 691.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 691.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 692.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 694.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 695.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 696.
+
+<assignment2_group3_files/figure-latex/unnamed-chunk-12-1.pdf, id=199, 660.4675
+pt x 321.2pt>
 File: assignment2_group3_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file
  (type pdf)
 <use assignment2_group3_files/figure-latex/unnamed-chunk-12-1.pdf>
 Package pdftex.def Info: assignment2_group3_files/figure-latex/unnamed-chunk-12
--1.pdf  used on input line 645.
+-1.pdf  used on input line 698.
+(pdftex.def)             Requested size: 483.70941pt x 235.23862pt.
+[11 <./assignment2_group3_files/figure-latex/unnamed-chunk-11-1.pdf>]
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 706.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 711.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 713.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 714.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 714.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 715.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 717.
+
+<assignment2_group3_files/figure-latex/unnamed-chunk-13-1.pdf, id=216, 407.5225
+pt x 288.07625pt>
+File: assignment2_group3_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file
+ (type pdf)
+<use assignment2_group3_files/figure-latex/unnamed-chunk-13-1.pdf>
+Package pdftex.def Info: assignment2_group3_files/figure-latex/unnamed-chunk-13
+-1.pdf  used on input line 719.
 (pdftex.def)             Requested size: 407.53394pt x 288.08432pt.
-[10 <./assignment2_group3_files/figure-latex/unnamed-chunk-11-1.pdf> <./assignm
-ent2_group3_files/figure-latex/unnamed-chunk-12-1.pdf>] (./assignment2_group3.a
+[12 <./assignment2_group3_files/figure-latex/unnamed-chunk-12-1.pdf> <./assignm
+ent2_group3_files/figure-latex/unnamed-chunk-13-1.pdf>] (./assignment2_group3.a
 ux) ) 
 Here is how much of TeX's memory you used:
- 24485 strings out of 479383
- 435477 string characters out of 5869387
- 791500 words of memory out of 5000000
- 40923 multiletter control sequences out of 15000+600000
- 502107 words of font info for 173 fonts, out of 8000000 for 9000
+ 24516 strings out of 479383
+ 436092 string characters out of 5869387
+ 791539 words of memory out of 5000000
+ 40930 multiletter control sequences out of 15000+600000
+ 502948 words of font info for 182 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  79i,9n,85p,1001b,492s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/loc
@@ -1384,10 +1393,10 @@ st/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2020/texmf-dist/fonts/t
 ype1/public/lm/lmtt10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/publi
 c/lm/lmtti10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfont
 s/symbols/msbm10.pfb>
-Output written on assignment2_group3.pdf (10 pages, 460327 bytes).
+Output written on assignment2_group3.pdf (12 pages, 474744 bytes).
 PDF statistics:
- 358 PDF objects out of 1000 (max. 8388607)
- 293 compressed objects within 3 object streams
- 45 named destinations out of 1000 (max. 500000)
- 55474 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 387 PDF objects out of 1000 (max. 8388607)
+ 316 compressed objects within 4 object streams
+ 50 named destinations out of 1000 (max. 500000)
+ 55487 words of extra memory for PDF output out of 61914 (max. 10000000)
 
