@@ -36,7 +36,7 @@ knitr::opts_chunk$set(tidy.opts = list(width.cutoff = 80), tidy = TRUE)
 
 We draw 100 times from a $\mathcal{N}(5,9)$ distribution and plot the cumulative mean as well as the expected value.
 
-```{r, out.width="70%", fig.align="center"}
+```{r, echo = FALSE, out.width="70%", fig.align="center"}
 set.seed(2345)
 
 n <- 100
@@ -66,7 +66,7 @@ converges to the true mean, the expected value of the distribution, $\mathrm{E}(
 
 Next, we draw 10,000 times from a Cauchy distribution as specified and plot the cumulative mean.
 
-```{r, out.width="70%", fig.align="center"}
+```{r, echo = FALSE, out.width="70%", fig.align="center"}
 set.seed(2345)
 
 n <- 10000
@@ -88,7 +88,9 @@ This time, we do not observe convergence of the cumulative mean. Rather, we obse
 \newpage
 
 # Exercise 2
+
 ## Exercise 2.1
+
 A Covid test can be represented by a Bernoulli trial, where our random variable takes over value = 1 if test is *positive* and value = 0 if *negative*. As we conduct the tests for 20 colleagues, we have a sequence of Bernoulli trials, where the random variable now is the sum of all single Bernoulli trials. This random variable now follows a Binomial distribution. That is, our likelihood follows a Binomial distribution.\footnote{Bernoulli distribution is just a special case of a Binomial distribution with n=1.} 
 
 The class of conjugate priors for a Binomial distribution are Beta($\alpha$, $\beta$)  distributions where $\alpha$, $\beta$ $\in$ $\mathbb{R}_+$.
@@ -119,7 +121,7 @@ $$
 Our posterior is proportional to a Beta distribution. Thus the Beta prior was indeed a conjugate prior.
 
 
-## Exercise 2.2 + 2.3
+## Exercises 2.2 and 2.3
 30 observations for each of the 20 individuals are in total 600 observations. In total, 10 of the 600 observations/tests are positive. Then, given the fact that our prior as well as our posterior follows a beta distribution, we can look up the formulae of point estimators such as *mean*, *median*, *mode*, etc. for a beta distribution $Beta(\alpha, \beta)$. Applied to the case at hand, we obtain for the prior the following point estimators:
 
 - Mean: $E[\theta] = \frac{\alpha_0}{\alpha_0+\beta_0}$
@@ -187,7 +189,7 @@ knitr::kable(tbl, caption = "Point estimators for various alpha and beta.")
 
 To visualise the impact different beta priors have on the posterior distribution, see the corresponding density plots that make use of selected $\alpha_0$ and $\beta_0$ shape parameters used in the table above. 
 
-```{r}
+```{r, echo = FALSE}
 #define range
 p = seq(0,1, length=100)
 
@@ -208,7 +210,7 @@ legend("topright", c('Beta(1, 1)','Beta(2, 10)','Beta(10,2)', 'Beta(0.5,0.5)'),
 ```
 
 
-```{r}
+```{r, echo = FALSE}
 #plot several Beta distributions
 plot(p, dbeta(p, a_1(a_0)[1], b_1(b_0)[1]), ylab='density', type ='l', col='black', main="Posteriors",ylim=c(0,80))
 
@@ -239,6 +241,7 @@ First, the assumption of *identical distribution* might not be fulfilled in real
 Second, if one of our employees in the office tests positive on a particular day, then this employee will probably test positive on the second day as well. The probability that other colleagues test positive on the second day increases, too. Hence the *independence* assumption is not fulfilled either.
 
 *How could you (conceptually) improve the model with this in mind?*
+
 We could take into account whether person tested has symptoms and whether there were previous contacts with positively tested colleagues. Based on this we would change the prior for employees who have higher risk of having COVID by shifting their prior to the right side. Since the prior has relatively low effect we would need to change it drastically. 
 
 
@@ -248,8 +251,9 @@ We could take into account whether person tested has symptoms and whether there 
 
 # Exercise 3
 
-```{r, echo = F}
-## Exercise 3.1 - Writing a Function to Simulate $\bm{y}=\alpha+\bm{X}\bm{\beta}+\bm{e}$
+We write the following function to use in this exercise:
+
+```{r, echo = TRUE}
 simulate_reg <- function(n, k = 1, alpha = 0, beta = 1, sigma = 1)  {
   
   # Remind the user to specify a vector as beta if they want to
@@ -351,7 +355,7 @@ How can we come up with a prior distribution for $\beta_1$, the parameter associ
 
 We could then go for one of the following priors:
 
-```{r, out.width="70%", fig.align="center"}
+```{r, echo = FALSE, out.width="70%", fig.align="center"}
 plot(x = seq(-5, 9, length=1000), y = dnorm(seq(-5, 9, length=1000), 2, 1), type = "l", lwd = 2, col = "red", main = "Three Normal Prior Distributions with Mean 2", xlab = "", ylab = "")
 lines(x = seq(-5, 9, length=1000), y = dnorm(seq(-5, 9, length=1000), 2, 2), type = "l", lwd = 2, col = "blue")
 lines(x = seq(-5, 9, length=1000), y = dnorm(seq(-5, 9, length=1000), 2, 3), type = "l", lwd = 2, col = "orange")
@@ -360,14 +364,52 @@ legend(5,0.4, c("N(2,1)", "N(2,2)", "N(2,3)"),
        lwd=c(2,2,2), col=c("red", "blue", "orange"))
 ```
 
-## Exercise 3.4 - Simulating data with known $\sigma$ and a Normal prior STILL OPEN
+## Exercise 3.4 - Simulating data with known $\sigma$ and a Normal prior
 
-```{r, echo = FALSE, eval = F}
-simulate_reg(100, 1, 0, 1, 1)
+We simulate data with $n \in\{50,100,200\}$, $k = 1$, $\alpha = 0$, $\beta = 1$ and $\sigma = 1$. We set the prior density to be $\mathcal{N}(0,1)$. Then, our posterior distribution will be given by
+
+\[
+  \mathcal{N}(\mu_n,\sigma_n^2),
+\]
+
+where 
+
+\[
+  \sigma_n = (\sigma_0^{-1}+\bm{X}'\bm{X})^{-1}
+\]
+
+and
+
+\[
+  \mu_n = \sigma_n(\sigma_o^{-1}\mu_0+\bm{X}'\bm{y}).
+\]
+
+This yields the following posterior distributions:
+
+```{r, echo = FALSE, out.width="50%", fig.align = "center"}
+
+for (this_n in c(50, 100, 200)) {
+  set.seed(2345)
+
+this_data <- simulate_reg(this_n, 1, 0, 1, 1)
+
+mu_0 <- 0
+sigma_0 <- 1
+
+sigma_n <- 1/ ((1/sigma_0) + t(this_data$X) %*% (this_data$X))
+
+mu_n <- sigma_n * ((1/sigma_0) * mu_0 + t(this_data$X) %*% (this_data$Y))
+
+plot(x = seq(0.98, 1.02, length=1000), y = dnorm(seq(0.98, 1.02, length=1000), mu_n, sigma_n), type = "l", lwd = 2, col = "red", main = paste0("n = ", this_n, ": Posterior ~ N(", round(mu_n,4), ", ", round(sigma_n,5),")"), xlab = "", ylab = "", yaxt = "n")
+
+abline(v = 1, col = "blue", lwd = 2, lty = "dashed")
+}
 
 
 
 ```
+
+We can see that as we increase $n$, the priors' variance gets smaller and their mean moves closer to the true value.
 
 
 \newpage
