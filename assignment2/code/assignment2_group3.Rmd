@@ -442,7 +442,7 @@ par(mfrow=c(1,2))
 plot(NA,NA, xlim=c(0,2), ylim=c(0,2.5),
      main="The Lognormal density", xlab="Prior value", ylab=NA)
 curve(dlnorm(x, meanlog=-.4, sdlog=.25), from=0, to=2, add=T, lwd=2)
-plot(nice_eta,
+plot(nice_etas,
      main=expression(paste("The " , sigma^2 ," Prior ")), xlab="Prior value", ylab=NA)
 ```
 
