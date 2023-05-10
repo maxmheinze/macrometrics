@@ -32,8 +32,7 @@ knitr::opts_chunk$set(tidy.opts = list(width.cutoff = 80), tidy = TRUE)
 \newpage
 
 # Exercise 1
-
-## Convergence of Means of $n$ Normal Draws
+## Exercise 1.1 - Convergence of Means of $n$ Normal Draws
 
 We draw 100 times from a $\mathcal{N}(5,9)$ distribution and plot the cumulative mean as well as the expected value.
 
@@ -41,7 +40,6 @@ We draw 100 times from a $\mathcal{N}(5,9)$ distribution and plot the cumulative
 set.seed(2345)
 
 n <- 100
-
 normal_data <- data.frame(n=1:n, x=rnorm(n, mean=5, sd=9), mean=NA)
 
 for (i in 1:n) {
@@ -50,9 +48,7 @@ for (i in 1:n) {
 
 plot(x=normal_data$n, y=normal_data$mean, type="l", lwd=2,
      main="Convergence of Means: Normal Distribution", xlab="n", ylab="")
-
 abline(h=5, col="red", lwd=2)
-
 legend(50,-2, c("Cumulative mean", "True mean"),
        lwd=c(2,2), col=c("black", "red"))
 ```
@@ -66,7 +62,7 @@ We can easily see that the cumulative mean, that is,
 converges to the true mean, the expected value of the distribution, $\mathrm{E}(N(5,9))=5$.
 
 
-## Convergence of Means of $n$ Draws From a Cauchy Distribution
+## Exercise 2.2 - Convergence of Means of $n$ Draws From a Cauchy Distribution
 
 Next, we draw 10,000 times from a Cauchy distribution as specified and plot the cumulative mean.
 
@@ -84,15 +80,184 @@ for (i in 1:n) {
 plot(x=cauchy_data$n, y=cauchy_data$mean, type="l", lwd=2,
      main="Convergence of Means: Cauchy Distribution", xlab="N draws", ylab="")
 
-legend(5000, 5, "Cumulative mean", lwd=2, col="black")
+legend(6000, 8, "Cumulative mean", lwd=2, col="black")
 ```
 
 This time, we do not observe convergence of the cumulative mean. Rather, we observe repeated random jumps in the cumulative mean. This is due to the Cauchy distribution not having an expected value that it could converge to.
 
 \newpage
 
-# Exercise 2 (STILL TO DO)
+# Exercise 2
+## Exercise 2.1 - Conjugate Prior to Binomial distributions 
 
+A Covid test can be represented by a Bernoulli trial, where our random variable takes over value = 1 if test is *positive* and value = 0 if *negative*. As we conduct the tests for 20 colleagues, we have a sequence of Bernoulli trials, where the random variable now is the sum of all single Bernoulli trials. This random variable now follows a Binomial distribution. That is, our likelihood follows a Binomial distribution.\footnote{Bernoulli distribution is just a special case of a Binomial distribution with n=1.} 
+
+The class of conjugate priors for a Binomial distribution are Beta($\alpha$, $\beta$)  distributions where $\alpha$, $\beta$ $\in$ $\mathbb{R}_+$.
+
+Notice that we have vector of observations $y = (y_1,...,y_n)$ for n days, where $y_i$ contains 20 observations, one for each colleague. Thus $y_i \sim Binom(20,\theta)$ The likelihood is then the product of n such iid variables.
+
+Thus the distribution of $y_i$, the likelihood function and our prior are respectively:
+
+$$
+\begin{aligned}
+p(y_i\mid\theta) = {20 \choose k_i} \theta^{k_i} (1-\theta)^{20-{k_i}}  \\
+p(y\mid\theta) = \prod_{i=1}^n p(y_i\mid\theta) \propto \theta^{S_n} (1-\theta)^{N-S_n}  \\
+p(\theta) = p(\theta\mid\alpha,\beta) = \frac{1}{B(\alpha,\beta)} \theta^{\alpha-1}(1-\theta)^{\beta-1} \propto \theta^{\alpha-1}(1-\theta)^{\beta-1}
+\end{aligned}
+$$
+where $k_i = \sum_j^{20}y_{ij}$, $S_n = \sum_i^n\sum_j^{20}y_{ij}$ and $N = 20n$. We could simplify the sum and rewrite is as: $S_n = \sum_i^{N}y_{i}$ where $y_i$ now denotes individual test results for all days.
+
+Then the posterior can be derived using Bayes formula:  
+
+$$
+\begin{aligned}
+p(\theta|y) &\propto p(y|\theta) \cdot p(\theta)\\
+&\propto \theta^{S_n} \cdot (1-\theta)^{N-S_n} \cdot  \theta^{\alpha-1} \cdot (1-\theta)^{\beta-1} \\ 
+&= \theta^{\alpha + S_n - 1} \cdot (1-\theta)^{\beta + N- S_n - 1} \\ 
+\implies p(\theta|y) &\sim Beta(\alpha + S_n, \beta + N- S_n)
+\end{aligned}
+$$
+Our posterior is proportional to a Beta distribution. Thus the Beta prior is indeed conjugate.
+
+
+## Exercise 2.2 - Point Estimates for $\theta$
+
+30 observations for each of the 20 individuals result in a total of N=600 observations. In total, {S_n = 10} of the 600 observations/tests are positive. Then, given the fact that our prior as well as our posterior follows a beta distribution, we can look up the formulae of point estimators such as *mean*, *median*, *mode*, etc. for a beta distribution $Beta(\alpha, \beta)$. Applied to the case at hand, we obtain for the prior the following point estimators:
+
+- Mean: $E[\theta] = \frac{\alpha_0}{\alpha_0+\beta_0}$
+- Median
+  - for $\alpha_0,\beta_0>1$: $\frac{\alpha_0-\frac{1}{3}}{\alpha_0+\beta_0-\frac{2}{3}}$
+  - for $\alpha,\beta=1$: Median = Mean. 
+- Mode:
+  - for $\alpha_0,\beta_0>1$: $\frac{\alpha_0-1}{\alpha_0+\beta_0-2}$
+  - for $\alpha_0,\beta_0=1$: Any value $x\in(0,1)$ is mode.
+  
+Note, that for posterior point estimators, we simply replace $\alpha_0$ by $\alpha_1 = \alpha_0+S_n$, and $\beta_0$ by $\beta_1 = \beta_0+N-S_n$, where $S_n = 10$ is the number of successes; i.e. positive test results, and $N=600$ is the number of observations again.
+
+## Exercise 2.3 - Impact of different prior information on point estimates
+
+To see, how these point estimators change with different values for $\alpha_0$, and $\beta_0$, see the table underneath. Also, this table gives first indications of how different beta priors affect the posterior.
+
+```{r, include=TRUE,echo=FALSE, message=FALSE}
+m <- function(a,b){
+  round((a)/(a+b), 5)
+  }
+
+med <- function(a,b){
+  round((a-1/3)/(a+b-2/3),5)
+  }
+
+mod <- function(a,b){
+  ifelse(a == 1 & b == 1, 
+          "any in (0,1)", 
+          round((a-1)/(a+b-2),5))
+  }
+
+a_1 = function(a, s_n = 10){
+  a+s_n
+  }
+
+b_1 = function(b, s_n = 10, n = 600) {
+  b+n-s_n
+  }
+
+a_0 = c(1,0.1,0.1,5)
+b_0 = c(1,0.1,5,0.1)
+
+df = as.data.frame(cbind(a_0, b_0))
+
+library(dplyr) 
+# as we make use of the summarise() command from the dplyr packacge
+
+tbl = as.matrix(dplyr::summarise(.data = df, a_0 = df$a_0
+            , b_0 = df$b_0
+            , prior_mean = m(a_0, b_0)
+            , prior_med = med(a_0, b_0)
+            , prior_mod = mod(a_0, b_0)
+            , a_1 = a_1(a_0)
+            , b_1 = b_1(b_0)
+            , post_mean = m(a_1, b_1)
+            , post_med = med(a_1, b_1)
+            , post_mod = mod(a_1, b_1)))
+
+row.names(tbl) = rep("", nrow(tbl))
+tbl = as.table(tbl)
+
+knitr::kable(tbl, caption = "Point estimators for various alpha and beta.")
+
+```
+
+To visualise the impact different beta priors have on the posterior distribution, see the corresponding density plots that make use of the same $\alpha_0$ and $\beta_0$ shape parameters used in the table above. Note that we adjusted the x-axis limit of the posterior plots, to 0.1 rather than 1 as we wanted to precisely see what impact different beta priors have on the posterior. Of course, we only did that because there was not much going on in terms of posterior density weights on the range from 0.1 to 1, and thus, including the whole range from 0 to 1 would not allow us to clearly see the different impacts. 
+
+```{r}
+#define range
+p = seq(0,1, length=100)
+
+#plot several Beta distributions
+plot(p, dbeta(p, 2, 10), ylab='density', type ='l', col='red', main="Priors",ylim=c(0,10))
+a_0 = c(1,0.1,0.1,5)
+b_0 = c(1,0.1,5,0.1)
+
+lines(p, dbeta(p, 1, 1), col='black') 
+lines(p, dbeta(p, 10, 2), col='blue')
+lines(p, dbeta(p, 5, 5), col='green')
+
+#add legend
+legend("topright", c('Beta(1, 1)','Beta(2, 10)','Beta(10,2)', 'Beta(0.5,0.5)'),
+       lty=c(1,1,1),col=c('black', 'red', 'blue', 'green'))
+
+
+```
+
+
+```{r}
+#define range
+p = seq(0,1, length=100)
+
+#plot several Beta distributions
+plot(p, dbeta(p, 2, 10), ylab='density', type ='l', col='red', main="Priors",ylim=c(0,10))
+a_0 = c(1,0.1,0.1,5)
+b_0 = c(1,0.1,5,0.1)
+
+lines(p, dbeta(p, 1, 1), col='black') 
+lines(p, dbeta(p, 10, 2), col='blue')
+lines(p, dbeta(p, 5, 5), col='green')
+
+#add legend
+legend("topright", c('Beta(1, 1)','Beta(2, 10)','Beta(10,2)', 'Beta(0.5,0.5)'),
+       lty=c(1,1,1),col=c('black', 'red', 'blue', 'green'))
+
+```
+
+
+For $\alpha_0 = \beta_0 = 1$ the prior is simply a uniform(1,1) distribution. This uninformative prior gives us a posterior distribution which is narrowly centered around approx. 0.02. As we see in the graphs above, a change in the prior parameters changes the pattern for the posterior only slightly in absolute terms. For arbitrary values $\alpha_0 = \beta_0>1$ prior has the property that mean = median = mode\footnote{for $\alpha_0 = \beta_0=1$, mean = meadian = 0.5, and mode is any value in interval (0,1).}, but this does not hold for the posterior as $\alpha_1$ and $\beta_1$  are non-proportional linear combinations of $\alpha_0$ and $\beta_0$.   
+
+For an increase in $\alpha_0$ holding $\beta_0$ constant we see an increase in all posterior point estimates. If we increase $\beta_0$ holding $\alpha_0$ constant, estimates decrease.
+
+As to sources of prior information, information for this particular problem can stem from previous research. In a similar example in class, we had the probability of having the disease given by a value of 1 in 10,000. If this is what the literature agrees upon, we could take this value into account. However, as we are rather interested in a probability distribution rather than a single estimate, we could consult the literature again and see if this value of 1 in 10,000 is simply the mean of the prior distribution. If that is so, then we know from Exercise 2.1 that the class of conjugate priors for this problem follows a Beta distribution. So, taking this into account, we could agree on values for $\alpha_0$ and $\beta_0$ that give approximately a mean value of 1 in 10,000. 
+As to additional sources of prior information, technically, we could include any type of additional prior information such as information on symptoms (coughing, sore throat, fever, etc.) that a subject might have, or locations where the subject stayed at (crowded places, inside areas, etc.), or the simple fact whether or not a subject was wearing a mask. 
+
+## Exercise 2.4
+### 2.4a - The iid assumption for data
+
+Conducting n Covid-19 tests can be seen as conducting a sequence of n Bernoulli trials, where in each round we either obtain a positive (= value of 1) or a negative (= value of 0) test result. The sum of these Bernoulli trials follows a Binomial distribution, where the binomial random variable is defined as the number of "successes". Here, we define a "success" as obtaining a positive test result. Now, for a random variable to follow a Binomial distribution, it is necessary that the probability of "success" is \begin{itemize}
+\item[a)] the same in every Bernoulli trial, i.e., it is identically distributed; and
+\item[b)] is not affected by any previous (or future) outcome, i.e., the outcome in any Bernoulli trial is independent to any other outcome of any other Bernoulli trial in the sequence.
+\end{itemize}
+If these two conditions do not hold, then our random variable does not follow a Binomial distribution. Hence, they are necessary.
+
+However, in real life, things might be different, and these two conditions are likely to fail as is explained hereinafter. 
+First, the assumption of *identical distribution* might not be fulfilled in real life, because the situation outside of our trial can influence the probability of testing positive on a particular day. Ceteris paribus, on a day with high Covid incidence, the probability that one of our employees will get in contact with an infected person and contracts Covid is higher.
+Second, if one of our employees in the office tests positive on a particular day, then this employee will almost certainly test positive on the second day as well. The probability that other colleagues test positive on the second day increases, too. Hence the *independence* assumption is not fulfilled either.
+Therefore, the scope of inference based on a posterior derived using this likelihood function is limited.
+
+### 2.4b - Improving the model 
+
+In class, we used probabilities rather than probability distributions for the Covid-19 test example. If we make use of a Bayesian point estimator of $\theta$, e.g. the mean of the prior distribution, we can basically replicate the example from class with own values depending on our estimates from Exercise 2.3, for instance. However, rather than just picking a single point, we could also directly do it with a probability distribution. The procedure is analogous, and in the end, we could summarise the computed posterior distribution by means of a single point estimate -- again the mean of the distribution, for instance.
+
+As to re-testing, we can run several Covid-19 tests on a single individual, and update our prior information with the posterior obtained in the previous test. This procedure is called Bayesian updating. Depending on the size of the probability of a *false positive* and the *marginal probability* of having the disease, a test result obtained might be more or less informative. In class, we had a high probability of a *false positive* and a low *marginal probability* of having the disease, which led to the case that a positive test result was more informative than a negative one.
+
+As to extending the model, we could include any type of additional prior information such as taking into account symptoms (coughing, sore throat, fever, etc.) or stays at places which are crowded, inside, etc., and whether or not a mask was being worn, as was discussed in Exercise 2.3. 
 
 
 
@@ -100,9 +265,8 @@ This time, we do not observe convergence of the cumulative mean. Rather, we obse
 
 # Exercise 3
 
-## Writing a Function to Simulate $\bm{y}=\alpha+\bm{X}\bm{\beta}+\bm{e}$
-
-```{r, echo = TRUE}
+```{r, echo = F}
+## Exercise 3.1 - Writing a Function to Simulate $\bm{y}=\alpha+\bm{X}\bm{\beta}+\bm{e}$
 simulate_reg <- function(n, k = 1, alpha = 0, beta = 1, sigma = 1)  {
   
   # Remind the user to specify a vector as beta if they want to
@@ -137,9 +301,9 @@ simulate_reg <- function(n, k = 1, alpha = 0, beta = 1, sigma = 1)  {
 ```
 
 
-## Simulating Data with $k = 1$ and $\sigma = 1$
+## Exercise 3.1 - Simulating Data with $k = 1$ and $\sigma = 1$
 
-```{r, out.width="70%", fig.align="center"}
+```{r, out.width="70%", fig.align="center", echo=F}
 set.seed(2345)
 
 sim_data <- simulate_reg(100, 1, 0, 1, 1)
@@ -152,7 +316,7 @@ abline(lm(sim_data$Y ~ sim_data $ X), col = "red")
 
 
 
-```{r, out.width="70%", fig.align="center"}
+```{r, out.width="70%", fig.align="center", echo = F}
 set.seed(2345)
 
 coeffs <- vector(length = 1000)
@@ -178,11 +342,12 @@ text(1.025,17, paste0("Mean of coeffs:\n",round(mean(coeffs),8)), col="blue")
 
 The true value $\beta_0=1$. We see that if we run this regression over and over and over again, we get a distribution of estimated $\beta$s that is centered around the true value, but with some variance. Indeed, the mean of our estimated betas equals `r round(mean(coeffs),8)`, which is very close to $\beta_0=1$.
 
-## Latent Values of the Model if we know $\sigma$
+## Exercise 3.2 - Latent values of $\sigma$ is known
 
-Let us say that we know $\sigma$. Then, since $\sigma$ is known, $\beta$ is the only latent parameter.
+If $\sigma$ is known, $\alpha$ and $\beta$ are the only latent parameters.
 
-## Potentially Interesting Regression
+
+## Exercise 3.3 - An interesting regression
 
 Let's say we are interested in the determinants of our Econometrics grades, and we propose the model 
 
@@ -211,9 +376,9 @@ legend(5,0.4, c("N(2,1)", "N(2,2)", "N(2,3)"),
        lwd=c(2,2,2), col=c("red", "blue", "orange"))
 ```
 
-## Posterior Density for Simulated Data (STILL TO DO)
+## Exercise 3.4 - Simulating data with known $\sigma$ and a Normal prior STILL OPEN
 
-```{r}
+```{r, echo = FALSE, eval = F}
 simulate_reg(100, 1, 0, 1, 1)
 
 
@@ -223,18 +388,15 @@ simulate_reg(100, 1, 0, 1, 1)
 
 \newpage
 
-# Exercise 4 (NEEDS REWRITING)
+# Exercise 4
+## Exercise 4.1 - Estimating $\mu$
 
-## Estimating $\mu$
+For the given normally distributed data, the probability density of each observation $\small y_i$ looks like this: $\small p(y_i|\mu, 1)=(2\pi)^{-\frac{1}{2}}exp(-\frac{1}{2}(y_i-\mu)^2)$. 
+For iid data, we furthermore have the following likelihood: $\small p(\boldsymbol{y}|\mu, 1)=\prod_{i=1}^{n}p(y_i|\mu, 1)=(2\pi)^{-\frac{n}{2}}exp(-\frac{1}{2}\sum_{i=1}^n(y_i-\mu)^2)$.
 
-**Q:** Suppose you have data $\small \boldsymbol{y}\sim N(\mu, 1)$, and want to estimate $\small\mu$. Specify a Normal prior $\small \mu\sim N(\mu_0, \sigma^2_0)$.
-Derive the posterior $\small p(\mu|\boldsymbol{y})$ by applying Bayes’ theorem. Create histograms of two priors of your choice.
+The normal pdf of the Normal prior is: $\small p(\mu|\mu_0, \sigma^2_0)= (2\pi\sigma^2_0)^{-\frac{1}{2}}exp(-\frac{1}{2}\frac{(\mu-\mu_0)^2}{\sigma^2_0})$.
 
-First, as we assume our data $\small \boldsymbol{y}\sim N(\mu, 1)$, the probability density of a single observation $\small y_i$ is given by $\small p(y_i|\mu, 1)=(2\pi)^{-\frac{1}{2}}exp(-\frac{1}{2}(y_i-\mu)^2)$. If we assume our data to be i.i.d., then the joint density (the likelihood function) is given by $\small p(\boldsymbol{y}|\mu, 1)=\prod_{i=1}^{n}p(y_i|\mu, 1)=(2\pi)^{-\frac{n}{2}}exp(-\frac{1}{2}\sum_{i=1}^n(y_i-\mu)^2)$.
-
-We further assume a normal prior $\small \mu\sim N(\mu_0, \sigma^2_0)$, hence $\small p(\mu|\mu_0, \sigma^2_0)= (2\pi\sigma^2_0)^{-\frac{1}{2}}exp(-\frac{1}{2}\frac{(\mu-\mu_0)^2}{\sigma^2_0})$.
-
-To get to our posterior, we utilize Bayes' theorem, dropping all constant factors from our likelihood function and our prior in the process, since we are interested in proportionality:
+To get to our posterior, we utilize Bayes' theorem, dropping all constant factors in the process, as they dont change proportionality.
 
 \begin{align*}
 \small p(\mu|\boldsymbol{y},1) \small\propto\: & \small p(\boldsymbol{y}|\mu, 1)\times p(\mu|\mu_0, \sigma^2_0)) \\
@@ -245,8 +407,10 @@ To get to our posterior, we utilize Bayes' theorem, dropping all constant factor
 \small =\: & \small exp(-\frac{1}{2}(\sum_{i=1}^n(y_i-\bar{y})^2)+n\bar{y}^2+\frac{1}{\sigma^2_0}\mu_0^2+(n+\frac{1}{\sigma^2_0})\mu^2-2(n\bar{y}+\frac{1}{\sigma^2_0}\mu_0)\mu))
 \end{align*}
 
-Note that above, we define $\small \bar{y}=\frac{1}{n}\sum_{i=1}^{n}y_i$, and utilized the fact that $\small \sum_{i=1}^{n}(y_i-\mu)^2=\sum_{i=1}^{n}(y_i-\bar{y}+\bar{y}-\mu)^2=\sum_{i=1}^{n}(y_i-\bar{y})^2+n(\bar{y}-\mu)^2$.
-Now let $\small \mu_n=(n+\frac{1}{\sigma^2_0})^{-1}(n\bar{y}+\frac{1}{\sigma^2_0}\mu_0)$ and $\small \sigma^2_n=(n+\frac{1}{\sigma^2_0})^{-1}$. Then we can further simplify the posterior to:
+For simplicity, we defined $\small \bar{y}=\frac{1}{n}\sum_{i=1}^{n}y_i$, and used $\small \sum_{i=1}^{n}(y_i-\mu)^2=\sum_{i=1}^{n}(y_i-\bar{y}+\bar{y}-\mu)^2=\sum_{i=1}^{n}(y_i-\bar{y})^2+n(\bar{y}-\mu)^2$.
+We can now say $\small \mu_n=(n+\frac{1}{\sigma^2_0})^{-1}(n\bar{y}+\frac{1}{\sigma^2_0}\mu_0)$ and $\small \sigma^2_n=(n+\frac{1}{\sigma^2_0})^{-1}$. 
+
+After further simplification, our posterior yields:
 
 \begin{align*}
 \small p(\mu|\boldsymbol{y},1) \small\propto\: & \small exp(-\frac{1}{2}(\sum_{i=1}^n(y_i-\bar{y})^2)+n\bar{y}^2+\frac{1}{\sigma^2_0}\mu_0^2-\frac{1}{\sigma^2_n}\mu_n^2+\frac{1}{\sigma^2_n}(\mu^2-2\mu\mu_n+\mu_n^2))) \\
@@ -255,23 +419,22 @@ Now let $\small \mu_n=(n+\frac{1}{\sigma^2_0})^{-1}(n\bar{y}+\frac{1}{\sigma^2_0
 \small \propto\: & \small exp(-\frac{1}{2\sigma^2_n}(\mu-\mu_n)^2))
 \end{align*}
 
-Hence we find that the posterior is proportional to the density of a distribution $\small N(\mu_n, \sigma^2_n)$. In the plot below, we further visualized the histograms of two prior distributions, where in Prior 1 we have $\small \mu\sim N(0, 1)$ and for Prior 2 we specified $\small \mu\sim N(100, 25)$.
+We now see that the posterior is proportional to a $\small N(\mu_n, \sigma^2_n)$. 
+The following plot shows two histograms with different prior distributions - for Prior 1 we have $\small \mu\sim N(0, 1)$ and for Prior 2 we use $\small \mu\sim N(10, 4)$.
 
-```{r, fig.width=10, fig.height=5}
-set.seed(123)
+```{r, fig.width=10, fig.height=5, echo = F}
+set.seed(2345)
 par(mfrow=c(1,2))
-hist(rnorm(100000, mean=0, sd=1), ylim=c(0, 20000),
+hist(rnorm(10^5, mean=0, sd=1), ylim=c(0, 20000),
      main="Prior 1", xlab=expression(mu), ylab=NA)
-hist(rnorm(100000, mean=100, sd=5), ylim=c(0, 20000),
+hist(rnorm(10^5, mean=10, sd=2), ylim=c(0, 20000),
      main="Prior 2", xlab=expression(mu), ylab=NA)
 ```
 
 
-## Estimating $\sigma^2$
+## Exercise 4.2 - Estimating $\sigma^2$
 
-**Q:** Suppose you have data $\small \boldsymbol{y}\sim N(5, \sigma^2)$, and want to estimate $\small\sigma^2$. Work with the precision, $\small\sigma^{-2}$, and specify a Gamma prior $\small \sigma^{-2} \sim G(0.5, \eta)$ with single parameter $\small\eta$. Derive the posterior $p(\sigma^2|\boldsymbol{y})$ by applying Bayes’ theorem. Visualise the prior density for $\small \eta \in \{0.01, 1, 100\}$.
-
-First, as we assume our data $\small \boldsymbol{y}\sim N(5, \sigma^2)$, the probability density of a single observation $\small y_i$ is given by $\small p(y_i|5, \sigma^2)=(2\pi\sigma^2)^{-\frac{1}{2}}exp(-\frac{1}{2}\frac{(y_i-5)^2}{\sigma^2})$. If we assume our data to be i.i.d., then the joint density (the likelihood function) is given by:
+For the given normally distributed data, the probability density of each observation $\small y_i$ looks like this: $\small p(y_i|5, \sigma^2)=(2\pi\sigma^2)^{-\frac{1}{2}}exp(-\frac{1}{2}\frac{(y_i-5)^2}{\sigma^2})$. For iid data, the likelihood is given by:
 
 \begin{align*}
 \small p(\boldsymbol{y}|5, \sigma^2) \small=\: & \small \prod_{i=1}^{n}p(y_i|5, \sigma^2)=(2\pi\sigma^2)^{-\frac{n}{2}}exp(-\frac{1}{2\sigma^2}\sum_{i=1}^n(y_i-5)^2) \\
@@ -279,11 +442,12 @@ First, as we assume our data $\small \boldsymbol{y}\sim N(5, \sigma^2)$, the pro
 \small =\: & \small (\sigma^2)^{c-1}exp(-\frac{d}{\sigma^2})
 \end{align*}
 
-Hence, we find that the likelihood is proportional to an Inverse-Gamma distribution $\small G^{-1}(c,d)$, where $\small c=-\frac{n}{2}+1$ and $\small d=\sum_{i=1}^n(y_i-5)^2/2$.
+This expression is proportional to an Inverse-Gamma distribution $\small G^{-1}(c,d)$, with $\small c=-\frac{n}{2}+1$ and $\small d=\sum_{i=1}^n(y_i-5)^2/2$.
 
-For the prior we assume that the precision follows a Gamma distribution, i.e. $\small \sigma^{-2} \sim G(0.5, \eta)$. Therefore, we have $\small \sigma^2 \sim G^{-1}(0.5, \eta)$.^[See derivation of Inverse-Gamma from Gamma on  [Wikipedia](https://en.wikipedia.org/wiki/Inverse-gamma_distribution#Derivation_from_Gamma_distribution). Note that whereas for the Gamma distribution $\small\beta$ is the rate parameter, it is the scale parameter for the Inverse Gamma distribution.] Our prior for $\small\sigma^2$ is then given by $\small p(\sigma^2|0.5, \eta)=\frac{\sqrt{\eta}}{\Gamma(0.5)}(\sigma^2)^{-1.5}exp(-\frac{\eta}{\sigma^2})$.
+For the prior, we assume that the precision follows a $\small \sigma^{-2} \sim G(0.5, \eta)$. Therefore, we have $\small \sigma^2 \sim G^{-1}(0.5, \eta)$.^[See derivation of Inverse-Gamma from Gamma on Wikipedia. For the Gamma distribution $\small\beta$ denotes the *rate* parameter, whereas it denotes the *scale* parameter for the Inverse Gamma distribution!] 
+This gives us the prior for $\small\sigma^2$ in the form of $\small p(\sigma^2|0.5, \eta)=\frac{\sqrt{\eta}}{\Gamma(0.5)}(\sigma^2)^{-1.5}exp(-\frac{\eta}{\sigma^2})$.
 
-To get to our posterior, we utilize Bayes' theorem, dropping all constant factors from our likelihood function and our prior in the process, since we are interested in proportionality:
+To get to our posterior, we again utilize Bayes' theorem and dropping constant terms:
 
 \begin{align*}
 \small p(\sigma^2|\boldsymbol{y},5) \small\propto\: & \small p(\boldsymbol{y}|5, \sigma^2)\times p(\sigma^2|0.5, \eta)) \\
@@ -292,43 +456,48 @@ To get to our posterior, we utilize Bayes' theorem, dropping all constant factor
 \small =\: & \small (\sigma^2)^{-c_n-1}exp(-\frac{d_n}{\sigma^2})
 \end{align*}
 
-Therefore, the posterior is proportional to the pdf of an Inverse-Gamma distribution $\small G^{-1}(c_n, d_n)$, where $\small c_n=\frac{n}{2}+0.5$ and $\small d_n=\eta+\sum_{i=1}^n(y_i-5)^2/2$. In the plot below, we visualised the prior density for $\small \eta \in \{0.01, 1, 100\}$ for both the precision $\small\sigma^{-2}$ (on the left) as well as the variance $\small\sigma^2$ (on the right).
+The posterior is thus proportional to an Inverse-Gamma distribution $\small G^{-1}(c_n, d_n)$, with $\small c_n=\frac{n}{2}+0.5$ and $\small d_n=\eta+\sum_{i=1}^n(y_i-5)^2/2$. The following plot visualizes the prior density for the wanted values of $\small \eta \in \{0.01, 1, 100\}$. On the left, we show the plot with respect to the precision $\small\sigma^{-2}$ and on the right with respect to variance $\small\sigma^2$.  
 
 
-```{r, fig.width=10, fig.height=5}
-cols <- c("red", "blue", "orange")
+```{r, fig.width=10, fig.height=5, echo=F}
+cols <- c("red", "darkblue", "purple")
 eta <- c(0.01, 1, 100)
 par(mfrow=c(1,2))
 plot(NA,NA, xlim=c(0,10), ylim=c(0,1),
-     main="Prior: Precision", xlab=expression(1/sigma^2), ylab=NA)
+     main="Prior precision", xlab="precision", ylab=NA)
 for (i in 1:length(eta)) {
   curve(dgamma(x, shape=.5, rate=eta[i]), from=0, to=10, col=cols[i], add=T, lwd=2)
 }
 plot(NA,NA, xlim=c(0,10), ylim=c(0,.5),
-     main="Prior: Variance", xlab=expression(sigma^2), ylab=NA)
+     main="Prior variance", xlab="variance", ylab=NA)
 for (i in 1:length(eta)) {
   curve(invgamma::dinvgamma(x, shape=.5, scale=eta[i]), from=0, to=10, col=cols[i], add=T, lwd=2)
 }
-legend(3,.9, c("eta1=0.01", "eta2=1", "eta3=100"),
-       lwd=2, col=cols)
 ```
 
-## Including $\eta$
+## Exercise 4.3 - A prior for $\eta$
 
-First, the hyperprior should be chosen such that the support of this distribution fits the values that $\small\eta$ is allowed to take. As the scale parameter of an Inverse-Gamma distribution has to be larger than 0, we need to find a hyperprior such that random draws result in $\small\eta\in(0,\infty)$. Several distributions such as the Gamma, Inverse-Gamma, or the Log-Normal distribution fullfill this criteria. Now from the type of data that we are working with, we may have some kind of an idea as to where $\small\sigma^2$ should be. Let's say that we are quite sure that $\small\sigma^2$ is most likely to be around 1, but we also want to allow for larger error terms. Then this would correspond to the density of an Inverse-Gamma function with $\small\alpha=0.5$ (which is fixed by assumption) and a scale parameter $\small\eta$ that is most of the time somewhere between 0.5 and 1. This can be achieved by drawing from $\small\eta\sim Lognormal(-0.4, 0.25)$ (see the density for this distribution on the left hand side of the plot below). The prior $\small\sigma^2|\eta$ is visualized on the right.
+A crucial consideration in prior choice it the one of allowed values - if we want to specify a prior for eg a variance, it makes no sense to use a Normal prior which allows for negative outcomes. A $\small\eta$ is the scale parameter of an Inverse-Gamma distribution, it has to be positive, but there is no upper bound. This criteria is fulfilled by several distributions, such as the Gamma, the Inverse-Gamma or a Log-Normal. As it does seem plausible from our data, we argue that $\small\sigma^2$ could be around 1, but we dont want to fully exclude larger values either; this could be achieved by drawing from a Inverse-Gamma with $\small\alpha=0.5$ and a scale parameter $\small\eta$ between 0.5 and 1. To get those values for $\small\eta$ often, we could draw $\small\eta$ from a $Lognormal(-0.4, 0.25)$. The plot below shows the density of this Log-Normal on the left and the actual prior we get for $\small\sigma^2$ on the right:
 
-```{r}
-set.seed(123)
-eta.prior <- data.frame(eta=rlnorm(1000, meanlog=-.4, sdlog=.25), sigma2=NA)
-for (i in 1:nrow(eta.prior)) {
-  eta.prior$sigma2[i] <- invgamma::rinvgamma(1, shape=.5, scale=eta.prior$eta[i])
+```{r, echo = F}
+set.seed(2345)
+library(dplyr)
+
+eta_prior <- data.frame(eta=rlnorm(1000, meanlog=-.4, sdlog=.25), sigma2=NA)
+for (i in 1:nrow(eta_prior)) {
+  eta_prior$sigma2[i] <- invgamma::rinvgamma(1, shape=.5, scale=eta_prior$eta[i])
 }
+
+#For the plot
+nice_etas <- eta_prior%>%filter(sigma2 <=10)%>%select(sigma2)
+
+
 par(mfrow=c(1,2))
 plot(NA,NA, xlim=c(0,2), ylim=c(0,2.5),
-     main="Density: Lognormal(-0.4, 0.25)", xlab=expression(eta), ylab=NA)
+     main="The Lognormal density", xlab="Prior value", ylab=NA)
 curve(dlnorm(x, meanlog=-.4, sdlog=.25), from=0, to=2, add=T, lwd=2)
-plot(density(eta.prior$sigma2),
-     main=expression(paste("Prior: ", sigma^2, "|", eta)), xlab=expression(sigma^2), ylab=NA)
+plot(nice_eta,
+     main=expression(paste("The " , sigma^2 ," Prior ")), xlab="Prior value", ylab=NA)
 ```
 
  
