@@ -62,7 +62,7 @@ We can easily see that the cumulative mean, that is,
 converges to the true mean, the expected value of the distribution, $\mathrm{E}(N(5,9))=5$.
 
 
-## Exercise 2.2 - Convergence of Means of $n$ Draws From a Cauchy Distribution
+## Exercise 1.2 - Convergence of Means of $n$ Draws From a Cauchy Distribution
 
 Next, we draw 10,000 times from a Cauchy distribution as specified and plot the cumulative mean.
 
@@ -88,12 +88,11 @@ This time, we do not observe convergence of the cumulative mean. Rather, we obse
 \newpage
 
 # Exercise 2
-
-## Exercise 2.1
+## Exercise 2.1 - The conjugate prior
 
 A Covid test can be represented by a Bernoulli trial, where our random variable takes over value = 1 if test is *positive* and value = 0 if *negative*. As we conduct the tests for 20 colleagues, we have a sequence of Bernoulli trials, where the random variable now is the sum of all single Bernoulli trials. This random variable now follows a Binomial distribution. That is, our likelihood follows a Binomial distribution.\footnote{Bernoulli distribution is just a special case of a Binomial distribution with n=1.} 
 
-The class of conjugate priors for a Binomial distribution are Beta($\alpha$, $\beta$)  distributions where $\alpha$, $\beta$ $\in$ $\mathbb{R}_+$.
+The class of conjugate priors for a Binomial distribution are **Beta($\alpha$, $\beta$)**  distributions where $\alpha$, $\beta$ $\in$ $\mathbb{R}_+$.
 
 Notice that we have vector of observations $y = (y_1,...,y_n)$ for n days, where $y_i$ contains 20 observations, one for each colleague. Thus $y_i \sim Binom(20,\theta)$ Since the n observations across time are iid the likelihood originates from $Binom(20n,\theta)$
 
@@ -118,10 +117,11 @@ p(\theta|y) &\propto p(y|\theta) \cdot p(\theta)\\
 \implies p(\theta|y) &\sim Beta(\alpha + S_n, \beta + N- S_n)
 \end{aligned}
 $$
-Our posterior is proportional to a Beta distribution. Thus the Beta prior was indeed a conjugate prior.
+Our posterior is proportional to a Beta distribution. Thus the Beta prior is indeed a conjugate prior.
 
 
-## Exercises 2.2 and 2.3
+## Exercise 2.2 - Point estimates of $\theta$
+
 30 observations for each of the 20 individuals are in total 600 observations. In total, 10 of the 600 observations/tests are positive. Then, given the fact that our prior as well as our posterior follows a beta distribution, we can look up the formulae of point estimators such as *mean*, *median*, *mode*, etc. for a beta distribution $Beta(\alpha, \beta)$. Applied to the case at hand, we obtain for the prior the following point estimators:
 
 - Mean: $E[\theta] = \frac{\alpha_0}{\alpha_0+\beta_0}$
@@ -185,7 +185,7 @@ knitr::kable(tbl, caption = "Point estimators for various alpha and beta.")
 
 ```
 
-
+## Exercise 2.3 - Prior information and different priors
 
 To visualise the impact different beta priors have on the posterior distribution, see the corresponding density plots that make use of selected $\alpha_0$ and $\beta_0$ shape parameters used in the table above. 
 
@@ -233,10 +233,7 @@ For an increase in $\alpha_0$ holding $\beta_0$ constant we see an increase in p
 As for sources of prior information, information for this particular problem can stem from previous research or available data. For one of our Beta-priors we tried to match the mean to the most recent value of of COVID-19 test rates, which seem to be around 3.7%. After trying out few different parameters, this led us to use Beta(10,250), which has mean close to 3.7%. For more serious work, one would solve the equation for mean, but also try to match at least the variance of prior to the data as well.
 
 
-## Exercise 2.4
-*Discuss the assumption of independent and identically distributed data:*
-
-
+## Exercise 2.4 - Improving the model
 First, the assumption of *identical distribution* might not be fulfilled in real life, because the situation outside of our trial can influence the probability of testing positive on a particular day. Ceteris paribus, on a day with high Covid incidence, the probability that one of our employees will get in contact with an infected person and contracts Covid is higher. Also the life-style of the employees can influence their probability of testing positive. The people who tend to participate more in social activities might be more likely to test positive as compared to people who mostly isolate at home. Also someone who already had covid might be partially immune thus effecting the probability.
 Second, if one of our employees in the office tests positive on a particular day, then this employee will probably test positive on the second day as well. The probability that other colleagues test positive on the second day increases, too. Hence the *independence* assumption is not fulfilled either.
 
@@ -330,7 +327,7 @@ text(1.025,17, paste0("Mean of coeffs:\n",round(mean(coeffs),8)), col="blue")
 
 The true value $\beta_0=1$. We see that if we run this regression over and over and over again, we get a distribution of estimated $\beta$s that is centered around the true value, but with some variance. Indeed, the mean of our estimated betas equals `r round(mean(coeffs),8)`, which is very close to $\beta_0=1$.
 
-## Exercise 3.2 - Latent values of $\sigma$ is known
+## Exercise 3.2 - Latent values if $\sigma$ is known
 
 If $\sigma$ is known, $\alpha$ and $\beta$ are the only latent parameters.
 
@@ -387,9 +384,9 @@ and
 This yields the following posterior distributions:
 
 ```{r, echo = FALSE, out.width="50%", fig.align = "center"}
+set.seed(2345)
 
 for (this_n in c(50, 100, 200)) {
-  set.seed(2345)
 
 this_data <- simulate_reg(this_n, 1, 0, 1, 1)
 
@@ -404,9 +401,6 @@ plot(x = seq(0.98, 1.02, length=1000), y = dnorm(seq(0.98, 1.02, length=1000), m
 
 abline(v = 1, col = "blue", lwd = 2, lty = "dashed")
 }
-
-
-
 ```
 
 We can see that as we increase $n$, the priors' variance gets smaller and their mean moves closer to the true value.
