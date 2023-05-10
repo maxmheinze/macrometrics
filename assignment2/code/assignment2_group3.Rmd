@@ -53,13 +53,13 @@ legend(50,-2, c("Cumulative mean", "True mean"),
        lwd=c(2,2), col=c("black", "red"))
 ```
 
-We can easily see that the cumulative mean, that is,
+We can see that the sample mean, that is,
 
 \[
   \frac{1}{n}\sum^n_{i=1}x_i, \quad n = 1,\dots,100,
 \]
 
-converges to the true mean, the expected value of the distribution, $\mathrm{E}(N(5,9))=5$.
+converges to the true mean, the expected value of the distribution, $\mathrm{E}(N(5,9))=5$. This is as expected by Weak Law of Large Numbers which applies because $X_i$ are iid and $E|X| < \infty$
 
 
 ## Exercise 1.2 - Convergence of Means of $n$ Draws From a Cauchy Distribution
@@ -83,20 +83,19 @@ plot(x=cauchy_data$n, y=cauchy_data$mean, type="l", lwd=2,
 legend(6000, 8, "Cumulative mean", lwd=2, col="black")
 ```
 
-This time, we do not observe convergence of the cumulative mean. Rather, we observe repeated random jumps in the cumulative mean. This is due to the Cauchy distribution not having an expected value that it could converge to.
+This time, we do not observe convergence of the cumulative mean. Rather, we observe repeated random jumps in the cumulative mean. This is due to the Cauchy distribution not having an expected value that it could converge to. Since $E|X| < \infty$ is not fulfilled, WLLN does not apply.
 
 \newpage
 
 # Exercise 2
 ## Exercise 2.1 - The conjugate prior
 
-A Covid test can be represented by a Bernoulli trial, where our random variable takes over value = 1 if test is *positive* and value = 0 if *negative*. As we conduct the tests for 20 colleagues, we have a sequence of Bernoulli trials, where the random variable now is the sum of all single Bernoulli trials. This random variable now follows a Binomial distribution. That is, our likelihood follows a Binomial distribution.\footnote{Bernoulli distribution is just a special case of a Binomial distribution with n=1.} 
+A Covid test can be represented by a Bernoulli trial, where our random variable takes over value = 1 if test is *positive* and value = 0 if *negative*. As we conduct the tests for 20 colleagues, we have a sequence of Bernoulli trials, where the random variable now is the sum of all single Bernoulli trials. This random variable now follows a Binomial distribution. Notice that we have vector of observations $y = (y_1,...,y_n)$ for n days, where $y_i$ contains 20 observations, one for each colleague. Thus $y_i \sim Binom(20,\theta)$ Since the n observations across time are iid the likelihood originates from $Binom(20n,\theta)$.
 
-The class of conjugate priors for a Binomial distribution are **Beta($\alpha$, $\beta$)**  distributions where $\alpha$, $\beta$ $\in$ $\mathbb{R}_+$.
+The class of conjugate priors for a Binomial distribution are Beta($\alpha$, $\beta$)  distributions where $\alpha$, $\beta$ $\in$ $\mathbb{R}_+$.
 
-Notice that we have vector of observations $y = (y_1,...,y_n)$ for n days, where $y_i$ contains 20 observations, one for each colleague. Thus $y_i \sim Binom(20,\theta)$ Since the n observations across time are iid the likelihood originates from $Binom(20n,\theta)$
 
-Thus the distribution of $y_i$, the likelihood function and our prior are respectively:
+Thus the distribution of $y_i$ $\forall i$, the likelihood function and our prior are respectively:
 
 $$
 \begin{aligned}
@@ -159,8 +158,8 @@ b_1 = function(b, s_n = 10, n = 600) {
   b+n-s_n
   }
 
-a_0 = c(1,2,10,0.5,1,2,10)
-b_0 = c(1,10,2,0.5,2,1,250)
+a_0 = c(1,2,10,10,2,3)
+b_0 = c(1,10,2,250,3,2)
 
 df = as.data.frame(cbind(a_0, b_0))
 
@@ -194,16 +193,16 @@ To visualise the impact different beta priors have on the posterior distribution
 p = seq(0,1, length=100)
 
 #plot several Beta distributions
-plot(p, dbeta(p, a_0[1], b_0[1]), ylab='density', type ='l', col='black', main="Priors",ylim=c(0,10))
+plot(p, dbeta(p, a_0[1], b_0[1]), ylab='density', type ='l', col='black', main="Priors",ylim=c(0,30))
 
 
 lines(p, dbeta(p, a_0[2], b_0[2]), col='red') 
 lines(p, dbeta(p, a_0[3], b_0[3]), col='blue')
 lines(p, dbeta(p, a_0[4], b_0[4]), col='green')
-lines(p, dbeta(p, a_0[7], b_0[7]), col='purple')
+
 
 #add legend
-legend("topright", c('Beta(1, 1)','Beta(2, 10)','Beta(10,2)', 'Beta(0.5,0.5)'),
+legend("topright", c('Beta(1, 1)','Beta(2, 10)','Beta(10,2)', 'Beta(10,250)'),
        lty=c(1,1,1),col=c('black', 'red', 'blue', 'green'))
 
 
@@ -218,17 +217,16 @@ plot(p, dbeta(p, a_1(a_0)[1], b_1(b_0)[1]), ylab='density', type ='l', col='blac
 lines(p, dbeta(p, a_1(a_0)[2], b_1(b_0)[2]), col='red') 
 lines(p, dbeta(p, a_1(a_0)[3], b_1(b_0)[3]), col='blue')
 lines(p, dbeta(p, a_1(a_0)[4], b_1(b_0)[4]), col='green')
-lines(p, dbeta(p, a_1(a_0)[7], b_1(b_0)[7]), col='purple')
+
 
 #add legend
-legend("topright", c('Beta(1, 1)','Beta(2, 10)','Beta(10,2)', 'Beta(0.5,0.5)'),
+legend("topright", c('Beta(1, 1)','Beta(2, 10)','Beta(10,2)', 'Beta(10,250)'),
        lty=c(1,1,1),col=c('black', 'red', 'blue', 'green'))
 
 ```
 
 For $\alpha_0 = \beta_0 = 1$ the prior is simply a uniform(1,1) distribution. This uninformative prior gives us a posterior distribution which is narrowly centered around approx. 0.02. As we see in the graphs above, a change in the prior parameters changes the pattern for the posterior only slightly in absolute terms. For arbitrary values $\alpha_0 = \beta_0>1$ prior has the property that mean = median = mode\footnote{for $\alpha_0 = \beta_0=1$, mean = meadian = 0.5, and mode is any value in interval (0,1).}, but this does not hold for the posterior as $\alpha_1$ and $\beta_1$  are non-proportional linear combinations of $\alpha_0$ and $\beta_0$.   
 
-For an increase in $\alpha_0$ holding $\beta_0$ constant we see an increase in posterior point estimates. If we increase $\beta_0$ holding $\alpha_0$ constant, estimates decrease.
 
 As for sources of prior information, information for this particular problem can stem from previous research or available data. For one of our Beta-priors we tried to match the mean to the most recent value of of COVID-19 test rates, which seem to be around 3.7%. After trying out few different parameters, this led us to use Beta(10,250), which has mean close to 3.7%. For more serious work, one would solve the equation for mean, but also try to match at least the variance of prior to the data as well.
 
@@ -240,49 +238,6 @@ Second, if one of our employees in the office tests positive on a particular day
 *How could you (conceptually) improve the model with this in mind?*
 
 We could take into account whether person tested has symptoms and whether there were previous contacts with positively tested colleagues. Based on this we would change the prior for employees who have higher risk of having COVID by shifting their prior to the right side. Since the prior has relatively low effect we would need to change it drastically. 
-
-
-
-
-\newpage
-
-# Exercise 3
-
-We write the following function to use in this exercise:
-
-```{r, echo = TRUE}
-simulate_reg <- function(n, k = 1, alpha = 0, beta = 1, sigma = 1)  {
-  
-  # Remind the user to specify a vector as beta if they want to
-  if ((length(beta) == 1)*(k>1) == 1) {
-    warning("You have specified k > 1 but only one value for beta. 
-              This function then uses the same beta for all independent variables!")
-  }
-  
-  # Create an empty matrix for the independent variables
-  X <- matrix(nrow = n, ncol = k)
-  
-  # Fill them with draws from normal distributions. For fun we let the
-  # mean increase by 1 for every additional independent variable
-  for(i in 1:k){
-    X[,i] <- rnorm(n, i, 10)
-  }
-  
-  # Make beta a vector of length k if it is only a scalar
-  if ((length(beta) == 1) == TRUE) {
-    beta <- rep(beta, k)
-  }
-  
-  # Compute y = a + Xb + e, e ~ N(0,sigma)
-  simul_dep <- rep(alpha, n) + X %*% beta + rnorm(n, 0, sigma)
-  
-  # Create one output data frame
-  output_data <- data.frame(Y = simul_dep, X)
-  
-  # Return it
-  return(output_data)
-}
-```
 
 
 
