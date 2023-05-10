@@ -239,6 +239,47 @@ Second, if one of our employees in the office tests positive on a particular day
 
 We could take into account whether person tested has symptoms and whether there were previous contacts with positively tested colleagues. Based on this we would change the prior for employees who have higher risk of having COVID by shifting their prior to the right side. Since the prior has relatively low effect we would need to change it drastically. 
 
+\newpage
+
+# Exercise 3
+
+We write the following function to use in this exercise:
+
+```{r, echo = TRUE}
+simulate_reg <- function(n, k = 1, alpha = 0, beta = 1, sigma = 1)  {
+  
+  # Remind the user to specify a vector as beta if they want to
+  if ((length(beta) == 1)*(k>1) == 1) {
+    warning("You have specified k > 1 but only one value for beta. 
+              This function then uses the same beta for all independent variables!")
+  }
+  
+  # Create an empty matrix for the independent variables
+  X <- matrix(nrow = n, ncol = k)
+  
+  # Fill them with draws from normal distributions. For fun we let the
+  # mean increase by 1 for every additional independent variable
+  for(i in 1:k){
+    X[,i] <- rnorm(n, i, 10)
+  }
+  
+  # Make beta a vector of length k if it is only a scalar
+  if ((length(beta) == 1) == TRUE) {
+    beta <- rep(beta, k)
+  }
+  
+  # Compute y = a + Xb + e, e ~ N(0,sigma)
+  simul_dep <- rep(alpha, n) + X %*% beta + rnorm(n, 0, sigma)
+  
+  # Create one output data frame
+  output_data <- data.frame(Y = simul_dep, X)
+  
+  # Return it
+  return(output_data)
+}
+```
+
+
 
 
 ## Exercise 3.1 - Simulating Data with $k = 1$ and $\sigma = 1$
