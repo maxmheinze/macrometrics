@@ -16,7 +16,3 @@
 * Question should be more about intuition
 * Similar questions to sample questions
 
-
-## Test Equation
-
-$x^2$
