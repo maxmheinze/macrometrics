@@ -41,9 +41,9 @@
 
 #### Explain the difference between dependent and independent sampling.
 
-### Give an intuition for the Minnesota prior setup. State how the prior mean is defined and
+#### Give an intuition for the Minnesota prior setup. State how the prior mean is defined and
 briefly explain why.
 
-### Write down a $\mathrm{VAR}(p)$ model in reduced form. Explain what is meant by the curse of dimensionality.
+#### Write down a $\mathrm{VAR}(p)$ model in reduced form. Explain what is meant by the curse of dimensionality.
 
-### You watched <https://www.youtube.com/watch?v=GI7sBsBHdCk&pp=ygURaSBuZWVkIGEgaGVybyBmZWQ%3D> and want to evaluate the monetary policy of J-Pow. You estimate a vector autoregression with the federal funds rate and other relevant variables, and obtain impulse response functions. How can you interpret these IRFs?
+#### You watched <https://www.youtube.com/watch?v=GI7sBsBHdCk&pp=ygURaSBuZWVkIGEgaGVybyBmZWQ%3D> and want to evaluate the monetary policy of J-Pow. You estimate a vector autoregression with the federal funds rate and other relevant variables, and obtain impulse response functions. How can you interpret these IRFs?
