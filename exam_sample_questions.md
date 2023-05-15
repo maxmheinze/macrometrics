@@ -2,7 +2,6 @@
 *Advanced Macroeconometrics, Summer Term 2023*
 
 ---
----
 
 #### What is meant by Bayesian ‘updating’?
 
