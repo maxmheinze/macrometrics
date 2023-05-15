@@ -3,6 +3,8 @@
 
 #### What is meant by Bayesian ‘updating’?
 
+This is a $sample = equation$!
+
 #### How can we interpret $p$, the main parameter of the Bernoulli distribution: $f(x\mid p) = px(1-p)(1-x)$?
 
 ##### Come up with a conjugate prior for a Bernoulli likelihood and derive the posterior distribution.
