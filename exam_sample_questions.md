@@ -8,7 +8,7 @@
 In the Bayesian framework, we start with existing **prior** beliefs that we subsequently **update** using observed data to obtain **posterior** beliefs. Formally, we update our prior belief about a latent (unobserved) value $\theta$ using the unobserved data $\mathcal{D}$ to get an updated belief:
 
 $$
-  p(\theta) \times p(\mathcal{D}\mid\theta) \rightarrow p(\theta\mid\mathcal{D}.
+  p(\theta) \times p(\mathcal{D}\mid\theta) \rightarrow p(\theta\mid\mathcal{D}).
 $$
 
 For this, we use Bayes's Rule:
