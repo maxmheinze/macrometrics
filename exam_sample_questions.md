@@ -5,7 +5,23 @@
 
 #### What is meant by Bayesian ‘updating’?
 
-This is a $sample = equation$!
+In the Bayesian framework, we start with existing **prior** beliefs that we subsequently **update** using observed data to obtain **posterior** beliefs. Formally, we update our prior belief about a latent (unobserved) value $\theta$ using the unobserved data $\mathcal{D}$ to get an updated belief:
+
+$$
+  p(\theta) \times p(\mathcal{D}\mid\theta) \rightarrow p(\theta\mid\mathcal{D}.
+$$
+
+For this, we use Bayes's Rule:
+
+$$
+P(A\mid B) = \frac{P(B\mid A)P(A)}{P(B)} \propto P(B\mid A)P(A).
+$$
+
+For our prior, we can use historical data, theoretical insights or external information. Alternatively, we can use an uninformative prior. Using probability distributions instead of point values, we get Bayes's Theorem:
+
+$$
+p(\theta \mid \mathcal{D}) \propto p(\mathcal{D}\mid\theta)p(\theta).
+$$
 
 ---
 
