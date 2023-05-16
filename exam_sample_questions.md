@@ -9,7 +9,8 @@ This is a $sample = equation$!
 
 ---
 
-#### How can we interpret $p$, the main parameter of the Bernoulli distribution: $f(x\mid p) = px(1-p)(1-x)$?
+#### How can we interpret $p$, the main parameter of the Bernoulli distribution: $f(x\mid p) = p^x\cdot (1-p)^{(1-x)}$?
+$p$ can be interpreted as the probability of success of a bernoulli trial. It is also the extecpted value of a bernoulli distribution.
 
 ##### Come up with a conjugate prior for a Bernoulli likelihood and derive the posterior distribution.
 
