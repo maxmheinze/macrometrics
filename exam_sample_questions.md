@@ -35,6 +35,14 @@ $p$ can be interpreted as the probability of success of a Bernoulli trial. It is
 
 #### Describe the Poisson distribution and propose suitable priors (concrete examples for them and properties that would be desirable) for its parameter $\mu$.
 
+The Poisson distribution is a discrete probability distribution that can be used to describe the number of occurrences of an event in a given interval (e.g. of time). It has one parameter, $\lambda$, which is equal to its expected value and its variance. Its probability mass function (PMF) is given by
+
+$$
+  f(k, \lambda) = \mathrm{Pr}(X = k) = \frac{\lambda^ke^{-\lambda}{k!}.
+$$
+
+We assume that the occurrence of an event does not affect the probability of the next event occurring, i.e. that events are independent.
+
 ---
 
 #### Consider the classical linear model; what parameters are there to model?
