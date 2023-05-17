@@ -31,6 +31,8 @@ $p$ can be interpreted as the probability of success of a Bernoulli trial. It is
 
 ##### Come up with a conjugate prior for a Bernoulli likelihood and derive the posterior distribution.
 
+A conjugate proir for the Bernoulli Distrubution is a Beta prior. If the Prior is distrubiuted Beta(a0, b0), then the Posterior will be distributed: Beta(a0 + Sn, b0 + n - Sn), where Sn is the number of successes and n-Sn is the number of fails. 
+
 ---
 
 #### Describe the Poisson distribution and propose suitable priors (concrete examples for them and properties that would be desirable) for its parameter $\mu$.
