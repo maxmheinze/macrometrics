@@ -112,4 +112,8 @@ We assume that the occurrence of an event does not affect the probability of the
 
 [![Youtube Video](http://img.youtube.com/vi/GI7sBsBHdCk/0.jpg)](https://www.youtube.com/watch?v=GI7sBsBHdCk)
 
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=GI7sBsBHdCk"><img src="https://img.youtube.com/vi/GI7sBsBHdCk/0.jpg" alt="Youtube Video"></a>
+</div>
+
 ---
