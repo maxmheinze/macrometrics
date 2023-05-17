@@ -107,10 +107,7 @@ We assume that the occurrence of an event does not affect the probability of the
 
 ---
 
-#### You watched <https://www.youtube.com/watch?v=GI7sBsBHdCk&pp=ygURaSBuZWVkIGEgaGVybyBmZWQ%3D> and want to evaluate the monetary policy of J-Pow. You estimate a vector autoregression with the federal funds rate and other relevant variables, and obtain impulse response functions. How can you interpret these IRFs?
-
-
-[![Youtube Video](http://img.youtube.com/vi/GI7sBsBHdCk/0.jpg)](https://www.youtube.com/watch?v=GI7sBsBHdCk)
+#### You watched the following Youtube video and want to evaluate the monetary policy of J-Pow. You estimate a vector autoregression with the federal funds rate and other relevant variables, and obtain impulse response functions. How can you interpret these IRFs?
 
 <div align="center">
   <a href="https://www.youtube.com/watch?v=GI7sBsBHdCk"><img src="https://img.youtube.com/vi/GI7sBsBHdCk/0.jpg" alt="Youtube Video"></a>
