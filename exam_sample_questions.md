@@ -143,6 +143,8 @@ Transformations: Transforming the data using mathematical functions can help mak
 
 Sophia: BMA works well when the number of candidate models is relatively small. With 80 variables, the number of potential models explodes exponentially, making it challenging to evaluate all possible combinations of variables. The computational burden increases exponentially as the number of variables and models grow, thus BMA seems impractical in this context.
 
+Also: Like the Bayes Information Criterion (BIC), BMA measures how well the model fits the past but not how well the model predicts the future.
+
 ---
 
 #### Why and in which settings can the BIC be used as an approximation to the marginal likelihood?
