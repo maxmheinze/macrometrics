@@ -141,6 +141,8 @@ Transformations: Transforming the data using mathematical functions can help mak
 
 #### You want to investigate the causal effect of your education on your income (or happiness). You identify a set of 80 variables that may be relevant. Explain why you cannot just use a Bayesian model averaging approach to estimate this causal effect.
 
+Sophia: BMA works well when the number of candidate models is relatively small. With 80 variables, the number of potential models explodes exponentially, making it challenging to evaluate all possible combinations of variables. The computational burden increases exponentially as the number of variables and models grow, thus BMA seems impractical in this context.
+
 ---
 
 #### Why and in which settings can the BIC be used as an approximation to the marginal likelihood?
