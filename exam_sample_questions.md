@@ -49,7 +49,16 @@ We assume that the occurrence of an event does not affect the probability of the
 
 #### Consider the classical linear model; what parameters are there to model?
 
+Sophia: In the classical linear model, the ordinary least squares model, there are several parameters to model. In case of a simple linear regression model with one dependent variable and one independent variable. The model can be represented as:
+
+Y = β₀ + β₁X + ε,
+
+Here Y is the dependent variable, X is the independent variable, β₀ is the intercept parameter, β₁ is the slope parameter
+ε is the error term, assumed to be normally distributed with mean zero and constant variance σ².
+
 ##### What is the sampling distribution of this model and how is it related to conjugate parameters for the priors?
+
+Sophia: The sampling distribution of the classical linear model assumes that the error term ε follows a normal distribution with mean zero and constant variance σ². Therefore, the dependent variable Y is also normally distributed with mean β₀ + β₁X and variance σ². Conjugate priors are prior distributions that, when combined with the likelihood function, lead to posterior distributions that have the same functional form as the priors.
 
 ##### Show how to use the dependent Normal Inverse-Gamma prior to derive posterior moments for this model.
 
@@ -57,14 +66,31 @@ We assume that the occurrence of an event does not affect the probability of the
 
 #### What does it mean for a Markov chain Monte Carlo sampler to have ‘converged’?
 
+Sophia: In the context of Markov chain Monte Carlo (MCMC) sampling, "convergence" refers to the property of the sampler reaching a stable state where it effectively explores the target distribution and provides reliable estimates of the parameters of interest. When an MCMC sampler has converged, it implies that the samples produced by the chain are approximately drawn from the desired posterior distribution. We called this the stationary distribution. 
+
 ##### How can we assess the convergence of an MCMC sampler?
 
+Sophia: Assessing the convergence of an MCMC sampler is crucial to ensure the validity and reliability of the results. There are several diagnostic methods to assess convergence: 
+- From the Slides(16/28 in estimation): We use convergence checks(plots and statistics), and multiple chains (with different starting values) to assess convergence. 
+- Visual inspection: Traceplots and density plots of the MCMC samples can be visually examined to identify any patterns or trends. Convergence is indicated when the chains appear stable, with no significant drift or systematic patterns over iterations.
+- Visual inspection: QQ plots are scatterplots created by plotting two sets of qualtiles against one another. If both sets of quantiles come from the same distribution, we should see the points forming a straight line. 
+- multiple chains: Slide 22 until the end of the chapter (estimation). But I did non really understand them haha. 
+- From Slides: Discard the first S0 draws as burn-in, such that the sampler has converged to its stationary distribution. 
+- The choice of the starting value is deterministic, but irrelevant if we obtain enough samples. 
+
 ##### Draw two traceplots for a Markov chain that (1) has likely converged, and (2) that has not. Suppose you want to estimate a model with this MCMC simulation — what are the implications of (non-)convergence?
+Sophia: Convergence: If the MCMC sampler has converged, the estimates derived from the samples are reliable and can be considered representative of the posterior distribution. In this case, the parameter estimates, their uncertainties, and any derived quantities can be trusted for further analysis and inference.
+Sophia: Non-convergence: If the MCMC sampler has not converged, the estimates derived from the samples may be biased or unreliable. Non-convergence can lead to incorrect inference, misleading parameter estimates, and underestimated uncertainties. In such cases, it is essential to identify the cause of non-convergence and take appropriate steps to address the issue, such as running the sampler for a longer burn-in period, adjusting sampler parameters, or using different initialization values.
 
 ---
 
 #### You want to prepare for an exam on Bayesian econometrics and take a preparatory test five times in a row. Explain why your later results may not be a good predictor for your performance in general.
 
+Sophia: (I think this is Bull, but whatever) 
+- Practice effect: With each subsequent test attempt, there is a practice effect at play. As you become more familiar with the questions, format, and patterns of the test, your performance is likely to improve. This improvement is primarily driven by increased familiarity and does not necessarily reflect a genuine improvement in your understanding or knowledge of the subject matter.
+- Memorization: If the preparatory tests have a fixed set of questions or a limited question bank, there is a possibility of memorizing the answers or patterns of the questions rather than genuinely understanding the underlying concepts. As a result, your performance may improve solely based on rote memorization, which does not guarantee a comprehensive understanding of the material.
+- Test-specific factors: Each test has its own unique set of questions and may cover different aspects or depths of the subject material. The performance on one specific test may be influenced by the specific topics or question types it focuses on. Therefore, the relative difficulty or content coverage of each test can affect your scores, making it challenging to generalize your performance across different exams.
+- Test conditions: Factors such as stress, fatigue, time constraints, or external distractions can impact your performance on any given test. These factors may vary between different test attempts, affecting your scores and making it difficult to accurately predict your overall performance.
 ---
 
 #### You want to assess (and incentivize) the knowledge, performance, and progress of students in your class. What are potential benefits of using three different criteria for grading?
@@ -73,11 +99,48 @@ We assume that the occurrence of an event does not affect the probability of the
 
 #### You want to learn about the effect of drinking between 100ml–1000ml of Club Mate per lecture on your percentage points in a given course. Specify a model; propose two different priors (incl. parameters) for the effect (one should convey your prior, the other should serve as sensitivity check).
 
+Sophia: To study the effect of drinking between 100ml-1000ml of Club Mate per lecture on your percentage points in a given course, we can specify a linear regression model. The dependent variable is "Percentage Points" and the independent variable is "Club Mate."
+
+The linear regression model looks like: 
+
+Percentage Points = β₀ + β₁ * Club Mate + ε
+
+Where: Percentage Points: The percentage points achieved in the course. Club Mate: The amount of Club Mate consumed per lecture (measured in ml).
+β₀: The intercept, representing the expected percentage points when no Club Mate is consumed.
+β₁: The slope coefficient, representing the expected change in percentage points for each additional ml of Club Mate consumed.
+ε: The error term, assuming a normal distribution with mean zero and constant variance.
+Now, let's propose two different priors for the effect (β₁) of Club Mate:
+
+Prior 1 (Conveying Prior):
+For the first prior, we can express our prior belief about the effect of Club Mate on percentage points. Let's assume a weak prior belief that Club Mate has a positive effect on performance. We can choose a normal prior distribution with mean 0.02 and standard deviation 0.01 for β₁. This prior conveys that, on average, we expect a 0.02 increase in percentage points for every additional ml of Club Mate consumed.
+β₁ ~ Normal(0.02, 0.01)
+
+Prior 2 (Sensitivity Check):
+For the second prior, we can choose a more diffuse prior that allows for a wider range of possible effects. This prior serves as a sensitivity check to explore different scenarios. We can select a Cauchy prior distribution with a location parameter of 0 and a scale parameter of 0.1 for β₁. The Cauchy distribution has heavier tails compared to the normal distribution, allowing for the possibility of extreme effects.
+β₁ ~ Cauchy(0, 0.1)
+
+By using these two different priors, we can explore different assumptions and assess the sensitivity of the results to different prior specifications. The first prior conveys our initial belief about the effect, while the second prior allows for a more flexible range of possible effects, accounting for greater uncertainty or alternative hypotheses.
+
 ---
 
 #### The Normal distribution approximately arises in many situations, due to the central limited theorem. What are the assumptions behind the theorem?
 
-##### Random variables in many practical settings do not display the limited tail behavior of the Normal distribution. Why could that be the case and how could you address this when constructing models for such situations?
+Sophia: The central limit theorem (CLT) is a fundamental result in probability theory that provides conditions under which the sum or average of a large number of independent and identically distributed random variables approximates a normal distribution, regardless of the distribution of the individual variables. The assumptions behind the CLT are as follows:
+
+Independence: The random variables should be independent of each other. This means that the outcome of one variable does not affect the outcome of any other variable.
+Identical Distribution: The random variables should have the same probability distribution. Although they may have different parameter values (such as mean or variance), the underlying distribution remains the same.
+Finite Variance: The random variables should have a finite variance. This assumption ensures that the variability of the individual variables is not too extreme.
+
+##### Random variables in many practical settings do not display the limited tail behavior of the Normal distribution. Why could that be the case and how could you address this when constructing models for such situations? 
+
+Reasons: 
+Heavy-Tailed Distributions: Some real-world phenomena, such as income distribution or stock market returns, exhibit heavy tails, meaning that extreme values occur more frequently than would be expected under a normal distribution.
+Skewed Distributions: Many real-world data sets are skewed, with a longer tail on one side. These distributions do not match the symmetric bell shape of the normal distribution.
+Bounded Data: In certain situations, the data is constrained within specific bounds, such as proportions or counts, which may violate the assumption of unboundedness required by the normal distribution.
+
+Adress this problem: 
+Non-Normal Distributions: Instead of assuming a normal distribution, one can choose a more suitable distribution that better reflects the characteristics of the data. Examples include the log-normal distribution for positively skewed data or the Student's t-distribution for heavy-tailed data.
+Transformations: Transforming the data using mathematical functions can help make the data more amenable to a normal distribution. Common transformations include logarithmic, square root, etc. 
 
 ---
 
