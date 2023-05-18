@@ -86,11 +86,6 @@ Sophia: Non-convergence: If the MCMC sampler has not converged, the estimates de
 
 #### You want to prepare for an exam on Bayesian econometrics and take a preparatory test five times in a row. Explain why your later results may not be a good predictor for your performance in general.
 
-Sophia: (I think this is Bull, but whatever) 
-- Practice effect: With each subsequent test attempt, there is a practice effect at play. As you become more familiar with the questions, format, and patterns of the test, your performance is likely to improve. This improvement is primarily driven by increased familiarity and does not necessarily reflect a genuine improvement in your understanding or knowledge of the subject matter.
-- Memorization: If the preparatory tests have a fixed set of questions or a limited question bank, there is a possibility of memorizing the answers or patterns of the questions rather than genuinely understanding the underlying concepts. As a result, your performance may improve solely based on rote memorization, which does not guarantee a comprehensive understanding of the material.
-- Test-specific factors: Each test has its own unique set of questions and may cover different aspects or depths of the subject material. The performance on one specific test may be influenced by the specific topics or question types it focuses on. Therefore, the relative difficulty or content coverage of each test can affect your scores, making it challenging to generalize your performance across different exams.
-- Test conditions: Factors such as stress, fatigue, time constraints, or external distractions can impact your performance on any given test. These factors may vary between different test attempts, affecting your scores and making it difficult to accurately predict your overall performance.
 ---
 
 #### You want to assess (and incentivize) the knowledge, performance, and progress of students in your class. What are potential benefits of using three different criteria for grading?
@@ -149,6 +144,12 @@ Transformations: Transforming the data using mathematical functions can help mak
 ---
 
 #### Why and in which settings can the BIC be used as an approximation to the marginal likelihood?
+
+Sophia: (Slide 18, Chapter: Priors) The margianal likelihood and the BIC are closely related if the number of observations is large. 
+I found a more detailed explanaition in the Intenet: The Bayesian Information Criterion (BIC) is a model selection criterion that balances the goodness of fit of a model with its complexity. While BIC is primarily used for model selection, it can also serve as an approximation to the marginal likelihood in certain settings. 
+Reasons: 
+1. BIC is derived based on asymptotic properties and the assumption of large sample sizes. Under certain regularity conditions, as the sample size increases, BIC consistently estimates the true model among the candidate models. This consistency property suggests that BIC tends to favor the true model, which is a desirable property of the marginal likelihood.
+2. BIC incorporates a penalty term for model complexity based on the number of parameters in the model. This penalty discourages overly complex models that may overfit the data. By penalizing complexity, BIC accounts for a principle,that simpler models are preferred when they provide comparable fit to the data. The penalty term in BIC indirectly accounts for the volume of the parameter space and contributes to approximating the marginal likelihood.
 
 ---
 
