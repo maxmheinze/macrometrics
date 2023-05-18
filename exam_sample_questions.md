@@ -161,6 +161,10 @@ Reasons:
 
 ##### What is an improper prior — what issues may arise if the posterior is also improper?
 
+An improper prior refers to a prior distribution that does not integrate to a finite value. Improper priors are often used in Bayesian analysis for convenience or mathematical simplicity. However, using an improper prior can lead to issues when the posterior distribution is also improper.
+
+If the posterior distribution is improper, it means that it does not integrate to a finite value. The main issue with an improper posterior is that it cannot be directly interpreted as a valid probability distribution. In such cases, the posterior cannot be used for making probabilistic statements or performing standard Bayesian inference.
+
 ---
 
 #### Explain the difference between dependent and independent sampling.
