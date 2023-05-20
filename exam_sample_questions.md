@@ -173,6 +173,10 @@ If the posterior distribution is improper, it means that it does not integrate t
 
 #### Give an intuition for the Minnesota prior setup. State how the prior mean is defined and briefly explain why.
 
+Sophia: The Minessota prior incorporates the idea of shrinkage, which is a way to regularize or shrik the coefficient estimates to zero. It adresses the issue of overfitting and instability that can arise when estimating the VAR models with a large number of varaibles (curse of dimensionality). The key idea behind the Missesota prior is to impose a hierarchical structure on the coefficients of the VAR model. Insted of assuming a common prior for all the coefficients, the Minnesota prior allows for different amounts of shirinkage for each coefficient based on its lag order and the variable it corresponds to. 
+
+The Prior mean ist defined by E[A] = (I, 0, ... , 0). The mean is zero exept for the elements corresponding to the fist own lag of the dependent varaible in each equation. This induces a higher consistency and pushes the system towards random walk behavior. 
+
 ---
 
 #### Write down a $\mathrm{VAR}(p)$ model in reduced form. Explain what is meant by the curse of dimensionality.
