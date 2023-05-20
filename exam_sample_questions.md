@@ -182,7 +182,7 @@ The Prior mean ist defined by E[A] = (I, 0, ... , 0). The mean is zero exept for
 #### Write down a $\mathrm{VAR}(p)$ model in reduced form. Explain what is meant by the curse of dimensionality.
 
 Sophia: 
-yt = c + A1$\mathrm{y}(t-1)$ + ... + Ap$\mathrm{y}(t-p)$ + et, with c denoting a constant. 
+yt = c + A1y(t-1)+ ... + Apy(t-p)+ et, with c denoting a constant. 
 Curse of dimensionality: If there are M equiations, one for each M variables and p lags of each of the varaibles in each euation, M + pM^2 parameters have to be estimated. 
 
 ---
