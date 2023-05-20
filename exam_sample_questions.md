@@ -181,6 +181,9 @@ The Prior mean ist defined by E[A] = (I, 0, ... , 0). The mean is zero exept for
 
 #### Write down a $\mathrm{VAR}(p)$ model in reduced form. Explain what is meant by the curse of dimensionality.
 
+yt = c + A1y(t-1) + ... + Apy(t-p) + et, with c denoting a constant. 
+Curse of dimensionality: If there are M equiations, one for each M variables and p lags of each of the varaibles in each euation, M + pM^2 parameters have to be estimated. 
+
 ---
 
 #### You watched the following Youtube video and want to evaluate the monetary policy of J-Pow. You estimate a vector autoregression with the federal funds rate and other relevant variables, and obtain impulse response functions. How can you interpret these IRFs?
