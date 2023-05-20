@@ -31,7 +31,7 @@ $p$ can be interpreted as the probability of success of a Bernoulli trial. It is
 
 ##### Come up with a conjugate prior for a Bernoulli likelihood and derive the posterior distribution.
 
-A conjugate proir for the Bernoulli Distrubution is a Beta prior. If the Prior is distrubiuted Beta(a0, b0), then the Posterior will be distributed: Beta(a0 + Sn, b0 + n - Sn), where Sn is the number of successes and n-Sn is the number of fails. 
+Sophia: A conjugate proir for the Bernoulli Distrubution is a Beta prior. If the Prior is distrubiuted Beta(a0, b0), then the Posterior will be distributed: Beta(a0 + Sn, b0 + n - Sn), where Sn is the number of successes and n-Sn is the number of fails. 
 
 ---
 
@@ -62,7 +62,7 @@ Sophia: The sampling distribution of the classical linear model assumes that the
 
 ##### Show how to use the dependent Normal Inverse-Gamma prior to derive posterior moments for this model.
 
-Sophia: This is in Slide 31/39 in the slideset 21_regression. I did not expect that we had to know stuff like this by heart :( 
+Sophia: This is in Slide 31/39 in the slideset 21_regression for multivariate regression. 
 
 ---
 
@@ -76,7 +76,7 @@ Sophia: Assessing the convergence of an MCMC sampler is crucial to ensure the va
 - From the Slides(16/28 in estimation): We use convergence checks(plots and statistics), and multiple chains (with different starting values) to assess convergence. 
 - Visual inspection: Traceplots and density plots of the MCMC samples can be visually examined to identify any patterns or trends. Convergence is indicated when the chains appear stable, with no significant drift or systematic patterns over iterations.
 - Visual inspection: QQ plots are scatterplots created by plotting two sets of qualtiles against one another. If both sets of quantiles come from the same distribution, we should see the points forming a straight line. 
-- multiple chains: Slide 22 until the end of the chapter (estimation). But I did non really understand them haha. 
+- multiple chains: Instead of running a single MCMC chain, multiple chains are independently simulated from different starting points or initial conditions. Each chain is an independent realization of the MCMC algorithm, exploring the parameter space. We could visually inspect the chains. 
 - From Slides: Discard the first S0 draws as burn-in, such that the sampler has converged to its stationary distribution. 
 - The choice of the starting value is deterministic, but irrelevant if we obtain enough samples. 
 
