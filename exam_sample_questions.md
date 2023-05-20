@@ -62,6 +62,8 @@ Sophia: The sampling distribution of the classical linear model assumes that the
 
 ##### Show how to use the dependent Normal Inverse-Gamma prior to derive posterior moments for this model.
 
+Sophia: This is in Slide 31/39 in the slideset 21_regression. I did not expect that we had to know stuff like this by heart :( 
+
 ---
 
 #### What does it mean for a Markov chain Monte Carlo sampler to have ‘converged’?
