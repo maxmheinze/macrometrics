@@ -88,6 +88,8 @@ Sophia: Non-convergence: If the MCMC sampler has not converged, the estimates de
 
 #### You want to prepare for an exam on Bayesian econometrics and take a preparatory test five times in a row. Explain why your later results may not be a good predictor for your performance in general.
 
+In Bayesian econometrics, we use the principle of updating our beliefs. Thus, we can use a preparatory test to update our prior beliefs about the outcome of the exam. However, if we complete the same preparatory test five times, we are not able to increase our certainty about the outcome of the exam as we already added the new information after completing the test the first time. \Lucas
+
 ---
 
 #### You want to assess (and incentivize) the knowledge, performance, and progress of students in your class. What are potential benefits of using three different criteria for grading?
@@ -161,6 +163,8 @@ Reasons:
 
 #### Give an intutition for why and how you should use weakly informative priors (i.e. shrinkage priors).
 
+Shrinkage priors are often used to counteract the danger of overfitting. In a Bayesian setting, shrinkage priors are used to pull small effects towards zero and thus exclude them from the model, while large effects continue to remain in a model. Especially, when there are more variables than observations, shrinkage priors are necessary to keep the model consistent. To implement this, shrinkage priors are often distributions that have a lot of mass around zero and fat tails. Some examples are the Lasso, Horseshoe, ridge or the Triple-Gamma prior. \Lucas
+
 ##### What is an improper prior — what issues may arise if the posterior is also improper?
 
 An improper prior refers to a prior distribution that does not integrate to a finite value (Not a valid pobability distribuion). Improper priors are often used in Bayesian analysis for convenience or mathematical simplicity. However, using an improper prior can lead to issues when the posterior distribution is also improper.
@@ -170,6 +174,10 @@ If the posterior distribution is improper, it means that it does not integrate t
 ---
 
 #### Explain the difference between dependent and independent sampling.
+Independent sampling refers to data that is given by two random samples which are drawn from two seperate and unrelated populations. One can then compute the desired metric to gain information about differences in the two populations. Example: A community college mathematics department wants to know if an experimental algebra course has higher success rates when compared to a traditional course. The mean grade points for 80 students in the experimental course (treatment) is compared to the mean grade points for 100 students in the traditional course (control).
+
+Dependent sampling refers to data that is drawn from the same population but e.g. at different time points. Thus, each data point in the first sampling has a dependent data point in the second data set. This procedure is also called matched pair sampling and can be used for a one population model of differences. Example: An instructor of a statistics course wants to know if student scores are different on the second midterm compared to the first exam. The first and second midterm scores for 35 students is taken and the mean difference in scores is determined. \Lucas
+
 
 ---
 
