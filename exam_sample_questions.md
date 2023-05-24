@@ -85,13 +85,11 @@ $$
 
 where:
 
-$$
-\begin{aligned}
+\begin{align}
 \boldsymbol{\mu}_n&=\boldsymbol{\Sigma}_n\left(\boldsymbol{\Sigma}_0^{-1} \boldsymbol{\mu}_0+\boldsymbol{X}^{\prime} \boldsymbol{y}\right),  &c_n&=c_0+n / 2 \\
 \boldsymbol{\Sigma}_n&=\left(\boldsymbol{\Sigma}_0^{-1}+\boldsymbol{X}^{\prime} \boldsymbol{X}\right)^{-1},  &d_n&=d_0+\boldsymbol{S}_{\varepsilon} / 2 \text {, } \\
 \boldsymbol{S}_{\varepsilon}&=\boldsymbol{y}^{\prime} \boldsymbol{y}+\boldsymbol{\mu}_0^{\prime} \boldsymbol{\Sigma}_0^{-1} \boldsymbol{\mu}_0-\boldsymbol{\mu}_n^{\prime} \bm{\Sigma}_n^{-1} \boldsymbol{\mu}_n \text {. } 
-\end{aligned}
-$$
+\end{align}
 
 
 /Max
