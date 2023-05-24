@@ -37,13 +37,15 @@ Sophia: A conjugate proir for the Bernoulli Distrubution is a Beta prior. If the
 
 #### Describe the Poisson distribution and propose suitable priors (concrete examples for them and properties that would be desirable) for its parameter $\mu$.
 
-The Poisson distribution is a discrete probability distribution that can be used to describe the number of occurrences of an event in a given interval (e.g. of time). It has one parameter, $\lambda$, which is equal to its expected value and its variance. Its probability mass function (PMF) is given by
+The Poisson distribution is a discrete probability distribution that can be used to describe the number of occurrences of an event in a given interval (e.g. of time). It has one parameter, $\mu$, which is equal to its expected value and its variance. Its probability mass function (PMF) is given by
 
 $$
-  f(k, \lambda) = \mathrm{Pr}(X = k) = \frac{\lambda^ke^{-\lambda}}{k!}.
+  f(k\mid\mu) = \mathrm{Pr}(X = k) = \frac{\mu^ke^{-\mu}}{k!}.
 $$
 
 We assume that the occurrence of an event does not affect the probability of the next event occurring, i.e. that events are independent.
+
+Per [Wikipedia](https://en.wikipedia.org/wiki/Conjugate_prior), a Gamma-distributed prior for the parameter $\mu$ is a conjugate prior. That means that the posterior derived by combining a Gamma-distributed prior for $\mu$ with the likelihood will be Gamma-distributed. As for the parameters of the Gamma-distributed prior, we could assess the suspected properties of the parameter in question, e.g. by using available information, historical data or economic theory, and then choose the parameters of the Gamma distribution accordingly.
 
 ---
 
