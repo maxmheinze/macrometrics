@@ -163,22 +163,22 @@ By using these two different priors, we can explore different assumptions and as
 
 #### The Normal distribution approximately arises in many situations, due to the central limited theorem. What are the assumptions behind the theorem?
 
-Sophia: The central limit theorem (CLT) is a fundamental result in probability theory that provides conditions under which the sum or average of a large number of independent and identically distributed random variables approximates a normal distribution, regardless of the distribution of the individual variables. The assumptions behind the CLT are as follows:
+The central limit theorem (CLT) is a fundamental result in probability theory that provides conditions under which the sum or average of a large number of independent and identically distributed random variables approximates a normal distribution, regardless of the distribution of the individual variables. The assumptions behind the CLT are as follows:
 
-Independence: The random variables should be independent of each other. This means that the outcome of one variable does not affect the outcome of any other variable.
-Identical Distribution: The random variables should have the same probability distribution. Although they may have different parameter values (such as mean or variance), the underlying distribution remains the same.
-Finite Variance: The random variables should have a finite variance. This assumption ensures that the variability of the individual variables is not too extreme.
+* **Independence:** The random variables should be independent of each other. This means that the outcome of one variable does not affect the outcome of any other variable.
+* **Identical Distribution:** The random variables should have the same probability distribution. Although they may have different parameter values (such as mean or variance), the underlying distribution remains the same.
+* **Finite Variance:** The random variables should have a finite variance. This assumption ensures that the variability of the individual variables is not too extreme. /Sophia
 
 ##### Random variables in many practical settings do not display the limited tail behavior of the Normal distribution. Why could that be the case and how could you address this when constructing models for such situations? 
 
-Reasons: 
-Heavy-Tailed Distributions: Some real-world phenomena, such as income distribution or stock market returns, exhibit heavy tails, meaning that extreme values occur more frequently than would be expected under a normal distribution.
-Skewed Distributions: Many real-world data sets are skewed, with a longer tail on one side. These distributions do not match the symmetric bell shape of the normal distribution.
-Bounded Data: In certain situations, the data is constrained within specific bounds, such as proportions or counts, which may violate the assumption of unboundedness required by the normal distribution.
+**Reasons: **
+* **Heavy-Tailed Distributions:** Some real-world phenomena, such as income distribution or stock market returns, exhibit heavy tails, meaning that extreme values occur more frequently than would be expected under a normal distribution.
+* **Skewed Distributions:** Many real-world data sets are skewed, with a longer tail on one side. These distributions do not match the symmetric bell shape of the normal distribution.
+* **Bounded Data:** In certain situations, the data is constrained within specific bounds, such as proportions or counts, which may violate the assumption of unboundedness required by the normal distribution.
 
-Adress this problem: 
-Non-Normal Distributions: Instead of assuming a normal distribution, one can choose a more suitable distribution that better reflects the characteristics of the data. Examples include the log-normal distribution for positively skewed data or the Student's t-distribution for heavy-tailed data.
-Transformations: Transforming the data using mathematical functions can help make the data more amenable to a normal distribution. Common transformations include logarithmic, square root, etc. 
+**Adress this problem: **
+* **Non-Normal Distributions:** Instead of assuming a normal distribution, one can choose a more suitable distribution that better reflects the characteristics of the data. Examples include the log-normal distribution for positively skewed data or the Student's t-distribution for heavy-tailed data.
+* **Transformations:** Transforming the data using mathematical functions can help make the data more amenable to a normal distribution. Common transformations include logarithmic, square root, etc. 
 
 ---
 
