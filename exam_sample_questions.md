@@ -316,10 +316,10 @@ e_{r_t}
 where $\boldsymbol{B} = \boldsymbol{B}_0 \boldsymbol{A}$. When we have uncorrelated errors from a structural VAR model, we can analyze the response of current and future values of each of the variables to a one‐unit increase in the current value of one of the structural errors (assuming all other errors and the error in question in all subsequent periods are zero). We define a vector of exogenous impulses, $\bm{s}_\tau$, s.t. the impulse to $e_{r_t}$ in period 1, i.e., $s_{{r_t},1}$ is equal to some value, and all other elements are zero. We are interested in the dynamic responses of all variables in the system to the shocks,
 
 ```math
-	\frac{\partial \bm{y}_{ t+j}}{\partial \bm{e}_t} = \underset{M\times M}{\bm{\Theta}_j}, \qquad j = 0,1,2,\dots,h,
+	\frac{\partial \boldsymbol{y}_{ t+j}}{\partial \boldsymbol{e}_t} = \underset{M\times M}{\boldsymbol{\Theta}_j}, \qquad j = 0,1,2,\dots,h,
 ```
 
-where `{math} \boldsymbol{\Theta}_j \equiv \boldsymbol{\Phi}_j\boldsymbol{B}_0^{-1}$ (where $\boldsymbol{\Phi}_j = \boldsymbol{J}'\boldsymbol{A}^j\boldsymbol{J}$) denotes the matrix of impulse responses for period $j$`.
+where $\boldsymbol{\Theta}_j \equiv \boldsymbol{\Phi}_j\boldsymbol{B}^{-1}_0$ (where $\boldsymbol{\Phi}_j = \boldsymbol{J}'\boldsymbol{A}^j\boldsymbol{J}$) denotes the matrix of impulse responses for period $j$).
 
 The elements of $\boldsymbol{\Theta}_j$ are denoted as follows:
 
