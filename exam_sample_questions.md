@@ -67,11 +67,34 @@ The free parameters that we model in this regression model are the regression co
 
 The sampling distribution of the classical linear model assumes that the error term $\boldsymbol{\varepsilon}$ follows a normal distribution with mean zero and constant variance $\sigma^2$. Therefore, the dependent variable $\boldsymbol{y}$ is also normally distributed with mean $\boldsymbol{X\beta}$ and variance $\sigma^2$. Conjugate priors are prior distributions that, when combined with the likelihood function, lead to posterior distributions that have the same functional form as the priors. /Sophia
 
-The conjugate prior for this analysis depends on what we want to model. To perform inference for $\sigma^2$ when knowing $\boldsymbol{\beta}$, we can use a conjugate Inverse Gamma Prior. To perform inference on $\boldsymbol{\beta}$ when we know $\sigma^2$, we can use a conjugate normal prior. To perform inference for both under the assumption that they are independent, we can again use a Normal-Inverse-Gamma prior, but this time, there is no conjugate prior, and we do not get a closed form joint posterior (we do, however, get closed-form conditional posteriors). /Max
+The conjugate prior for this analysis depends on what we want to model. To perform inference for $\sigma^2$ when knowing $\boldsymbol{\beta}$, we can use a conjugate Inverse Gamma Prior. To perform inference on $\boldsymbol{\beta}$ when we know $\sigma^2$, we can use a conjugate normal prior. To perform inference for both under the assumption that the variance of $\boldsymbol{\beta}$ depends on $\sigma^2$, we can use a conjugate Normal-Inverse-Gamma prior and obtain a Normal-Inverse-Gamma posterior. To perform inference for both under the assumption that they are independent, we can again use a Normal-Inverse-Gamma prior, but this time, there is no conjugate prior, and we do not get a closed form joint posterior (we do, however, get closed-form conditional posteriors). /Max
 
 ##### Show how to use the dependent Normal Inverse-Gamma prior to derive posterior moments for this model.
 
-Sophia: This is in Slide 31/39 in the slideset 21_regression for multivariate regression. 
+We can obtain a closed form posterior with the following prior:
+
+$$
+\beta \mid \sigma^2 \sim \mathcal{N}_k\left(\boldsymbol{\mu}_0, \sigma^2 \boldsymbol{\Sigma}_0\right), \quad \sigma^2 \sim \mathrm{G}^{-1}\left(c_0, d_0\right) .
+$$
+
+The joint posterior of $\left(\beta, \sigma^2\right)$ is then
+
+$$
+\beta\left|\sigma^2, \boldsymbol{y} \sim \mathcal{N}_k\left(\boldsymbol{\mu}_n, \sigma^2 \boldsymbol{\Sigma}_n\right), \quad \sigma^2\right| \boldsymbol{y} \sim \mathrm{G}^{-1}\left(c_n, d_n\right),
+$$
+
+where:
+
+$$
+\begin{aligned}
+\boldsymbol{\mu}_n&=\boldsymbol{\Sigma}_n\left(\boldsymbol{\Sigma}_0^{-1} \boldsymbol{\mu}_0+\boldsymbol{X}^{\prime} \boldsymbol{y}\right),  &c_n&=c_0+n / 2 \\
+\boldsymbol{\Sigma}_n&=\left(\boldsymbol{\Sigma}_0^{-1}+\boldsymbol{X}^{\prime} \boldsymbol{X}\right)^{-1},  &d_n&=d_0+\boldsymbol{S}_{\varepsilon} / 2 \text {, } \\
+\boldsymbol{S}_{\varepsilon}&=\boldsymbol{y}^{\prime} \boldsymbol{y}+\boldsymbol{\mu}_0^{\prime} \boldsymbol{\Sigma}_0^{-1} \boldsymbol{\mu}_0-\boldsymbol{\mu}_n^{\prime} \bm{\Sigma}_n^{-1} \boldsymbol{\mu}_n \text {. } 
+\end{aligned}
+$$
+
+
+/Max
 
 ---
 
