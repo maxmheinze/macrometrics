@@ -234,13 +234,8 @@ The Prior mean is defined by $\mathrm{E}(\underline{A}) = (\boldsymbol{I},\bolds
 A reduced form $\mathrm{VAR}(p)$ model is given by:
 
 $$
-\boldsymbol{y}_t = \boldsymbol{c} + \boldsymbol{A}_{1} \boldsymbol{y}_{t-1} + \dots + \boldsymbol{A}_p\boldsymbol{y}_{t-p} + \boldsymbol{\varepsilon}_t, \qquad \boldsymbol{\varepsilon}_t \sim \mathcal{N}_M(\boldsymbol{0},\boldsymbol{\Sigma})
+\boldsymbol{y}_t = \boldsymbol{c} + \boldsymbol{A}_{1} \boldsymbol{y}_{t-1} + \dots 
 $$
-
-$$
-\mathbf{y}_{t} = \mathbf{c} + \mathbf{A}_{1} \mathbf{y}_{t-1} + \dots + \mathbf{A}_p \mathbf{y}_{t-p} + \mathbf{\varepsilon}_t, \qquad \mathbf{\varepsilon}_t \sim \mathcal{N}_M \mathbf{0}, \mathbf{\Sigma}.
-$$
-
 
 where $\boldsymbol{c}$ denotes a constant. Using the lag polynomial, we can write it more compactly as:
 
