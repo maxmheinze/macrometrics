@@ -55,18 +55,19 @@ Per [Wikipedia](https://en.wikipedia.org/wiki/Conjugate_prior), a Gamma-distribu
 
 In the classical linear model, the ordinary least squares model, there are several parameters to model. In case of a simple linear regression model with one dependent variable and one independent variable. The model can be represented as:
 
-Y = β₀ + β₁X + ε,
-
 $$
-\boldsymbol{Y} = \boldsymbol{X\beta} + \boldsymbol{\varepsilon},
+\boldsymbol{y} = \boldsymbol{X\beta} + \boldsymbol{\varepsilon},
 $$
 
-Here Y is the dependent variable, X is the independent variable, β₀ is the intercept parameter, β₁ is the slope parameter
-ε is the error term, assumed to be normally distributed with mean zero and constant variance σ².
+where $\boldsymbol{y}$ is the dependent variable, $\boldsymbol{x}$ is the independent variable, $\boldsymbol{\beta}$ are coefficients, and $\boldsymbol{\varepsilon}$ is the error that is assumed to be normally distributed with mean zero and constant variance $\sigma^2$. /Sophia
+
+The free parameters that we model in this regression model are the regression coefficients $\boldsymbol{\beta}$ and the error variance $\sigma^2$. /Max
 
 ##### What is the sampling distribution of this model and how is it related to conjugate parameters for the priors?
 
-Sophia: The sampling distribution of the classical linear model assumes that the error term ε follows a normal distribution with mean zero and constant variance σ². Therefore, the dependent variable Y is also normally distributed with mean β₀ + β₁X and variance σ². Conjugate priors are prior distributions that, when combined with the likelihood function, lead to posterior distributions that have the same functional form as the priors.
+The sampling distribution of the classical linear model assumes that the error term $\boldsymbol{\varepsilon}$ follows a normal distribution with mean zero and constant variance $\sigma^2$. Therefore, the dependent variable $\boldsymbol{y}$ is also normally distributed with mean $\boldsymbol{X\beta}$ and variance $\sigma^2$. Conjugate priors are prior distributions that, when combined with the likelihood function, lead to posterior distributions that have the same functional form as the priors. /Sophia
+
+The conjugate prior for this analysis depends on what we want to model. To perform inference for $\sigma^2$ when knowing $\boldsymbol{\beta}$, we can use a conjugate Inverse Gamma Prior. To perform inference on $\boldsymbol{\beta}$ when we know $\sigma^2$, we can use a conjugate normal prior. To perform inference for both under the assumption that they are independent, we can again use a Normal-Inverse-Gamma prior, but this time, there is no conjugate prior, and we do not get a closed form joint posterior (we do, however, get closed-form conditional posteriors). /Max
 
 ##### Show how to use the dependent Normal Inverse-Gamma prior to derive posterior moments for this model.
 
