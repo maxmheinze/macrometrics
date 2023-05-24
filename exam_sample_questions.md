@@ -178,61 +178,78 @@ The central limit theorem (CLT) is a fundamental result in probability theory th
 
 **Adress this problem: **
 * **Non-Normal Distributions:** Instead of assuming a normal distribution, one can choose a more suitable distribution that better reflects the characteristics of the data. Examples include the log-normal distribution for positively skewed data or the Student's t-distribution for heavy-tailed data.
-* **Transformations:** Transforming the data using mathematical functions can help make the data more amenable to a normal distribution. Common transformations include logarithmic, square root, etc. 
+* **Transformations:** Transforming the data using mathematical functions can help make the data more amenable to a normal distribution. Common transformations include logarithmic, square root, etc. /Sophia
 
 ---
 
 #### You want to investigate the causal effect of your education on your income (or happiness). You identify a set of 80 variables that may be relevant. Explain why you cannot just use a Bayesian model averaging approach to estimate this causal effect.
 
-Sophia: BMA works well when the number of candidate models is relatively small. With 80 variables, the number of potential models explodes exponentially, making it challenging to evaluate all possible combinations of variables. The computational burden increases exponentially as the number of variables and models grow, thus BMA seems impractical in this context.
+BMA works well when the number of candidate models is relatively small. With 80 variables, the number of potential models explodes exponentially, making it challenging to evaluate all possible combinations of variables. The computational burden increases exponentially as the number of variables and models grow, thus BMA seems impractical in this context.
 
-Also: Like the Bayes Information Criterion (BIC), BMA measures how well the model fits the past but not how well the model predicts the future.
+Also, like the Bayes Information Criterion (BIC), BMA measures how well the model fits the past but not how well the model predicts the future. /Sophia
 
 ---
 
 #### Why and in which settings can the BIC be used as an approximation to the marginal likelihood?
 
-Sophia: (Slide 18, Chapter: Priors) The margianal likelihood and the BIC are closely related if the number of observations is large. 
+(Slide 18, Chapter: Priors) The margianal likelihood and the BIC are closely related if the number of observations is large. 
+
 I found a more detailed explanaition in the Intenet: The Bayesian Information Criterion (BIC) is a model selection criterion that balances the goodness of fit of a model with its complexity. While BIC is primarily used for model selection, it can also serve as an approximation to the marginal likelihood in certain settings. 
 Reasons: 
-1. BIC is derived based on asymptotic properties and the assumption of large sample sizes. Under certain regularity conditions, as the sample size increases, BIC consistently estimates the true model among the candidate models. This consistency property suggests that BIC tends to favor the true model, which is a desirable property of the marginal likelihood.
-2. BIC incorporates a penalty term for model complexity based on the number of parameters in the model. This penalty discourages overly complex models that may overfit the data. By penalizing complexity, BIC accounts for a principle,that simpler models are preferred when they provide comparable fit to the data. The penalty term in BIC indirectly accounts for the volume of the parameter space and contributes to approximating the marginal likelihood.
+* BIC is derived based on asymptotic properties and the assumption of large sample sizes. Under certain regularity conditions, as the sample size increases, BIC consistently estimates the true model among the candidate models. This consistency property suggests that BIC tends to favor the true model, which is a desirable property of the marginal likelihood.
+* BIC incorporates a penalty term for model complexity based on the number of parameters in the model. This penalty discourages overly complex models that may overfit the data. By penalizing complexity, BIC accounts for a principle,that simpler models are preferred when they provide comparable fit to the data. The penalty term in BIC indirectly accounts for the volume of the parameter space and contributes to approximating the marginal likelihood. /Sophia
 
 ---
 
 #### Give an intutition for why and how you should use weakly informative priors (i.e. shrinkage priors).
 
-Shrinkage priors are often used to counteract the danger of overfitting. In a Bayesian setting, shrinkage priors are used to pull small effects towards zero and thus exclude them from the model, while large effects continue to remain in a model. Especially, when there are more variables than observations, shrinkage priors are necessary to keep the model consistent. To implement this, shrinkage priors are often distributions that have a lot of mass around zero and fat tails. Some examples are the Lasso, Horseshoe, ridge or the Triple-Gamma prior. \Lucas
+Shrinkage priors are often used to counteract the danger of overfitting. In a Bayesian setting, shrinkage priors are used to pull small effects towards zero and thus exclude them from the model, while large effects continue to remain in a model. Especially, when there are more variables than observations, shrinkage priors are necessary to keep the model consistent. To implement this, shrinkage priors are often distributions that have a lot of mass around zero and fat tails. Some examples are the Lasso, Horseshoe, ridge or the Triple-Gamma prior. /Lucas
 
 ##### What is an improper prior — what issues may arise if the posterior is also improper?
 
 An improper prior refers to a prior distribution that does not integrate to a finite value (Not a valid pobability distribuion). Improper priors are often used in Bayesian analysis for convenience or mathematical simplicity. However, using an improper prior can lead to issues when the posterior distribution is also improper.
 
-If the posterior distribution is improper, it means that it does not integrate to a finite value. The main issue with an improper posterior is that it cannot be directly interpreted as a valid probability distribution. In such cases, the posterior cannot be used for making probabilistic statements or performing standard Bayesian inference.
+If the posterior distribution is improper, it means that it does not integrate to a finite value. The main issue with an improper posterior is that it cannot be directly interpreted as a valid probability distribution. In such cases, the posterior cannot be used for making probabilistic statements or performing standard Bayesian inference. /?
 
 ---
 
 #### Explain the difference between dependent and independent sampling.
 Independent sampling refers to data that is given by two random samples which are drawn from two seperate and unrelated populations. One can then compute the desired metric to gain information about differences in the two populations. Example: A community college mathematics department wants to know if an experimental algebra course has higher success rates when compared to a traditional course. The mean grade points for 80 students in the experimental course (treatment) is compared to the mean grade points for 100 students in the traditional course (control).
 
-Dependent sampling refers to data that is drawn from the same population but e.g. at different time points. Thus, each data point in the first sampling has a dependent data point in the second data set. This procedure is also called matched pair sampling and can be used for a one population model of differences. Example: An instructor of a statistics course wants to know if student scores are different on the second midterm compared to the first exam. The first and second midterm scores for 35 students is taken and the mean difference in scores is determined. \Lucas
+Dependent sampling refers to data that is drawn from the same population but e.g. at different time points. Thus, each data point in the first sampling has a dependent data point in the second data set. This procedure is also called matched pair sampling and can be used for a one population model of differences. Example: An instructor of a statistics course wants to know if student scores are different on the second midterm compared to the first exam. The first and second midterm scores for 35 students is taken and the mean difference in scores is determined. /Lucas
 
 
 ---
 
 #### Give an intuition for the Minnesota prior setup. State how the prior mean is defined and briefly explain why.
 
-Sophia: The Minessota prior incorporates the idea of shrinkage, which is a way to regularize or shrik the coefficient estimates to zero. It adresses the issue of overfitting and instability that can arise when estimating the VAR models with a large number of varaibles (curse of dimensionality). The key idea behind the Missesota prior is to impose a hierarchical structure on the coefficients of the VAR model. Insted of assuming a common prior for all the coefficients, the Minnesota prior allows for different amounts of shirinkage for each coefficient based on its lag order and the variable it corresponds to. 
+The Minessota prior incorporates the idea of shrinkage, which is a way to regularize or shrik the coefficient estimates to zero. It adresses the issue of overfitting and instability that can arise when estimating the VAR models with a large number of varaibles (curse of dimensionality). The key idea behind the Missesota prior is to impose a hierarchical structure on the coefficients of the VAR model. Insted of assuming a common prior for all the coefficients, the Minnesota prior allows for different amounts of shirinkage for each coefficient based on its lag order and the variable it corresponds to. 
 
-The Prior mean ist defined by E[A] = (I, 0, ... , 0). The mean is zero exept for the elements corresponding to the fist own lag of the dependent varaible in each equation. This induces a higher consistency and pushes the system towards random walk behavior. 
+The Prior mean is defined by $\mathrm{E}(\underline{A}) = (\bm{I},\bm{0},\dots,\bm{0})$. The mean is zero exept for the elements corresponding to the fist own lag of the dependent varaible in each equation. This induces a higher consistency and pushes the system towards random walk behavior. /Sophia
 
 ---
 
 #### Write down a $\mathrm{VAR}(p)$ model in reduced form. Explain what is meant by the curse of dimensionality.
 
-Sophia: 
-yt = c + A1y(t-1)+ ... + Apy(t-p)+ et, with c denoting a constant. 
-Curse of dimensionality: If there are M equiations, one for each M variables and p lags of each of the varaibles in each euation, M + pM^2 parameters have to be estimated. 
+A reduced form $\mathrm{VAR}(p)$ model is given by:
+
+$$
+\boldsymbol{y}_t = \boldsymbol{c} + \boldsymbol{A}_1\boldsymbol{y}_{t-1} + \ldots + \boldsymbol{A}_p\boldsymbol{y}_{t-p} + \boldsymbol{\varepsilon}_t, \qquad \boldsymbol{\varepsilon}_t \sim \mathcal{N}_M(\boldsymbol{0},\boldsymbol{\Sigma}),
+$$
+
+where $\boldsymbol{c}$ denotes a constant. Using the lag polynomial, we can write it more compactly as:
+
+$$
+\boldsymbol{A}(L)\boldsymbol{y}_t = \boldsymbol{c} + \boldsymbol{\varepsilon}_t.
+$$
+
+If there are $M$ equiations, one for each of the $M$ variables and $p$ lags of each of the varaibles in each equation, there are $M + pM^2$ parameters in the model. The number of free parameters (elements in $\boldsymbol{c},\boldsymbol{A}_j$ and $\boldsymbol{\Sigma}$) is given by
+
+$$
+	M(Mp+1)+\frac{(M+1)M}{2}.
+$$
+
+/Sophia, Max
 
 ---
 
