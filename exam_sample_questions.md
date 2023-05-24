@@ -83,8 +83,13 @@ $$
 \beta\left|\sigma^2, \boldsymbol{y} \sim \mathcal{N}_k\left(\boldsymbol{\mu}_n, \sigma^2 \boldsymbol{\Sigma}_n\right), \quad \sigma^2\right| \boldsymbol{y} \sim \mathrm{G}^{-1}\left(c_n, d_n\right),
 $$
 
-where $\boldsymbol{\mu}_n=\boldsymbol{\Sigma}_n\left(\boldsymbol{\Sigma}_0^{-1} \boldsymbol{\mu}_0+\boldsymbol{X}^{\prime} \boldsymbol{y}\right),  c_n=c_0+n / 2, \boldsymbol{\Sigma}_n=\left(\boldsymbol{\Sigma}_0^{-1}+\boldsymbol{X}^{\prime} \boldsymbol{X}\right)^{-1},  d_n=d_0+\boldsymbol{S}_{\varepsilon} / 2
-\boldsymbol{S}_{\varepsilon}&=\boldsymbol{y}^{\prime} \boldsymbol{y}+\boldsymbol{\mu}_0^{\prime} \boldsymbol{\Sigma}_0^{-1} \boldsymbol{\mu}_0-\boldsymbol{\mu}_n^{\prime} \bm{\Sigma}_n^{-1} \boldsymbol{\mu}_n$.
+where:
+
+\begin{align*}
+\bm{\mu}_n&=\bm{\Sigma}_n\left(\bm{\Sigma}_0^{-1} \bm{\mu}_0+\bm{X}^{\prime} \bm{y}\right),  &c_n&=c_0+n / 2 \\
+\bm{\Sigma}_n&=\left(\bm{\Sigma}_0^{-1}+\bm{X}^{\prime} \bm{X}\right)^{-1},  &d_n&=d_0+\bm{S}_{\varepsilon} / 2 \text {, } \\
+\bm{S}_{\varepsilon}&=\bm{y}^{\prime} \bm{y}+\bm{\mu}_0^{\prime} \bm{\Sigma}_0^{-1} \bm{\mu}_0-\bm{\mu}_n^{\prime} \bm{\Sigma}_n^{-1} \bm{\mu}_n \text {. } 
+\end{align*}
 
 
 /Max
