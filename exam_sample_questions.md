@@ -72,7 +72,9 @@ Sophia: This is in Slide 31/39 in the slideset 21_regression for multivariate re
 
 #### What does it mean for a Markov chain Monte Carlo sampler to have ‘converged’?
 
-Sophia: In the context of Markov chain Monte Carlo (MCMC) sampling, "convergence" refers to the property of the sampler reaching a stable state where it effectively explores the target distribution and provides reliable estimates of the parameters of interest. When an MCMC sampler has converged, it implies that the samples produced by the chain are approximately drawn from the desired posterior distribution. We called this the stationary distribution. 
+In the context of Markov chain Monte Carlo (MCMC) sampling, "convergence" refers to the property of the sampler reaching a stable state where it effectively explores the target distribution and provides reliable estimates of the parameters of interest. When an MCMC sampler has converged, it implies that the samples produced by the chain are approximately drawn from the desired posterior distribution. We call this the stationary distribution. /Sophia
+
+We have to deterministically choose a starting value for our MCMC sampler. In principle, this can distort inference, as it can influence the stationary distribution and hinder convergence to the joint distribution of $\beta$ and $\sigma^2$ (in the regression context). However, this distortion quickly vanishes as we obtain more and more samples. That is why we can use a burn-in period, a number $S_0$ of first samples that we discard, to address this problem. /Max
 
 ##### How can we assess the convergence of an MCMC sampler?
 
