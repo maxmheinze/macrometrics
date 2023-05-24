@@ -225,7 +225,7 @@ Dependent sampling refers to data that is drawn from the same population but e.g
 
 The Minessota prior incorporates the idea of shrinkage, which is a way to regularize or shrik the coefficient estimates to zero. It adresses the issue of overfitting and instability that can arise when estimating the VAR models with a large number of varaibles (curse of dimensionality). The key idea behind the Missesota prior is to impose a hierarchical structure on the coefficients of the VAR model. Insted of assuming a common prior for all the coefficients, the Minnesota prior allows for different amounts of shirinkage for each coefficient based on its lag order and the variable it corresponds to. 
 
-The Prior mean is defined by $\mathrm{E}(\underline{A}) = (\bm{I},\bm{0},\dots,\bm{0})$. The mean is zero exept for the elements corresponding to the fist own lag of the dependent varaible in each equation. This induces a higher consistency and pushes the system towards random walk behavior. /Sophia
+The Prior mean is defined by $\mathrm{E}(\underline{A}) = (\boldsymbol{I},\boldsymbol{0},\dots,\boldsymbol{0})$. The mean is zero exept for the elements corresponding to the fist own lag of the dependent varaible in each equation. This induces a higher consistency and pushes the system towards random walk behavior. /Sophia
 
 ---
 
@@ -236,6 +236,7 @@ A reduced form $\mathrm{VAR}(p)$ model is given by:
 $$
 \boldsymbol{y}_t = \boldsymbol{c} + \boldsymbol{A}_1\boldsymbol{y}_{t-1} + \ldots + \boldsymbol{A}_p\boldsymbol{y}_{t-p} + \boldsymbol{\varepsilon}_t, \qquad \boldsymbol{\varepsilon}_t \sim \mathcal{N}_M(\boldsymbol{0},\boldsymbol{\Sigma}),
 $$
+
 
 where $\boldsymbol{c}$ denotes a constant. Using the lag polynomial, we can write it more compactly as:
 
