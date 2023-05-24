@@ -47,7 +47,7 @@ $$
 
 We assume that the occurrence of an event does not affect the probability of the next event occurring, i.e. that events are independent.
 
-Per [Wikipedia](https://en.wikipedia.org/wiki/Conjugate_prior), a Gamma-distributed prior for the parameter $\mu$ is a conjugate prior. That means that the posterior derived by combining a Gamma-distributed prior for $\mu$ with the likelihood will be Gamma-distributed. As for the parameters of the Gamma-distributed prior, we could assess the suspected properties of the parameter in question, e.g. by using available information, historical data or economic theory, and then choose the parameters of the Gamma distribution accordingly. /Max
+Per [Wikipedia](https://en.wikipedia.org/wiki/Conjugate_prior), a Gamma-distributed prior for the parameter $\mu$ is a conjugate prior. That means that the posterior derived by combining a Gamma-distributed prior for $\mu$ with the likelihood will be Gamma-distributed. As for the parameters of the Gamma-distributed prior, we could assess the suspected properties of the parameter in question, e.g. by using available information, historical data or economic theory, and then choose the parameters of the Gamma distribution accordingly. If we do not have information on this and/or want to feign ignorance, a non-informative (improper) prior can be used by setting $\alpha=1,\beta=0$, which results in a flat (uniform) distribution over positive values of $\mu$. /Max
 
 ---
 
@@ -78,17 +78,20 @@ We have to deterministically choose a starting value for our MCMC sampler. In pr
 
 ##### How can we assess the convergence of an MCMC sampler?
 
-Sophia: Assessing the convergence of an MCMC sampler is crucial to ensure the validity and reliability of the results. There are several diagnostic methods to assess convergence: 
-- From the Slides(16/28 in estimation): We use convergence checks(plots and statistics), and multiple chains (with different starting values) to assess convergence. 
-- Visual inspection: Traceplots and density plots of the MCMC samples can be visually examined to identify any patterns or trends. Convergence is indicated when the chains appear stable, with no significant drift or systematic patterns over iterations.
-- Visual inspection: QQ plots are scatterplots created by plotting two sets of qualtiles against one another. If both sets of quantiles come from the same distribution, we should see the points forming a straight line. 
-- multiple chains: Instead of running a single MCMC chain, multiple chains are independently simulated from different starting points or initial conditions. Each chain is an independent realization of the MCMC algorithm, exploring the parameter space. We could visually inspect the chains. 
-- From Slides: Discard the first S0 draws as burn-in, such that the sampler has converged to its stationary distribution. 
-- The choice of the starting value is deterministic, but irrelevant if we obtain enough samples. 
+Assessing the convergence of an MCMC sampler is crucial to ensure the validity and reliability of the results. There are several diagnostic methods to assess convergence: 
+
+* From the Slides(16/28 in estimation): We use convergence checks(plots and statistics), and multiple chains (with different starting values) to assess convergence. 
+* Visual inspection: Traceplots and density plots of the MCMC samples can be visually examined to identify any patterns or trends. Convergence is indicated when the chains appear stable, with no significant drift or systematic patterns over iterations.
+* Visual inspection: QQ plots are scatterplots created by plotting two sets of quantiles against one another. If both sets of quantiles come from the same distribution, we should see the points forming a straight line. 
+* Multiple chains: Instead of running a single MCMC chain, multiple chains are independently simulated from different starting points or initial conditions. Each chain is an independent realization of the MCMC algorithm, exploring the parameter space. We could visually inspect the chains. 
+* From Slides: Discard the first $S_0$ draws as burn-in, such that the sampler has converged to its stationary distribution. 
+* The choice of the starting value is deterministic, but irrelevant if we obtain enough samples. /Sophia
 
 ##### Draw two traceplots for a Markov chain that (1) has likely converged, and (2) that has not. Suppose you want to estimate a model with this MCMC simulation — what are the implications of (non-)convergence?
-Sophia: Convergence: If the MCMC sampler has converged, the estimates derived from the samples are reliable and can be considered representative of the posterior distribution. In this case, the parameter estimates, their uncertainties, and any derived quantities can be trusted for further analysis and inference.
-Sophia: Non-convergence: If the MCMC sampler has not converged, the estimates derived from the samples may be biased or unreliable. Non-convergence can lead to incorrect inference, misleading parameter estimates, and underestimated uncertainties. In such cases, it is essential to identify the cause of non-convergence and take appropriate steps to address the issue, such as running the sampler for a longer burn-in period, adjusting sampler parameters, or using different initialization values.
+
+**Convergence:** If the MCMC sampler has converged, the estimates derived from the samples are reliable and can be considered representative of the posterior distribution. In this case, the parameter estimates, their uncertainties, and any derived quantities can be trusted for further analysis and inference.
+
+**Non-convergence:** If the MCMC sampler has not converged, the estimates derived from the samples may be biased or unreliable. Non-convergence can lead to incorrect inference, misleading parameter estimates, and underestimated uncertainties. In such cases, it is essential to identify the cause of non-convergence and take appropriate steps to address the issue, such as running the sampler for a longer burn-in period, adjusting sampler parameters, or using different initialization values. /Sophia
 
 ---
 
