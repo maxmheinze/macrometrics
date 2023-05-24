@@ -18,7 +18,7 @@ P(A\mid B) = \frac{P(B\mid A)P(A)}{P(B)} \propto P(B\mid A)P(A).
 $$
 
 For our prior, we can use historical data, theoretical insights or external information. Alternatively, we can use an uninformative prior. Using probability distributions instead of point values, we get Bayes's Theorem:
-x
+
 $$
 p(\theta \mid \mathcal{D}) \propto p(\mathcal{D}\mid\theta)p(\theta).
 $$
