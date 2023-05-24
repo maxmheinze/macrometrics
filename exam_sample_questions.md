@@ -259,6 +259,8 @@ The curse of dimensionality is a term for the difficulty that arises with the nu
   <a href="https://www.youtube.com/watch?v=GI7sBsBHdCk"><img src="https://img.youtube.com/vi/GI7sBsBHdCk/0.jpg" alt="Youtube Video"></a>
 </div>
 
+We estimate the following vector autoregression, where $\Delta y_t$ is GDP geowth, $\pi_t$ is inflation, and $r_t$ is an indicator for the monetary policy of J-Pow:
+
 ```math
 	\begin{bmatrix}
 		\Delta y_t \\
@@ -284,5 +286,49 @@ The curse of dimensionality is a term for the difficulty that arises with the nu
 	\end{bmatrix}
 	,
 ```
+
+The structural form of this VAR model is
+
+```math
+\left[\begin{array}{lll}
+b_{0,11} & b_{0,12} & b_{0,13} \\
+b_{0,21} & b_{0,22} & b_{0,23} \\
+b_{0,31} & b_{0,32} & b_{0,33}
+\end{array}\right]\left[\begin{array}{c}
+\Delta y_t \\
+\pi_t \\
+r_t
+\end{array}\right]=\left[\begin{array}{lll}
+b_{11} & b_{12} & b_{13} \\
+b_{21} & b_{22} & b_{23} \\
+b_{31} & b_{32} & b_{33}
+\end{array}\right]\left[\begin{array}{c}
+\Delta y_{t-1} \\
+\pi_{t-1} \\
+r_{t-1}
+\end{array}\right]+\left[\begin{array}{c}
+e_{\Delta y_t} \\
+e_{\pi_t} \\
+e_{r_t}
+\end{array}\right]
+```
+
+When we have uncorrelated errors from a structural VAR model, we can analyze the response of current and future values of each of the variables to a one‐unit increase in the current value of one of the structural errors (assuming all other errors and the error in question in all subsequent periods are zero).
+
+We define a vector of exogenous impulses, $\bm{s}_\tau$, s.t. the impulse to $e_1$, i.e. $s_{1,1}=1$, and all other elements are zero. We are interested in the dynamic responses of all variables in the system to the shocks,
+
+\begin{equation}
+	\frac{\partial \bm{y}_{t+j}}{\partial \bm{e}_t} = \underset{M\times M}{\bm{\Theta}_j}, \qquad j = 0,1,2,\dots,h,
+\end{equation}
+
+where $\bm{\Theta}_j \equiv \bm{\Phi}_j\bm{B}_0^{-1}$ (where $\bm{\Phi}_j = \bm{J}'\bm{A}^j\bm{J}$) denotes the matrix of impulse responses for period $j$.
+
+The elements of $\bm{\Theta}_j$ are denoted as follows:
+
+\[
+	\frac{\partial y_{it+j}}{\partial e_{kt}} = \theta_{ik,j},\qquad i,k=1,\dots,M.
+\]
+
+Using these, we can 
 
 ---
