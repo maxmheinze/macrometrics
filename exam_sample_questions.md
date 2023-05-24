@@ -141,21 +141,28 @@ Sophia: To study the effect of drinking between 100ml-1000ml of Club Mate per le
 
 The linear regression model looks like: 
 
-Percentage Points = β₀ + β₁ * Club Mate + ε
+$$
+\text{percentage points}\_i = \beta_0 + \beta_1\text{ Club Mate}\_i + \varepsilon\_i
+$$
 
-Where: Percentage Points: The percentage points achieved in the course. Club Mate: The amount of Club Mate consumed per lecture (measured in ml).
-β₀: The intercept, representing the expected percentage points when no Club Mate is consumed.
-β₁: The slope coefficient, representing the expected change in percentage points for each additional ml of Club Mate consumed.
-ε: The error term, assuming a normal distribution with mean zero and constant variance.
-Now, let's propose two different priors for the effect (β₁) of Club Mate:
+Where: 
+* Percentage Points: The percentage points achieved in the course. 
+* Club Mate: The amount of Club Mate consumed per lecture (measured in ml).
+* $\beta_0$: The intercept, representing the expected percentage points when no Club Mate is consumed.
+* $\beta_1$: The slope coefficient, representing the expected change in percentage points for each additional ml of Club Mate consumed.
+* $\varepsilon$: The error term, assuming a normal distribution with mean zero and constant variance.
+* 
+Now, let's propose two different priors for the effect ($\beta_1$) of Club Mate:
 
-Prior 1 (Conveying Prior):
-For the first prior, we can express our prior belief about the effect of Club Mate on percentage points. Let's assume a weak prior belief that Club Mate has a positive effect on performance. We can choose a normal prior distribution with mean 0.02 and standard deviation 0.01 for β₁. This prior conveys that, on average, we expect a 0.02 increase in percentage points for every additional ml of Club Mate consumed.
-β₁ ~ Normal(0.02, 0.01)
+**Prior 1 (Conveying Prior):**
 
-Prior 2 (Sensitivity Check):
-For the second prior, we can choose a more diffuse prior that allows for a wider range of possible effects. This prior serves as a sensitivity check to explore different scenarios. We can select a Cauchy prior distribution with a location parameter of 0 and a scale parameter of 0.1 for β₁. The Cauchy distribution has heavier tails compared to the normal distribution, allowing for the possibility of extreme effects.
-β₁ ~ Cauchy(0, 0.1)
+For the first prior, we can express our prior belief about the effect of Club Mate on percentage points. Let's assume a weak prior belief that Club Mate has a positive effect on performance. We can choose a normal prior distribution with mean 0.02 and standard deviation 0.01 for $\beta_1$. This prior conveys that, on average, we expect a 0.02 increase in percentage points for every additional ml of Club Mate consumed.
+$$\beta_1\sim\mathrm{Normal}(0.02, 0.01)$$
+
+**Prior 2 (Sensitivity Check):**
+
+For the second prior, we can choose a more diffuse prior that allows for a wider range of possible effects. This prior serves as a sensitivity check to explore different scenarios. We can select a Cauchy prior distribution with a location parameter of 0 and a scale parameter of 0.1 for $\beta_1$. The Cauchy distribution has heavier tails compared to the normal distribution, allowing for the possibility of extreme effects.
+$$\beta_1\sim\mathrm{Cauchy}(0, 0.1)$$
 
 By using these two different priors, we can explore different assumptions and assess the sensitivity of the results to different prior specifications. The first prior conveys our initial belief about the effect, while the second prior allows for a more flexible range of possible effects, accounting for greater uncertainty or alternative hypotheses.
 
@@ -223,7 +230,7 @@ Dependent sampling refers to data that is drawn from the same population but e.g
 
 #### Give an intuition for the Minnesota prior setup. State how the prior mean is defined and briefly explain why.
 
-The Minessota prior incorporates the idea of shrinkage, which is a way to regularize or shrik the coefficient estimates to zero. It adresses the issue of overfitting and instability that can arise when estimating the VAR models with a large number of varaibles (curse of dimensionality). The key idea behind the Missesota prior is to impose a hierarchical structure on the coefficients of the VAR model. Insted of assuming a common prior for all the coefficients, the Minnesota prior allows for different amounts of shirinkage for each coefficient based on its lag order and the variable it corresponds to. 
+The Minesota prior incorporates the idea of shrinkage, which is a way to regularize or shrik the coefficient estimates to zero. It adresses the issue of overfitting and instability that can arise when estimating the VAR models with a large number of varaibles (curse of dimensionality). The key idea behind the Missesota prior is to impose a hierarchical structure on the coefficients of the VAR model. Insted of assuming a common prior for all the coefficients, the Minnesota prior allows for different amounts of shirinkage for each coefficient based on its lag order and the variable it corresponds to. 
 
 The Prior mean is defined by $\mathrm{E}(\underline{A}) = (\boldsymbol{I},\boldsymbol{0},\dots,\boldsymbol{0})$. The mean is zero exept for the elements corresponding to the fist own lag of the dependent varaible in each equation. This induces a higher consistency and pushes the system towards random walk behavior. /Sophia
 
