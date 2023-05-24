@@ -319,13 +319,13 @@ where $\boldsymbol{B} = \boldsymbol{B}_0 \boldsymbol{A}$. When we have uncorrela
 	\frac{\partial \bm{y}_{ t+j}}{\partial \bm{e}_t} = \underset{M\times M}{\bm{\Theta}_j}, \qquad j = 0,1,2,\dots,h,
 \end{equation}
 
-where $\boldsymbol{\Theta}_j \equiv \boldsymbol{\Phi}_j\boldsymbol{B}_0^{-1}$ (where $\boldsymbol{\Phi}_j = \boldsymbol{J}'\boldsymbol{A}^j\boldsymbol{J}$) denotes the matrix of impulse responses for period $j$.
+where `math \boldsymbol{\Theta}_j \equiv \boldsymbol{\Phi}_j\boldsymbol{B}_0^{-1}$ (where $\boldsymbol{\Phi}_j = \boldsymbol{J}'\boldsymbol{A}^j\boldsymbol{J}$) denotes the matrix of impulse responses for period $j$`.
 
 The elements of $\boldsymbol{\Theta}_j$ are denoted as follows:
 
-\[
+```math
 	\frac{\partial y_{ it+j}}{\partial e_{ kt}} = \theta_{ ik,j},\qquad i,k=1,\dots,M.
-\]
+```
 
 Using these, we can see a path of how each element of the dependent vector $\boldsymbol{y}_t$ changes over time in response to an innovation in the variable denoting the monetary policy of J-Pow, $r_t$, assuming that there are no subsequent innovations in the monetary policy variable and there are no innovations in the other variables. /Max
 
