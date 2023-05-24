@@ -85,15 +85,13 @@ $$
 
 where:
 
-* $\boldsymbol{\mu}_n = \boldsymbol{\Sigma}_n(\boldsymbol{\Sigma}_0^{-1} \boldsymbol{\mu}_0 + \boldsymbol{X}^{\prime} \boldsymbol{y})$
-* $c_n = c_0 + n / 2$
-* $\boldsymbol{\Sigma}_n = (\boldsymbol{\Sigma}_0^{-1} + \boldsymbol{X}^{\prime} \boldsymbol{X})^{-1}$
-* $d_n = d_0 + \boldsymbol{S}_{\varepsilon} / 2$
-* $\boldsymbol{S}_{\varepsilon} = \boldsymbol{y}^{\prime} \boldsymbol{y} + \boldsymbol{\mu}_0^{\prime} \boldsymbol{\Sigma}_0^{-1} \boldsymbol{\mu}_0 - \boldsymbol{\mu}_n^{\prime} \boldsymbol{\Sigma}_n^{-1} \boldsymbol{\mu}_n$
+* $\boldsymbol{\mu}_n = \boldsymbol{\Sigma}_n(\boldsymbol{\Sigma}_0^{-1} \boldsymbol{\mu}_0 + \boldsymbol{X}^{\prime} \boldsymbol{y})$,
+* $c_n = c_0 + n / 2$,
+* $\boldsymbol{\Sigma}_n = (\boldsymbol{\Sigma}_0^{-1} + \boldsymbol{X}^{\prime} \boldsymbol{X})^{-1}$,
+* $d_n = d_0 + \boldsymbol{S}_{\varepsilon} / 2$,
+* $\boldsymbol{S}_{\varepsilon} = \boldsymbol{y}^{\prime} \boldsymbol{y} + \boldsymbol{\mu}_0^{\prime} \boldsymbol{\Sigma}_0^{-1} \boldsymbol{\mu}_0 - \boldsymbol{\mu}_n^{\prime} \boldsymbol{\Sigma}_n^{-1} \boldsymbol{\mu}_n$.
 
-
-
-/Max
+Since the posterior follows a well-known probability distribution, we can give moments for it as we would for any Normal or Inverse gamma distribution. For example, the mean of the posterior for $\boldsymbol{\beta}$ equals $\boldsymbol{\mu}_n$. /Max
 
 ---
 
