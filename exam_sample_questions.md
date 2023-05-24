@@ -313,7 +313,7 @@ e_{r_t}
 \end{array}\right],
 ```
 
-where $\boldsymbol{B} = \boldsymbol{B}_0 \boldsymbol{A}$. When we have uncorrelated errors from a structural VAR model, we can analyze the response of current and future values of each of the variables to a one‐unit increase in the current value of one of the structural errors (assuming all other errors and the error in question in all subsequent periods are zero). We define a vector of exogenous impulses, $\boldsymbol{s}_\tau$, s.t. the impulse to $e_{r_t}$ in period 1, i.e., $s_{{r_t},1}$ is equal to some value, and all other elements are zero. We are interested in the dynamic responses of all variables in the system to the shocks,
+where $\boldsymbol{B} = \boldsymbol{B}\_0 \boldsymbol{A}$. When we have uncorrelated errors from a structural VAR model, we can analyze the response of current and future values of each of the variables to a one‐unit increase in the current value of one of the structural errors (assuming all other errors and the error in question in all subsequent periods are zero). We define a vector of exogenous impulses, $\boldsymbol{s}\_\tau$, s.t. the impulse to $e_{r_t}$ in period 1, i.e., $s_{{r_t},1}$ is equal to some value, and all other elements are zero. We are interested in the dynamic responses of all variables in the system to the shocks,
 
 ```math
 	\frac{\partial \boldsymbol{y}_{ t+j}}{\partial \boldsymbol{e}_t} = \underset{M\times M}{\boldsymbol{\Theta}_j}, \qquad j = 0,1,2,\dots,h,
