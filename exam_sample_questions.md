@@ -151,7 +151,7 @@ Where:
 * $\beta_0$: The intercept, representing the expected percentage points when no Club Mate is consumed.
 * $\beta_1$: The slope coefficient, representing the expected change in percentage points for each additional ml of Club Mate consumed.
 * $\varepsilon$: The error term, assuming a normal distribution with mean zero and constant variance.
-* 
+ 
 Now, let's propose two different priors for the effect ($\beta_1$) of Club Mate:
 
 **Prior 1 (Conveying Prior):**
@@ -178,12 +178,14 @@ The central limit theorem (CLT) is a fundamental result in probability theory th
 
 ##### Random variables in many practical settings do not display the limited tail behavior of the Normal distribution. Why could that be the case and how could you address this when constructing models for such situations? 
 
-**Reasons: **
+**Reasons**:
+
 * **Heavy-Tailed Distributions:** Some real-world phenomena, such as income distribution or stock market returns, exhibit heavy tails, meaning that extreme values occur more frequently than would be expected under a normal distribution.
 * **Skewed Distributions:** Many real-world data sets are skewed, with a longer tail on one side. These distributions do not match the symmetric bell shape of the normal distribution.
 * **Bounded Data:** In certain situations, the data is constrained within specific bounds, such as proportions or counts, which may violate the assumption of unboundedness required by the normal distribution.
 
-**Adress this problem: **
+**Adress this problem**:
+
 * **Non-Normal Distributions:** Instead of assuming a normal distribution, one can choose a more suitable distribution that better reflects the characteristics of the data. Examples include the log-normal distribution for positively skewed data or the Student's t-distribution for heavy-tailed data.
 * **Transformations:** Transforming the data using mathematical functions can help make the data more amenable to a normal distribution. Common transformations include logarithmic, square root, etc. /Sophia
 
