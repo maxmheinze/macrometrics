@@ -53,9 +53,13 @@ Per [Wikipedia](https://en.wikipedia.org/wiki/Conjugate_prior), a Gamma-distribu
 
 #### Consider the classical linear model; what parameters are there to model?
 
-Sophia: In the classical linear model, the ordinary least squares model, there are several parameters to model. In case of a simple linear regression model with one dependent variable and one independent variable. The model can be represented as:
+In the classical linear model, the ordinary least squares model, there are several parameters to model. In case of a simple linear regression model with one dependent variable and one independent variable. The model can be represented as:
 
 Y = β₀ + β₁X + ε,
+
+$$
+\boldsymbol{Y} = \boldsymbol{X\beta} + \boldsymbol{\varepsilon},
+$$
 
 Here Y is the dependent variable, X is the independent variable, β₀ is the intercept parameter, β₁ is the slope parameter
 ε is the error term, assumed to be normally distributed with mean zero and constant variance σ².
