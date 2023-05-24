@@ -310,25 +310,23 @@ r_{t-1}
 e_{\Delta y_t} \\
 e_{\pi_t} \\
 e_{r_t}
-\end{array}\right]
+\end{array}\right],
 ```
 
-When we have uncorrelated errors from a structural VAR model, we can analyze the response of current and future values of each of the variables to a one‐unit increase in the current value of one of the structural errors (assuming all other errors and the error in question in all subsequent periods are zero).
-
-We define a vector of exogenous impulses, $\bm{s}_\tau$, s.t. the impulse to $e_1$, i.e. $s_{1,1}=1$, and all other elements are zero. We are interested in the dynamic responses of all variables in the system to the shocks,
+where $\boldsymbol{B} = \boldsymbol{B}_0\boldsymbol{A}$. When we have uncorrelated errors from a structural VAR model, we can analyze the response of current and future values of each of the variables to a one‐unit increase in the current value of one of the structural errors (assuming all other errors and the error in question in all subsequent periods are zero). We define a vector of exogenous impulses, $\bm{s}_\tau$, s.t. the impulse to $e_{r_t}$ in period 1, i.e., $s_{{r_t},1}$ is equal to some value, and all other elements are zero. We are interested in the dynamic responses of all variables in the system to the shocks,
 
 \begin{equation}
 	\frac{\partial \bm{y}_{t+j}}{\partial \bm{e}_t} = \underset{M\times M}{\bm{\Theta}_j}, \qquad j = 0,1,2,\dots,h,
 \end{equation}
 
-where $\bm{\Theta}_j \equiv \bm{\Phi}_j\bm{B}_0^{-1}$ (where $\bm{\Phi}_j = \bm{J}'\bm{A}^j\bm{J}$) denotes the matrix of impulse responses for period $j$.
+where $\boldsymbol{\Theta}_j \equiv \boldsymbol{\Phi}_j\boldsymbol{B}_0^{-1}$ (where $\boldsymbol{\Phi}_j = \boldsymbol{J}'\boldsymbol{A}^j\boldsymbol{J}$) denotes the matrix of impulse responses for period $j$.
 
-The elements of $\bm{\Theta}_j$ are denoted as follows:
+The elements of $\boldsymbol{\Theta}_j$ are denoted as follows:
 
 \[
 	\frac{\partial y_{it+j}}{\partial e_{kt}} = \theta_{ik,j},\qquad i,k=1,\dots,M.
 \]
 
-Using these, we can 
+Using these, we can see a path of how each element of the dependent vector $\boldsymbol{y}_t$ changes over time in response to an innovation in the variable denoting the monetary policy of J-Pow, $r_t$, assuming that there are no subsequent innovations in the monetary policy variable and there are no innovations in the other variables. /Max
 
 ---
