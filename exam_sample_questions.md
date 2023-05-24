@@ -122,11 +122,16 @@ Assessing the convergence of an MCMC sampler is crucial to ensure the validity a
 
 #### You want to prepare for an exam on Bayesian econometrics and take a preparatory test five times in a row. Explain why your later results may not be a good predictor for your performance in general.
 
-In Bayesian econometrics, we use the principle of updating our beliefs. Thus, we can use a preparatory test to update our prior beliefs about the outcome of the exam. However, if we complete the same preparatory test five times, we are not able to increase our certainty about the outcome of the exam as we already added the new information after completing the test the first time. \Lucas
+In Bayesian econometrics, we use the principle of updating our beliefs. Thus, we can use a preparatory test to update our prior beliefs about the outcome of the exam. However, if we complete the same preparatory test five times, we are not able to increase our certainty about the outcome of the exam as we already added the new information after completing the test the first time. /Lucas
 
 ---
 
 #### You want to assess (and incentivize) the knowledge, performance, and progress of students in your class. What are potential benefits of using three different criteria for grading?
+
+Let $X$ be the set of econometric skills that a student has. Let that set be partitioned into four subsets $X_E$, the set of skills used in an exam, $X_A$, the set of skills that can be applied to predetermined problem sets, $X_P$, the set of skills used in an independent research project. Let $y$ be the knowledge of a student, and let it be a function of the skills in $X$. Assume grading were based only on an exam. Then, assigning a grade $\tilde{y}$ based on a set of predictors in the set $X_E$ only would mean that important explanatory variables would be omitted, and likewise if we used problem sets or a research project only. In using all three criteria, we essentially perform a form of deterministic model averaging between the three seperate assessment criteria models. 
+
+In the course, we talked about Bayesian Model Averaging (BMA), a related concept. There, instead of looking for the "best model" and thereby ignoring uncertainty around the model selection, we consider all candidate models, weighted by their posterior probability. /Max
+
 
 ---
 
