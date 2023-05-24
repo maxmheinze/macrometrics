@@ -18,7 +18,7 @@ P(A\mid B) = \frac{P(B\mid A)P(A)}{P(B)} \propto P(B\mid A)P(A).
 $$
 
 For our prior, we can use historical data, theoretical insights or external information. Alternatively, we can use an uninformative prior. Using probability distributions instead of point values, we get Bayes's Theorem:
-
+x
 $$
 p(\theta \mid \mathcal{D}) \propto p(\mathcal{D}\mid\theta)p(\theta).
 $$
@@ -268,7 +268,7 @@ The curse of dimensionality is a term for the difficulty that arises with the nu
   <a href="https://www.youtube.com/watch?v=GI7sBsBHdCk"><img src="https://img.youtube.com/vi/GI7sBsBHdCk/0.jpg" alt="Youtube Video"></a>
 </div>
 
-We estimate the following vector autoregression, where $\Delta y_t$ is GDP geowth, $\pi_t$ is inflation, and $r_t$ is an indicator for the monetary policy of J-Pow:
+We estimate the following vector autoregression, where $\Delta y_t$ is GDP growth, $\pi_t$ is inflation, and $r_t$ is an indicator for the monetary policy of J-Pow:
 
 ```math
 	\begin{bmatrix}
