@@ -249,7 +249,7 @@ $$
 	M(Mp+1)+\frac{(M+1)M}{2}.
 $$
 
-/Sophia, Max
+The curse of dimensionality is a term for the difficulty that arises with the number of parameters to estimate if $M$ and $p$ grow. /Sophia, Max
 
 ---
 
