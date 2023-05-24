@@ -238,7 +238,7 @@ $$
 $$
 
 $$
-\boldsymbol{y}_{t} = \boldsymbol{c} + \boldsymbol{A}_{1} \boldsymbol{y}_{t-1} + \dots + \boldsymbol{A}_p \boldsymbol{y}_{t-p} + \boldsymbol{\varepsilon}_t, \qquad \boldsymbol{\varepsilon}_t \sim \mathcal{N}_M \boldsymbol{0}, \boldsymbol{\Sigma}.
+\mathbf{y}_{t} = \mathbf{c} + \mathbf{A}_{1} \mathbf{y}_{t-1} + \dots + \mathbf{A}_p \mathbf{y}_{t-p} + \mathbf{\varepsilon}_t, \qquad \mathbf{\varepsilon}_t \sim \mathcal{N}_M \mathbf{0}, \mathbf{\Sigma}.
 $$
 
 
