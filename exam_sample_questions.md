@@ -259,4 +259,30 @@ The curse of dimensionality is a term for the difficulty that arises with the nu
   <a href="https://www.youtube.com/watch?v=GI7sBsBHdCk"><img src="https://img.youtube.com/vi/GI7sBsBHdCk/0.jpg" alt="Youtube Video"></a>
 </div>
 
+```math
+	\begin{bmatrix}
+		\Delta y_t \\
+		\pi_t \\
+		r_t
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		a_{11} & a_{12} & a_{13} \\
+		a_{21} & a_{22} & a_{23} \\
+		a_{31} & a_{32} & a_{33}
+	\end{bmatrix}
+	\begin{bmatrix}
+		\Delta y_{t-1} \\
+		\pi_{t-1} \\
+		r_{t-1}
+	\end{bmatrix}
+	+
+	\begin{bmatrix}
+		\varepsilon_{\Delta y_t} \\
+		\varepsilon_{\pi_t} \\
+		\varepsilon_{r_t}
+	\end{bmatrix}
+	,
+```
+
 ---
