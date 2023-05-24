@@ -23,6 +23,8 @@ $$
 p(\theta \mid \mathcal{D}) \propto p(\mathcal{D}\mid\theta)p(\theta).
 $$
 
+/Max
+
 ---
 
 #### How can we interpret $p$, the main parameter of the Bernoulli distribution: $f(x\mid p) = p^x\cdot (1-p)^{(1-x)}$?
@@ -31,7 +33,7 @@ $p$ can be interpreted as the probability of success of a Bernoulli trial. It is
 
 ##### Come up with a conjugate prior for a Bernoulli likelihood and derive the posterior distribution.
 
-Sophia: A conjugate proir for the Bernoulli Distrubution is a Beta prior. If the Prior is distrubiuted Beta(a0, b0), then the Posterior will be distributed: Beta(a0 + Sn, b0 + n - Sn), where Sn is the number of successes and n-Sn is the number of fails. 
+A conjugate prior for the Bernoulli Distrubution is a Beta prior. If the Prior is distrubiuted $\mathrm{Beta}(a_0, b_0)$, then the Posterior will be distributed: $\mathrm{Beta}(a_0 + S_n, b_0 + n - S_n)$, where $S_n$ is the number of successes and $n-S_n$ is the number of fails. /Sophia
 
 ---
 
@@ -45,7 +47,7 @@ $$
 
 We assume that the occurrence of an event does not affect the probability of the next event occurring, i.e. that events are independent.
 
-Per [Wikipedia](https://en.wikipedia.org/wiki/Conjugate_prior), a Gamma-distributed prior for the parameter $\mu$ is a conjugate prior. That means that the posterior derived by combining a Gamma-distributed prior for $\mu$ with the likelihood will be Gamma-distributed. As for the parameters of the Gamma-distributed prior, we could assess the suspected properties of the parameter in question, e.g. by using available information, historical data or economic theory, and then choose the parameters of the Gamma distribution accordingly.
+Per [Wikipedia](https://en.wikipedia.org/wiki/Conjugate_prior), a Gamma-distributed prior for the parameter $\mu$ is a conjugate prior. That means that the posterior derived by combining a Gamma-distributed prior for $\mu$ with the likelihood will be Gamma-distributed. As for the parameters of the Gamma-distributed prior, we could assess the suspected properties of the parameter in question, e.g. by using available information, historical data or economic theory, and then choose the parameters of the Gamma distribution accordingly. /Max
 
 ---
 
