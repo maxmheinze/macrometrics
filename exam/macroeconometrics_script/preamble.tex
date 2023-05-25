@@ -1,0 +1,164 @@
+
+% Document and Formatting
+
+\documentclass[a4paper, 11pt, dvipsnames]{scrartcl}
+
+\usepackage[margin=2cm, bottom=3cm]{geometry}
+\usepackage[colorlinks = true, allcolors = black, urlcolor = Mahogany]{hyperref}
+\usepackage{charter}
+\usepackage{setspace}
+\usepackage[english]{babel}
+\usepackage[charter]{mathdesign}
+\usepackage[gen]{eurosym}
+\usepackage{csquotes}
+\usepackage{soul}
+
+\setstretch{1.1}
+\addtokomafont{disposition}{\rmfamily}
+\addtokomafont{section}{\rmfamily}
+\addtokomafont{subsection}{\rmfamily}
+\addtokomafont{subsubsection}{\rmfamily}
+\addtokomafont{title}{\rmfamily}
+\addtokomafont{subtitle}{\rmfamily}
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0em}
+\MakeOuterQuote{"}
+%\let\mathcal\undefined
+%\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+\setul{2pt}{0.5pt}
+
+
+% Section Titles
+
+\newcommand{\myrule}{\begin{center} \vspace{-24pt} \color{Mahogany} \rule{\textwidth}{1pt} \end{center}}
+\newcommand{\tmpsection}[1]{}
+\let\tmpsection=\section
+\renewcommand{\section}[1]{\tmpsection{#1}\vspace{-0.25em}\myrule\vspace{-2em}}
+
+\newcommand{\tmpsubsection}[1]{}
+\let\tmpsubsection=\subsection
+\renewcommand{\subsection}[1]{\tmpsubsection{#1}\vspace{-0.5em}}
+
+\newcommand{\tmpsubsubsection}[1]{}
+\let\tmpsubsubsection=\subsubsection
+\renewcommand{\subsubsection}[1]{\tmpsubsubsection{#1}\vspace{-0.5em}}
+
+
+% Boxes
+
+\usepackage{tcolorbox}
+
+\newtcolorbox{mybox}{colback=Orange!20!white,arc=12pt,boxrule=0pt, halign=flush center, colframe=white}
+
+
+% Math
+
+%\usepackage{amsmath}
+%\usepackage{amssymb}
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+\usepackage{bm}
+\usepackage{array}
+\usepackage{mathtools}
+\usepackage{cancel}
+
+\newcommand{\qed}{\hfill\blacksquare}
+\newcommand{\qedwhite}{\hfill \ensuremath{\Box}}
+\newcommand{\ind}{\perp\!\!\!\!\perp} 
+
+
+% Special Environments
+
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{float}
+
+\setlist[enumerate,1]{label={(\arabic*)}}
+
+
+% Headers and Footers
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\pagestyle{fancy}
+\fancyhead{}\renewcommand{\headrulewidth}{0pt}
+\fancyfoot{}\renewcommand{\footrulewidth}{0.5pt}
+\fancyfoot[L]{\zfauthor}
+\fancyfoot[C]{\thepage/\color{black}\pageref{LastPage}\\
+\hyperlink{toc}{\color{gray}\scriptsize{Go to table of contents}}}
+\fancyfoot[R]{\zfdate}
+
+
+% Table of Contents
+
+\usepackage{tocloft}
+
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\cftpagenumbersoff{subsection}
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{1}
+\setcounter{section}{0}
+
+
+% Numbering
+
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+
+% Miscellaneous
+
+\usepackage{lipsum}
+
+
+% Watermarks
+
+%\usepackage{draftwatermark}
+%\SetWatermarkText{\textbf{PRELIMINARY}}
+%\SetWatermarkScale{0.55}
+
+
+% Boxes
+
+\usepackage{tcolorbox}
+
+\tcbuselibrary{skins,breakable}
+
+\newtcolorbox[auto counter, number within=section, number freestyle={\noexpand\thesection.\noexpand\arabic{\tcbcounter}}]{proofbox}[2][]{%
+    enhanced,
+    breakable,
+    colback=MidnightBlue!10,
+    colframe=MidnightBlue,
+    colupper=MidnightBlue!50!black,
+    fonttitle=\bfseries,
+    title=Proof: #2,
+    #1
+}
+
+\newtcolorbox[auto counter, number within=section, number freestyle={\noexpand\thesection.\noexpand\arabic{\tcbcounter}}]{defbox}[2][]{%
+    enhanced,
+    breakable,
+    colback=Maroon!10,
+    colframe=Maroon,
+    fonttitle=\bfseries,
+    title=#2,
+    #1
+}
+
+\newtcolorbox[auto counter, number within=section, number freestyle={\noexpand\thesection.\noexpand\arabic{\tcbcounter}}]{exbox}[2][]{%
+    enhanced,
+    breakable,
+    colback=Orange!10,
+    colframe=Orange,
+    fonttitle=\bfseries,
+    title=Example: #2,
+    #1
+}
+
+
+

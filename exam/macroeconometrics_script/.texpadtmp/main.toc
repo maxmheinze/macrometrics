@@ -1,0 +1,81 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {0}Preliminaries}{3}{section.0}%
+\contentsline {subsection}{\nonumberline Statistics}{3}{subsection*.2}%
+\contentsline {subsubsection}{\nonumberline Expectation, Variance, Moments}{3}{subsubsection*.4}%
+\contentsline {subsubsection}{\nonumberline Notation}{3}{subsubsection*.6}%
+\contentsline {subsubsection}{\nonumberline Variance-Covariance Matrix}{3}{subsubsection*.8}%
+\contentsline {subsection}{\nonumberline Table of Probability Distributions}{4}{subsection*.10}%
+\contentsline {section}{\numberline {1}Univariate Time Series}{4}{section.1}%
+\contentsline {subsection}{\nonumberline Time Series Data}{4}{subsection*.12}%
+\contentsline {subsubsection}{\nonumberline Characteristics of Time Series}{4}{subsubsection*.14}%
+\contentsline {subsubsection}{\nonumberline Components of Time Series}{5}{subsubsection*.16}%
+\contentsline {subsection}{\nonumberline Time Series Concepts and Properties}{5}{subsection*.18}%
+\contentsline {subsubsection}{\nonumberline Autocovariance and Autocorrelation}{5}{subsubsection*.20}%
+\contentsline {subsubsection}{\nonumberline Durbin-Watson Test}{6}{subsubsection*.22}%
+\contentsline {subsection}{\nonumberline Time Series Econometrics}{6}{subsection*.24}%
+\contentsline {subsubsection}{\nonumberline Stationarity}{7}{subsubsection*.26}%
+\contentsline {subsection}{\nonumberline Stationary Models}{7}{subsection*.28}%
+\contentsline {subsubsection}{\nonumberline White Noise Process}{7}{subsubsection*.30}%
+\contentsline {subsubsection}{\nonumberline Moving Average Process}{8}{subsubsection*.32}%
+\contentsline {subsubsection}{\nonumberline Autoregressive Process}{8}{subsubsection*.34}%
+\contentsline {subsubsection}{\nonumberline Autoregressive Moving Average Process}{11}{subsubsection*.36}%
+\contentsline {subsection}{\nonumberline Nonstationary Models}{11}{subsection*.38}%
+\contentsline {subsubsection}{\nonumberline Unit Root Nonstationarity}{11}{subsubsection*.40}%
+\contentsline {subsubsection}{\nonumberline Integrated Time Series}{12}{subsubsection*.42}%
+\contentsline {subsubsection}{\nonumberline Testing for Unit Roots}{12}{subsubsection*.44}%
+\contentsline {subsubsection}{\nonumberline The ARIMA Model}{12}{subsubsection*.46}%
+\contentsline {section}{\numberline {2}Multivariate Time Series}{13}{section.2}%
+\contentsline {subsection}{\nonumberline Introduction}{13}{subsection*.48}%
+\contentsline {subsection}{\nonumberline The Vector Autoregressive Model}{13}{subsection*.50}%
+\contentsline {subsection}{\nonumberline Model Specification, Model Diagnostics and Predictions}{15}{subsection*.52}%
+\contentsline {subsection}{\nonumberline Predictions}{16}{subsection*.54}%
+\contentsline {subsection}{\nonumberline Structural Vector Autoregressions}{17}{subsection*.56}%
+\contentsline {subsection}{\nonumberline Impulse Response Analysis}{19}{subsection*.58}%
+\contentsline {subsection}{\nonumberline Forecast Error Variance Decomposition}{20}{subsection*.60}%
+\contentsline {subsection}{\nonumberline Historical Decomposition}{20}{subsection*.62}%
+\contentsline {subsection}{\nonumberline Additional Remarks}{21}{subsection*.64}%
+\contentsline {section}{\numberline {3}Introduction to Bayesian Econometrics}{21}{section.3}%
+\contentsline {subsection}{\nonumberline Bayesian Updating}{21}{subsection*.66}%
+\contentsline {subsection}{\nonumberline Bayes's Rule and Bayes's Theorem}{21}{subsection*.68}%
+\contentsline {subsubsection}{\nonumberline Bayes's Rule}{21}{subsubsection*.70}%
+\contentsline {subsubsection}{\nonumberline Bayes's Theorem}{22}{subsubsection*.72}%
+\contentsline {subsection}{\nonumberline Bayesian Inference, Priors and Posteriors}{22}{subsection*.74}%
+\contentsline {subsubsection}{\nonumberline Steps for Bayesian Inference}{22}{subsubsection*.76}%
+\contentsline {subsubsection}{\nonumberline The Likelihood}{23}{subsubsection*.78}%
+\contentsline {subsubsection}{\nonumberline The Prior}{23}{subsubsection*.80}%
+\contentsline {subsubsection}{\nonumberline The Posterior}{24}{subsubsection*.82}%
+\contentsline {subsubsection}{\nonumberline Summarizing the Posterior}{25}{subsubsection*.84}%
+\contentsline {section}{\numberline {4}Bayesian Regression Analysis}{27}{section.4}%
+\contentsline {subsection}{\nonumberline Simple Linear Model}{27}{subsection*.86}%
+\contentsline {subsubsection}{\nonumberline Setup}{27}{subsubsection*.88}%
+\contentsline {subsubsection}{\nonumberline Inference for $\sigma ^2$ with $\beta $ known}{28}{subsubsection*.90}%
+\contentsline {subsubsection}{\nonumberline Inference for $\beta $ with $\sigma ^2$ known}{29}{subsubsection*.92}%
+\contentsline {subsubsection}{\nonumberline Inference on the Full Linear Regression Model}{30}{subsubsection*.94}%
+\contentsline {subsubsection}{\nonumberline Frequentist versus Bayesian Inference}{31}{subsubsection*.96}%
+\contentsline {subsection}{\nonumberline Standard Regression Analysis}{31}{subsection*.98}%
+\contentsline {subsubsection}{\nonumberline Priors and Posteriors}{31}{subsubsection*.100}%
+\contentsline {subsubsection}{\nonumberline Sampling from the Joint Posterior Distribution}{32}{subsubsection*.102}%
+\contentsline {subsubsection}{\nonumberline Multiple Regression with a Non-Conjugate Prior}{32}{subsubsection*.104}%
+\contentsline {section}{\numberline {5}Bayesian Estimation}{33}{section.5}%
+\contentsline {subsection}{\nonumberline Numerical Integration}{33}{subsection*.106}%
+\contentsline {subsection}{\nonumberline Markov Chain Monte Carlo}{33}{subsection*.108}%
+\contentsline {subsection}{\nonumberline Gibbs Sampler}{34}{subsection*.110}%
+\contentsline {subsection}{\nonumberline Convergence}{35}{subsection*.112}%
+\contentsline {section}{\numberline {6}Model Selection and Priors}{35}{section.6}%
+\contentsline {subsection}{\nonumberline Bayesian Hypothesis Testing}{35}{subsection*.114}%
+\contentsline {subsection}{\nonumberline Model Selection}{36}{subsection*.116}%
+\contentsline {subsubsection}{\nonumberline Bayesian Model Selection}{36}{subsubsection*.118}%
+\contentsline {subsubsection}{\nonumberline Variable Selection for Regression Models}{38}{subsubsection*.120}%
+\contentsline {subsection}{\nonumberline Bayesian Model Averaging}{40}{subsection*.122}%
+\contentsline {subsection}{\nonumberline Other Approaches}{40}{subsection*.124}%
+\contentsline {section}{\numberline {7}Bayesian Vector Autoregressions}{41}{section.7}%
+\contentsline {subsection}{\nonumberline Bayesian Estimation of a VAR}{41}{subsection*.126}%
+\contentsline {subsubsection}{\nonumberline The Likelihood}{43}{subsubsection*.128}%
+\contentsline {subsubsection}{\nonumberline The Prior}{43}{subsubsection*.130}%
+\contentsline {subsubsection}{\nonumberline The Posterior}{45}{subsubsection*.132}%
+\contentsline {section}{\numberline {8}Identification of Vector Autoregressions}{45}{section.8}%
+\contentsline {subsection}{\nonumberline Identification in Macroeconomics}{45}{subsection*.134}%
+\contentsline {subsection}{\nonumberline Macroeconomic Shocks}{46}{subsection*.136}%
+\contentsline {subsection}{\nonumberline Identification Schemes}{46}{subsection*.138}%
+\contentsline {subsubsection}{\nonumberline Short-Run Restrictions}{46}{subsubsection*.140}%
+\contentsline {subsubsection}{\nonumberline Sign Restrictions}{48}{subsubsection*.142}%
