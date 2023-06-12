@@ -67,8 +67,6 @@ if(type == "sim"){
 
 plot.ts(Yraw)
 
-### PRINT IMAGE ###
-dev.print(png, paste0("./assignment4/figures/", foldername,"/01_yraw.png"), width = 8, units = "in", res = 300)
 #------------------------------------------------------------------------------------
 # useful function for lagging data matrices
 mlag <- function(X,lag){
@@ -146,8 +144,6 @@ lines(yfit[,3],col="red", lwd=2)
 axis(1, at=seq(1,195,by=20), labels=time[seq(1,195,by=20)], las=2)
 abline(v=seq(1,195,by=20), col="lightgrey", lty=3)
 
-### PRINT IMAGE ###
-dev.print(png, paste0("./assignment4/figures/", foldername,"/02_olsfit.png"), width = 8, units = "in", res = 300)
 
 # look at errors
 plot.ts(E_OLS[,1], xlab="", ylab="", main="Error Inflation", xaxt="n", lwd=2, cex.main=1.5, cex.lab=2)
@@ -160,8 +156,6 @@ plot.ts(E_OLS[,3], xlab="", ylab="", main="Error T-bills", xaxt="n", lwd=2, cex.
 axis(1, at=seq(1,195,by=20), labels=time[seq(1,195,by=20)], las=2)
 abline(v=seq(1,195,by=20), col="lightgrey", lty=3)
 
-### PRINT IMAGE ###
-dev.print(png, paste0("./assignment4/figures/", foldername,"/03_olserror.png"), width = 8, units = "in", res = 300)
 
 # explained variation
 diag(crossprod(yfit)) / diag(crossprod(Y))
@@ -389,8 +383,7 @@ for(ii in 1:k){
   }
 }
 
-### PRINT IMAGE ###
-dev.print(png, paste0("./assignment4/figures/", foldername,"/04_convergence.png"), width = 8, units = "in", res = 300)
+
 
 # Autocorrelation of parameter draws for AR coefficients
 par(mfrow=c(k,3),mar=c(1,1,1,1))
@@ -400,8 +393,7 @@ for(ii in 1:k){
   }
 }
 
-### PRINT IMAGE ###
-dev.print(png, paste0("./assignment4/figures/", foldername,"/05_convacf.png"), width = 8, units = "in", res = 300)
+
 
 par(mfrow=c(3,3),mar=c(2,2,1,1))
 for(jj in 1:M){
@@ -412,8 +404,6 @@ for(jj in 1:M){
   }
 }
 
-### PRINT IMAGE ###
-dev.print(png, paste0("./assignment4/figures/", foldername,"/06_convtrace.png"), width = 8, units = "in", res = 300)
 
 # Autocorrelation of parameter draws for variance coefficients
 par(mfrow=c(M,M),mar=c(1,1,1,1))
@@ -423,8 +413,6 @@ for(jj in 1:M){
   }
 }
 
-### PRINT IMAGE ###
-dev.print(png, paste0("./assignment4/figures/", foldername,"/07_convacfpar.png"), width = 8, units = "in", res = 300)
 
 idx <- which(abs(Z_scores) > crit_val)
 paste(length(idx), " out of ",k*M+M^2, " variables' z-values exceed the 1.96 threshold", " (", round(length(idx)/(k*M+M^2)*100,2),"%)",sep="")
@@ -453,8 +441,6 @@ for(ii in 1:M){
   }
 }
 
-### PRINT IMAGE ###
-dev.print(png, paste0("./assignment4/figures/", foldername,"/08_irf1.png"), width = 8, units = "in", res = 300)
 
 par(mfrow=c(3,3))
 for(ii in 1:M){
@@ -470,15 +456,12 @@ for(ii in 1:M){
   }
 }
 
-### PRINT IMAGE ###
-dev.print(png, paste0("./assignment4/figures/", foldername,"/09_irf2.png"), width = 8, units = "in", res = 300)
 
 ## check signs
 par(mfrow=c(1,1))
 hist(cou_store)
 
-### PRINT IMAGE ###
-dev.print(png, paste0("./assignment4/figures/", foldername,"/10_histsign.png"), width = 8, units = "in", res = 300)
+
 
 ### plotting predictions
 yf_low    <- apply(yf_store, c(2,3), quantile, 0.16, na.rm=TRUE)
@@ -502,7 +485,3 @@ for(ii in 1:M){
   axis(1, at=seq(1,29), labels=xax, las=2)
   abline(v=seq(1,29), col="lightgrey", lty=2)
 }
-
-### PRINT IMAGE ###
-dev.print(png, paste0("./assignment4/figures/", foldername,"/11_pred.png"), width = 8, units = "in", res = 300)
-

@@ -539,6 +539,19 @@ for(ii in 1:M){
 \newpage 
 
 
+### Coefficients
+
+Coefficient means and standard deviations for the values $\lambda_1=$ `r lambda_1_set` and $\lambda_2=$ `r lambda_2_set` are as follows:
+
+
+```{r, echo = FALSE, warnings = FALSE, out.width = "80%", fig.align = "center", message = FALSE}
+apply(A_store, c(2,3), mean)
+apply(A_store, c(2,3), sd)
+```
+
+
+\newpage
+
 ## Variant 1: $\lambda_1 = 0.1$, $\lambda_2 = 100$
 
 ```{r, echo = FALSE, warnings = FALSE, out.width = "80%", fig.align = "center", results = FALSE, message = FALSE}
@@ -1046,6 +1059,20 @@ for(ii in 1:M){
 
 
 
+
+
+### Coefficients
+
+Coefficient means and standard deviations for the values $\lambda_1=$ `r lambda_1_set` and $\lambda_2=$ `r lambda_2_set` are as follows:
+
+
+```{r, echo = FALSE, warnings = FALSE, out.width = "80%", fig.align = "center", message = FALSE}
+apply(A_store, c(2,3), mean)
+apply(A_store, c(2,3), sd)
+```
+
+
+\newpage 
 
 ## Variant 2: $\lambda_1 = 100$, $\lambda_2 = 0.1$
 
@@ -1560,6 +1587,19 @@ for(ii in 1:M){
 
 
 
+### Coefficients
+
+Coefficient means and standard deviations for the values $\lambda_1=$ `r lambda_1_set` and $\lambda_2=$ `r lambda_2_set` are as follows:
+
+
+```{r, echo = FALSE, warnings = FALSE, out.width = "80%", fig.align = "center", message = FALSE}
+apply(A_store, c(2,3), mean)
+apply(A_store, c(2,3), sd)
+```
+
+
+\newpage
+
 ## Variant 3: $\lambda_1 = 0.1$, $\lambda_2 = 0.1$
 
 ```{r, echo = FALSE, warnings = FALSE, out.width = "80%", fig.align = "center", results = FALSE, message = FALSE}
@@ -2068,6 +2108,19 @@ for(ii in 1:M){
 
 
 
+
+### Coefficients
+
+Coefficient means and standard deviations for the values $\lambda_1=$ `r lambda_1_set` and $\lambda_2=$ `r lambda_2_set` are as follows:
+
+
+```{r, echo = FALSE, warnings = FALSE, out.width = "80%", fig.align = "center", message = FALSE}
+apply(A_store, c(2,3), mean)
+apply(A_store, c(2,3), sd)
+```
+
+
+\newpage
 
 ## Variant 4: $\lambda_1 = 100$, $\lambda_2 = 100$
 
@@ -2590,9 +2643,23 @@ for(ii in 1:M){
 
 
 
+### Coefficients
+
+Coefficient means and standard deviations for the values $\lambda_1=$ `r lambda_1_set` and $\lambda_2=$ `r lambda_2_set` are as follows:
+
+
+```{r, echo = FALSE, warnings = FALSE, out.width = "80%", fig.align = "center", message = FALSE}
+apply(A_store, c(2,3), mean)
+apply(A_store, c(2,3), sd)
+```
+
+
+\newpage
+
 ## Discussion
 
 Text
 
+\newpage
 
 # Exercise 2 -- Replicating Kilian (2009)
