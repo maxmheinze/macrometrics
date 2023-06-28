@@ -21,6 +21,10 @@ urlcolor: Mahogany
 ```{r, setup, include = FALSE}
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 knitr::opts_chunk$set(tidy.opts = list(width.cutoff = 80), tidy = TRUE)
+pacman::p_load(
+  tidyverse,
+  magrittr
+)
 ```
 
 \vspace{2em}
@@ -545,8 +549,19 @@ Coefficient means and standard deviations for the values $\lambda_1=$ `r lambda_
 
 
 ```{r, echo = FALSE, warnings = FALSE, out.width = "80%", fig.align = "center", message = FALSE}
-apply(A_store, c(2,3), mean)
-apply(A_store, c(2,3), sd)
+coef_print <- apply(A_store, c(2,3), mean)
+coef_sd_print <- apply(A_store, c(2,3), sd)
+
+coef_table <- matrix(paste0(round(coef_print, 4), " (", round(coef_sd_print,4), ")"), ncol = 3)
+
+coef_table %>%
+  set_colnames(c("inf", "une", "tbi")) %>%
+  set_rownames(c("inf, 1", "une, 1", "tbi, 1",
+                 "inf, 2", "une, 2", "tbi, 2",
+                 "inf, 3", "une, 3", "tbi, 3",
+                 "inf, 4", "une, 4", "tbi, 4",
+                 "const")) %>%
+  knitr::kable()
 ```
 
 
@@ -1067,8 +1082,19 @@ Coefficient means and standard deviations for the values $\lambda_1=$ `r lambda_
 
 
 ```{r, echo = FALSE, warnings = FALSE, out.width = "80%", fig.align = "center", message = FALSE}
-apply(A_store, c(2,3), mean)
-apply(A_store, c(2,3), sd)
+coef_print <- apply(A_store, c(2,3), mean)
+coef_sd_print <- apply(A_store, c(2,3), sd)
+
+coef_table <- matrix(paste0(round(coef_print, 4), " (", round(coef_sd_print,4), ")"), ncol = 3)
+
+coef_table %>%
+  set_colnames(c("inf", "une", "tbi")) %>%
+  set_rownames(c("inf, 1", "une, 1", "tbi, 1",
+                 "inf, 2", "une, 2", "tbi, 2",
+                 "inf, 3", "une, 3", "tbi, 3",
+                 "inf, 4", "une, 4", "tbi, 4",
+                 "const")) %>%
+  knitr::kable()
 ```
 
 
@@ -1593,8 +1619,19 @@ Coefficient means and standard deviations for the values $\lambda_1=$ `r lambda_
 
 
 ```{r, echo = FALSE, warnings = FALSE, out.width = "80%", fig.align = "center", message = FALSE}
-apply(A_store, c(2,3), mean)
-apply(A_store, c(2,3), sd)
+coef_print <- apply(A_store, c(2,3), mean)
+coef_sd_print <- apply(A_store, c(2,3), sd)
+
+coef_table <- matrix(paste0(round(coef_print, 4), " (", round(coef_sd_print,4), ")"), ncol = 3)
+
+coef_table %>%
+  set_colnames(c("inf", "une", "tbi")) %>%
+  set_rownames(c("inf, 1", "une, 1", "tbi, 1",
+                 "inf, 2", "une, 2", "tbi, 2",
+                 "inf, 3", "une, 3", "tbi, 3",
+                 "inf, 4", "une, 4", "tbi, 4",
+                 "const")) %>%
+  knitr::kable()
 ```
 
 
@@ -2115,8 +2152,19 @@ Coefficient means and standard deviations for the values $\lambda_1=$ `r lambda_
 
 
 ```{r, echo = FALSE, warnings = FALSE, out.width = "80%", fig.align = "center", message = FALSE}
-apply(A_store, c(2,3), mean)
-apply(A_store, c(2,3), sd)
+coef_print <- apply(A_store, c(2,3), mean)
+coef_sd_print <- apply(A_store, c(2,3), sd)
+
+coef_table <- matrix(paste0(round(coef_print, 4), " (", round(coef_sd_print,4), ")"), ncol = 3)
+
+coef_table %>%
+  set_colnames(c("inf", "une", "tbi")) %>%
+  set_rownames(c("inf, 1", "une, 1", "tbi, 1",
+                 "inf, 2", "une, 2", "tbi, 2",
+                 "inf, 3", "une, 3", "tbi, 3",
+                 "inf, 4", "une, 4", "tbi, 4",
+                 "const")) %>%
+  knitr::kable()
 ```
 
 
@@ -2649,8 +2697,19 @@ Coefficient means and standard deviations for the values $\lambda_1=$ `r lambda_
 
 
 ```{r, echo = FALSE, warnings = FALSE, out.width = "80%", fig.align = "center", message = FALSE}
-apply(A_store, c(2,3), mean)
-apply(A_store, c(2,3), sd)
+coef_print <- apply(A_store, c(2,3), mean)
+coef_sd_print <- apply(A_store, c(2,3), sd)
+
+coef_table <- matrix(paste0(round(coef_print, 4), " (", round(coef_sd_print,4), ")"), ncol = 3)
+
+coef_table %>%
+  set_colnames(c("inf", "une", "tbi")) %>%
+  set_rownames(c("inf, 1", "une, 1", "tbi, 1",
+                 "inf, 2", "une, 2", "tbi, 2",
+                 "inf, 3", "une, 3", "tbi, 3",
+                 "inf, 4", "une, 4", "tbi, 4",
+                 "const")) %>%
+  knitr::kable()
 ```
 
 
@@ -2658,8 +2717,52 @@ apply(A_store, c(2,3), sd)
 
 ## Discussion
 
-Text
+In the above, we estimated the VAR model with 4 lags (unchanged from the provided code) using different combinations of values for $\lambda_1$ and $\lambda_2$ (where $\lambda_3=100$ as usual):
+
+* The "default" values, $\lambda_1=0.1$ and $\lambda_2=0.5$,
+* $\lambda_1=0.1$ and $\lambda_2=100$,
+* $\lambda_1=100$ and $\lambda_2=0.1$,
+* $\lambda_1=0.1$ and $\lambda_2=0.1$, and
+* $\lambda_1=100$ and $\lambda_2=100$.
+
+To see what these different values do in theory, we revisit the setup of the Minnesota prior for the variance:
+
+$$
+  \underline{\bm{V}} = \mathrm{Var}(\bm{A}) = 
+  \begin{cases}
+    \left(\frac{\lambda_1}{k}\right)^2 & \text{for $i=j$ and the $k$-th lag} \\
+    \left(\frac{\sigma_i^2}{\sigma_j^2}\right)\left(\frac{\lambda_1\lambda_2}{k}\right)^2 & \text{for $i\neq j$ and the $k$-th lag} \\
+    \lambda_3\sigma^2_i & \text{for the deterministic part of the model}
+  \end{cases}
+$$
+
+We can see that $\lambda_1$ governs shrinkage for own-variable lags, while $\lambda_2$ governs shrinkage for cross-variable lags, where in both cases, a higher value of the respective hyperparameter means less shrinkage.
+
+That is, we chose four combinations of a small value (0.1) imposing considerable shrinkage and a very high value (100) imposing very little shrinkage.
+
+### Coefficients 
+
+In theory, we should obtain coefficient values for the first-lag own-variable coefficients that are much closer to one when setting $\lambda_1=0.1$ than when setting it to 100. We observe that this is the case. In both cases where we set the stricter lambda value, we get values between 0.9 ans 1.2, while we observe parameter values higher than 1.5 with the lax prior setting. Similarly, we can see that cross-variable autoregressive parameters are more spread out from their prior mean of 0 when we set $\lambda_2=100$. Note that the figure in parentheses in the coefficient tables denotes the standard deviation.
+
+
+### Impulse Response Functions
+
+What we observe regarding the impulse response functions is that generally, stricter lambda values (imposing more shrinkage) lead to more "lingering" behavior, i.e. effects that are greater in magnitude and return to zero in a slower fashion. This is because the means that we specified in our prior translate to random walk behavior, and setting lower prior variance means that the prior "pushes" the posterior more firmly towards random walk behavior. Indeed, comparing specifically Variant 3, where both lambda values are chosen to be very low, with Variant 4, where both are high, we can see that while generally, impulse response behavior is similar, the IRFs computed with the lower lambda values resemble more of a random walk behavior than those computed with high lambda values.
+
+
+### Predictions
+
+The directions of the predictions seem to be quite similar regardless of the lambda values chosen. The only differences we do observe are regarding the magnitude of changes in the predicted variables and how confident the predictions are. Inflation is expected to fall in all specifications, as is unemployment, and all variants predict a drop in the interest rate with a subsequent constant development. Specifications with high lambda values translate into wider confidence bounds around the predictions.
+
 
 \newpage
 
 # Exercise 2 -- Replicating Kilian (2009)
+
+
+
+
+
+
+
+

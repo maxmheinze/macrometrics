@@ -25,4 +25,7 @@
 \contentsline {subsubsection}{Predictions}{15}{section*.26}%
 \contentsline {subsubsection}{Coefficients}{16}{section*.27}%
 \contentsline {subsection}{Discussion}{17}{section*.28}%
-\contentsline {section}{Exercise 2 -- Replicating Kilian (2009)}{18}{section*.29}%
+\contentsline {subsubsection}{Coefficients}{17}{section*.29}%
+\contentsline {subsubsection}{Impulse Response Functions}{17}{section*.30}%
+\contentsline {subsubsection}{Predictions}{17}{section*.31}%
+\contentsline {section}{Exercise 2 -- Replicating Kilian (2009)}{18}{section*.32}%
