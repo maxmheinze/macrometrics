@@ -2749,7 +2749,7 @@ We can see that $\lambda_1$ governs shrinkage for own-variable lags, while $\lam
 
 That is, we chose four combinations of a small value (0.1) imposing considerable shrinkage and a very high value (100) imposing very little shrinkage.
 
-With regard to making a decision regarding which hyperparameters to use, it makes sense to consider the literature background as well as the empirical data at hand and make an informed decision on how much shrinkage to impose.
+With regard to making a decision regarding which hyperparameters to use, it makes sense to consider the literature background as well as the empirical data at hand and make an informed decision on how much shrinkage to impose. In general, a guiding value could be that $\lambda_1 > \lambda_1\cdot\lambda_2$, because own lags are more likely to be important predictors than lags of other variables.
 
 ### Coefficients 
 
