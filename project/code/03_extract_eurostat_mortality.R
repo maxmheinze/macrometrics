@@ -40,6 +40,6 @@ mortality <- mortality %>%
 
 # Write CSV ---------------------------------------------------------------
 
-write_csv(mortality, "./project/data/mortality.csv")
+write_csv(mortality, "./project/data/mortality_weekly.csv")
 
 
