@@ -108,4 +108,3 @@ write_csv(climate_data, out_path)
 
 
 
-
