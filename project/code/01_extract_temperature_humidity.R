@@ -106,5 +106,5 @@ climate_data <- st_drop_geometry(shpfile) %>%
 
 write_csv(climate_data, out_path)
 
-
+  
 
