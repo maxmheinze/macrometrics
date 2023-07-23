@@ -81,11 +81,11 @@ population_structure <- population_structure %>%
 mortality_1 <- mortality %>%
   left_join(population_structure, by = c("year", "nuts_code", "age", "nuts_level")) %>%
   mutate(mortality = (deaths/population_group)*100) %>%
-  select(nuts_code, year, week, nuts_level, deaths, mortality, pop_share) %>%
+  select(nuts_code, year, age, week, nuts_level, deaths, mortality, pop_share) %>%
   filter(year >= 2014) %>%
-  group_by(nuts_code, year, week) %>%
-  mutate(age_adjusted_mortality = weighted.mean(mortality, pop_share))
-
+  filter(age %in% c("Y20-39", "Y40-59", "Y60-79", "Y_GE80", "Y_LT20")) %>%
+  group_by(nuts_code, year, week) %>% 
+  summarise(age_adjusted_mortality = weighted.mean(mortality, pop_share))
 
 # Write CSV ---------------------------------------------------------------
 
