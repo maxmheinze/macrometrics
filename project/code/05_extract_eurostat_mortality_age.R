@@ -84,7 +84,7 @@ mortality_1 <- mortality %>%
   select(nuts_code, year, age, week, nuts_level, deaths, mortality, pop_share) %>%
   filter(year >= 2014) %>%
   filter(age %in% c("Y20-39", "Y40-59", "Y60-79", "Y_GE80", "Y_LT20")) %>%
-  group_by(nuts_code, year, week) %>% 
+  group_by(nuts_code, year, week, nuts_level) %>% 
   summarise(age_adjusted_mortality = weighted.mean(mortality, pop_share))
 
 # Write CSV ---------------------------------------------------------------
