@@ -25,11 +25,12 @@ nuts_levels <- read_csv("./project/data/nuts_levels.csv")
 # Data Wrangling ----------------------------------------------------------
 
 mortality <- eurostat_mortality %>%
+  dplyr::select(geo, sex, age, TIME_PERIOD, OBS_VALUE) %>%
   dplyr::filter(sex == "T")  %>%
-  dplyr::select(geo, age, TIME_PERIOD, OBS_VALUE) %>%
-  separate(geo, into = c("nuts_code", "nuts_name"), sep = ":") %>%
+  #separate(geo, into = c("nuts_code", "nuts_name"), sep = ":") %>%
   separate(TIME_PERIOD, into = c("year", "week"), sep = "-W") %>%
-  rename(deaths = OBS_VALUE)
+  rename(deaths = OBS_VALUE) %>%
+  rename(nuts_code = geo)
 
 mortality <- mortality %>%
   separate(geo, into = c("nuts_code", "nuts_name"), sep = ":") 
@@ -42,5 +43,5 @@ mortality <- mortality %>%
 
 # Write CSV ---------------------------------------------------------------
 
-write_csv(mortality, "./project/data/mortality.csv")
+write_csv(mortality, "./project/data/mortality_weekly_age.csv")
 

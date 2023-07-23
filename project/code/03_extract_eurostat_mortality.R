@@ -12,7 +12,7 @@ pacman::p_load(
 # Local file path since original file is too large to put on GitHub
 # Download Link for File from Eurostat:
 # https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/data/DEMO_R_MWK3_T/?format=SDMX-CSV&lang=en&label=both
-in_path <- "..."
+in_path <- "/Users/gustavpirich/Library/Mobile Documents/com~apple~CloudDocs/Wirtschaftsuniversitaet/MASTER/Advanced Macroeconometrics/MacroMetrics/Project/raw/nuts/estat_demo_r_mwk3_t_en.csv"
 
 
 # Read Data ---------------------------------------------------------------
