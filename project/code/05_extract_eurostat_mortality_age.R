@@ -2,6 +2,8 @@
 
 # Header ------------------------------------------------------------------
 
+rm(list = ls())
+
 pacman::p_load(
   tidyverse,
   countrycode,
@@ -11,13 +13,22 @@ pacman::p_load(
 
 # Local file path since original file is too large to put on GitHub
 # Download Link for File from Eurostat:
-# https://ec.europa.eu/eurostat/databrowser/view/DEMO_R_MWK3_20/default/table?lang=en
-# https://ec.europa.eu/eurostat/databrowser/view/DEMO_R_GIND3__custom_6985794/default/table?lang=en
-# https://ec.europa.eu/eurostat/databrowser/view/DEMO_R_PJANIND3__custom_6985756/default/table?lang=en
+# https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/data/DEMO_R_MWK3_20/?format=SDMX-CSV&compressed=true
+# https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/data/DEMO_R_GIND3/?format=SDMX-CSV
+# https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/data/DEMO_R_PJANIND3/?format=SDMX-CSV
 
-in_path_eurostat_mortality <- "/Users/gustavpirich/Library/Mobile Documents/com~apple~CloudDocs/Wirtschaftsuniversitaet/MASTER/Advanced Macroeconometrics/MacroMetrics/Project/raw/nuts/demo_r_mwk3_20_linear.csv"
-in_path_population <- "/Users/gustavpirich/Library/Mobile Documents/com~apple~CloudDocs/Wirtschaftsuniversitaet/MASTER/Advanced Macroeconometrics/MacroMetrics/Project/raw/nuts/demo_r_gind3__custom_6985794_linear.csv"
-in_path_population_structure <- "/Users/gustavpirich/Library/Mobile Documents/com~apple~CloudDocs/Wirtschaftsuniversitaet/MASTER/Advanced Macroeconometrics/MacroMetrics/Project/raw/nuts/demo_r_pjanind3__custom_6985756_linear.csv"
+
+in_path_eurostat_mortality <- "..."
+in_path_population <- "..."
+in_path_population_structure <- "..."
+
+# in_path_eurostat_mortality <- "/Users/gustavpirich/Library/Mobile Documents/com~apple~CloudDocs/Wirtschaftsuniversitaet/MASTER/Advanced Macroeconometrics/MacroMetrics/Project/raw/nuts/demo_r_mwk3_20_linear.csv"
+# in_path_population <- "/Users/gustavpirich/Library/Mobile Documents/com~apple~CloudDocs/Wirtschaftsuniversitaet/MASTER/Advanced Macroeconometrics/MacroMetrics/Project/raw/nuts/demo_r_gind3__custom_6985794_linear.csv"
+# in_path_population_structure <- "/Users/gustavpirich/Library/Mobile Documents/com~apple~CloudDocs/Wirtschaftsuniversitaet/MASTER/Advanced Macroeconometrics/MacroMetrics/Project/raw/nuts/demo_r_pjanind3__custom_6985756_linear.csv"
+
+# in_path_eurostat_mortality <- "/Users/heinzemax/Documents/GitHub/macrometrics_local/estat_demo_r_mwk3_20_en.csv"
+# in_path_population <- "/Users/heinzemax/Documents/GitHub/macrometrics_local/estat_demo_r_gind3_en.csv"
+# in_path_population_structure <- "/Users/heinzemax/Documents/GitHub/macrometrics_local/estat_demo_r_pjanind3_en.csv"
 
 
 # Read Data ---------------------------------------------------------------
