@@ -49,9 +49,7 @@ mortality <- mortality %>%
 
 
 
-
-
-# Population --------------------------------------------------------------
+# Population  -------------------------------------------------------------
 
 population <- population %>%
   select(geo, TIME_PERIOD, OBS_VALUE) %>%
@@ -65,11 +63,31 @@ population_structure <- population_structure %>%
   rename(pop_share = OBS_VALUE) %>%
   left_join(nuts_levels, by = "nuts_code") %>%
   mutate(pop_share = pop_share/100) %>%
-  left_join(population, by = c("nuts_code", "TIME_PERIOD", "nuts_level"))
+  left_join(population, by = c("nuts_code", "TIME_PERIOD", "nuts_level")) %>%
+  mutate(population_group = population*pop_share) %>%
+  rename(year = TIME_PERIOD) %>%
+  mutate(nuts_level = as.factor(nuts_level))
+  
+population_structure <- population_structure %>%
+  dplyr::mutate(indic_de = case_when(
+    indic_de == "PC_Y0_19" ~ "Y_LT20",
+    indic_de == "PC_Y20_39" ~ "Y20-39",
+    indic_de == "PC_Y40_59" ~ "Y40-59",
+    indic_de == "PC_Y60_79" ~ "Y60-79",
+    indic_de == "PC_Y80_MAX" ~ "Y_GE80")) %>% 
+  rename(age = indic_de)
+      
 
+mortality_1 <- mortality %>%
+  left_join(population_structure, by = c("year", "nuts_code", "age", "nuts_level")) %>%
+  mutate(mortality = (deaths/population_group)*100) %>%
+  select(nuts_code, year, week, nuts_level, deaths, mortality, pop_share) %>%
+  filter(year >= 2014) %>%
+  group_by(nuts_code, year, week) %>%
+  mutate(age_adjusted_mortality = weighted.mean(mortality, pop_share))
 
 
 # Write CSV ---------------------------------------------------------------
 
-write_csv(mortality, "./project/data/mortality_weekly_age.csv")
+write_csv(mortality_1, "./project/data/age_adjusted_weekly_mortality.csv")
 
