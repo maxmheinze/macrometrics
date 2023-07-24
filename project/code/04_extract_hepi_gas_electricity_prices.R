@@ -67,6 +67,11 @@ hepi_ppi_3 <- hepi_ppi_3 %>%
   rename("country_clean" = "country") 
 
 
+month.name <- c("Jan", "Feb", "Mar", "Apr","May",  "June", "July", "Aug","Sep", "Oct", "Nov", "Dec")
+
+
+hepi_ppi_3$month <- match(tolower(hepi_ppi_3$month), tolower(month.name))
+
 
 
 # Write CSV ---------------------------------------------------------------
