@@ -4,7 +4,7 @@ pacman::p_load(
   countrycode
 )
 
-EC_shares_HH <- read.csv("/Users/hannes/Documents/Studium/Master/Second_Semester/MACROECO/project/project_1/project_firstdata/EC_shares.csv") %>%
+EC_shares_HH <- read.csv("...") %>%
   filter(!siec=="TOTAL") %>%
   rename(ccode = geo, year = TIME_PERIOD, energy_carrier = siec, values_TJ = OBS_VALUE) %>%
   mutate(energy_carrier = recode(energy_carrier, E7000 = 'Electricity', G3000 = 'Natural gas', H8000 =  'Heat', O4000 =  'Oil and petroleum products',
@@ -18,4 +18,4 @@ EC_shares_HH <- read.csv("/Users/hannes/Documents/Studium/Master/Second_Semester
   select(ccode,cname,year,energy_carrier,values_TJ,shares) %>%
   arrange(ccode)
 
-write.csv(EC_shares_HH, file = "/Users/hannes/Documents/Studium/Master/Second_Semester/MACROECO/project/project_1/project_firstdata/EC_shares.csv", row.names = FALSE)
+write.csv(EC_shares_HH, file = "...", row.names = FALSE)
