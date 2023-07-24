@@ -39,6 +39,6 @@ temp_mort_prices <- temp_mort_date %>%
   mutate(month = month(dates)) %>%
   left_join(prices_1, by = c("country", "year", "month")) %>%
   select(!c(capital, country, country_code, country_clean)) %>%
-  order(nuts_code, nuts_level, year, month, week, temperature, age_adjusted_mortality, gas_ppi, elect_ppi)
+  select(nuts_code, nuts_level, year, month, week, temperature, age_adjusted_mortality, gas_ppi, elect_ppi)
 
 
