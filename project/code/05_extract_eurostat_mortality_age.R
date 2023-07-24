@@ -146,27 +146,26 @@ european_pop_shares <- population_structure_2 %>%
   select(-pop) %>%
   ungroup()
 
-#################  
+
+# Standardizing Mortality -------------------------------------------------
+
+# We calculate mortality (deaths/people) for each age group and weight
+# them using the European population shares for each age group, thereby
+# eliminating differences in age structure for different regional entities.
+
+age_adjusted_mortality <- mortality %>%
+  filter(!(age %in% c("TOTAL", "UNK")),
+         sex == "T") %>%
+  select(-sex) %>%
+  left_join(population_structure_2, by = c("year", "nuts_code", "age", "nuts_level")) %>%
+  mutate(mortality = (deaths/pop)) %>%
+  left_join(european_pop_shares, by = c("year", "age")) %>%
+  mutate(age_adjusted_mortality = mortality * european_pop_share) %>%
+  group_by(nuts_code, nuts_level, year, week) %>%
+  summarize(age_adjusted_mortality = sum(age_adjusted_mortality))
 
 
+# Write CSV ---------------------------------------------------------------
 
-
-# mortality %>%
-#   filter(!(age %in% c("TOTAL", "UNK")),
-#          sex == "T") %>%
-#   select(-sex) %>%
-#   left_join(population_structure_2, by = c("year", "nuts_code", "age", "nuts_level")) %>%
-#   mutate(mortality = (deaths/pop)) 
-# 
-# ## To do Weighting
-# 
-#   select(nuts_code, year, age, week, nuts_level, deaths, mortality, pop_share) %>%
-#   filter(year >= 2014) %>%
-#   filter(age %in% c("Y20-39", "Y40-59", "Y60-79", "Y_GE80", "Y_LT20")) %>%
-#   group_by(nuts_code, year, week, nuts_level) %>% 
-#   summarise(age_adjusted_mortality = weighted.mean(mortality, pop_share))
-# 
-# # Write CSV ---------------------------------------------------------------
-# 
-# write_csv(mortality_1, "./project/data/age_adjusted_weekly_mortality.csv")
+write_csv(age_adjusted_mortality, "./project/data/age_adjusted_weekly_mortality.csv")
 
