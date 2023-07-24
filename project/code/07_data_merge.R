@@ -8,7 +8,8 @@ pacman::p_load(
   tidyverse,
   countrycode,
   readr,
-  lubridate
+  lubridate, 
+  tsibble
 )
 
 
@@ -29,22 +30,15 @@ temp_mort <- temperature %>%
 prices_1 <- prices %>%
   mutate(country = countrycode(prices$country_clean, "country.name", "eurostat"))
 
-temp_mort_prices <- temp_mort %>% 
+temp_mort_date <- temp_mort %>% 
   mutate(country = substr(nuts_code, 1, 2)) 
-  #mutate(month = format(as.Date(paste(1, week, year), "%u %U %Y"), "%B"))
-  #left_join(prices_1, by = c("country", "year", "month"))
 
-temp_mort_prices %>%
-  mutate(
-    x = as.POSIXct(strptime(paste0(x, "-1"), format = "%Y-%W-%u")),
-    month = format(x, "%m"),
-    week = 1 + as.integer(format(, "%d")) %/% 7)
+temp_mort_date$dates <- make_datetime(year = temp_mort_date$year) + weeks(temp_mort_date$week)
 
-# Replace NA values in the Date column with a specified date
-replacement_date <- as.Date("2020-12-31")
-euromomo_score$Date[is.na(euromomo_score$Date)] <- replacement_date
-  
-# Add month column
-euromomo_score$month <- month(euromomo_score$Date)
-  
-  
+temp_mort_prices <- temp_mort_date %>% 
+  mutate(month = month(dates)) %>%
+  left_join(prices_1, by = c("country", "year", "month")) %>%
+  select(!c(capital, country, country_code, country_clean)) %>%
+  order(nuts_code, nuts_level, year, month, week, temperature, age_adjusted_mortality, gas_ppi, elect_ppi)
+
+
