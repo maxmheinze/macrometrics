@@ -42,3 +42,5 @@ temp_mort_prices <- temp_mort_date %>%
   select(nuts_code, nuts_level, year, month, week, temperature, age_adjusted_mortality, gas_ppi, elect_ppi)
 
 
+
+
