@@ -20,7 +20,7 @@ source("./project/code/07_data_merge.R")
 # Data Wrangling ----------------------------------------------------------
 
 data_temp <- temp_mort_prices %>% 
-  filter(nuts_level == 1) %>%
+  filter(nuts_level == 2) %>%
   mutate(age_adjusted_mortality = age_adjusted_mortality*100000) %>%
   group_by(nuts_code, year, month, week)  %>% 
   mutate(date = as.factor(paste(year, month, week, sep = "-")))  %>% 
@@ -69,7 +69,7 @@ reg_2 = plm(age_adjusted_mortality ~ lag_pcap,
 summary(reg_2)
 
 
-reg_3 = plm(age_adjusted_mortality ~ lag_pcap, 
+reg_3 = plm(age_adjusted_mortality ~ (lag_pcap), 
             effect = "twoways",
             data = pdata %>% filter(month %in% c(11, 12, 1, 2)))
 
@@ -86,6 +86,11 @@ summary(reg_4)
 
 
 
+reg_4 = plm(age_adjusted_mortality ~ log(elec_ppi) + temperature + I(temperature^2) + log(gas_ppi):temperature + log(gas_ppi):I(temperature^2), 
+            effect = "twoways",
+            data = pdata)
+
+summary(reg_4)
 
 
 
