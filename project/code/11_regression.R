@@ -52,28 +52,7 @@ feols(age_adjusted_mortality ~ log(gas_ppi) + temperature + temperature^2 + temp
 
 reg = lm(age_adjusted_mortality ~ date + nuts_code + gas_ppi, data_temp)
 
-reg_1 = plm(age_adjusted_mortality ~  temperature + I(temperature^2) + I(log(gas_ppi)*temperature) + log(gas_ppi), 
-          index = c("nuts_code", "date"),
-          effect = "twoways",
-          data = data_temp)
 
-summary(reg_1)
-
-
-reg_2 = plm(age_adjusted_mortality ~  temperature + I(temperature^2) + I(lag(log(gas_ppi),8L)*temperature) + lag(log(gas_ppi),8L), 
-            index = c("nuts_code", "date"),
-            effect = "twoways",
-            data = data_temp)
-
-summary(reg_2)
-
-
-reg_3 = plm(age_adjusted_mortality ~  I(lag(log(gas_ppi),8L)^temperature), 
-            index = c("nuts_code", "date"),
-            effect = "twoways",
-            data = data_temp)
-
-summary(reg_3)
 
 
 # lagged regression with plm ----------------------------------------------
@@ -82,10 +61,31 @@ pdata <- pdata.frame(data_temp, index = c("nuts_code","date"))
 
 pdata$lag_pcap <- lag(pdata$gas_ppi, 8)
 
-reg_3 = plm(age_adjusted_mortality ~ , 
-            index = c("nuts_code", "date"),
+
+reg_2 = plm(age_adjusted_mortality ~ lag_pcap, 
             effect = "twoways",
-            data = data_temp)
+            data = pdata)
+
+summary(reg_2)
+
+
+reg_3 = plm(age_adjusted_mortality ~ lag_pcap, 
+            effect = "twoways",
+            data = pdata %>% filter(month %in% c(11, 12, 1, 2)))
 
 summary(reg_3)
+
+
+
+reg_4 = plm(age_adjusted_mortality ~ log(gas_ppi) + temperature + I(temperature^2) + log(gas_ppi):temperature + log(gas_ppi):I(temperature^2), 
+            effect = "twoways",
+            data = pdata)
+
+summary(reg_4)
+
+
+
+
+
+
 
