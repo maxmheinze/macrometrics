@@ -20,7 +20,7 @@ source("./project/code/07_data_merge.R")
 # Data Wrangling ----------------------------------------------------------
 
 data_temp <- temp_mort_prices %>% 
-  filter(nuts_level == 2) %>%
+  filter(nuts_level == 1) %>%
   mutate(age_adjusted_mortality = age_adjusted_mortality*100000) %>%
   group_by(nuts_code, year, month, week)  %>% 
   mutate(date = as.factor(paste(year, month, week, sep = "-")))  %>% 
@@ -62,22 +62,28 @@ pdata <- pdata.frame(data_temp, index = c("nuts_code","date"))
 pdata$lag_pcap <- lag(pdata$gas_ppi, 8)
 
 
-reg_2 = plm(age_adjusted_mortality ~ lag_pcap, 
+
+
+
+reg_2 = plm(age_adjusted_mortality ~ log(lag_pcap), 
             effect = "twoways",
             data = pdata)
 
 summary(reg_2)
 
 
-reg_3 = plm(age_adjusted_mortality ~ (lag_pcap), 
+reg_3 = plm(age_adjusted_mortality ~ log(lag_pcap), 
             effect = "twoways",
-            data = pdata %>% filter(month %in% c(11, 12, 1, 2)))
+            data = pdata %>% filter(month %in% c(10, 11, 12, 1, 2, 3)))
 
 summary(reg_3)
 
 
 
-reg_4 = plm(age_adjusted_mortality ~ log(gas_ppi) + temperature + I(temperature^2) + log(gas_ppi):temperature + log(gas_ppi):I(temperature^2), 
+
+
+
+reg_4 = plm(age_adjusted_mortality ~ log(lag_pcap) + temperature + I(temperature^2) + log(lag_pcap):temperature + log(lag_pcap):I(temperature^2), 
             effect = "twoways",
             data = pdata)
 
@@ -86,11 +92,21 @@ summary(reg_4)
 
 
 
-reg_4 = plm(age_adjusted_mortality ~ log(elec_ppi) + temperature + I(temperature^2) + log(gas_ppi):temperature + log(gas_ppi):I(temperature^2), 
+reg_5 = plm(age_adjusted_mortality ~ log(elect_ppi) + temperature + I(temperature^2) + log(elect_ppi):temperature + log(elect_ppi):I(temperature^2), 
             effect = "twoways",
             data = pdata)
 
-summary(reg_4)
+summary(reg_5)
 
 
 
+
+
+reg_6 = plm(age_adjusted_mortality ~ log(elect_ppi) + temperature + I(temperature^2) + log(elect_ppi):temperature + log(elect_ppi):I(temperature^2), 
+            effect = "twoways",
+            data = pdata)
+
+summary(reg_6)
+
+
+plot(260:300, -1.5166e+02 + -4.5153e+00 * (260:300) + 7.8668e-03 * I((260:300)^2) + 1.0503e+00 * (260:300) + (-1.8161e-03 * (I((260:300))^2)))
