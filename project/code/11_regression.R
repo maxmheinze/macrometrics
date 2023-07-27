@@ -20,12 +20,12 @@ source("./project/code/07_data_merge.R")
 # Data Wrangling ----------------------------------------------------------
 
 data_temp <- temp_mort_prices %>% 
-  filter(nuts_level == 2) %>%
+  filter(nuts_level == 3) %>%
   mutate(age_adjusted_mortality = age_adjusted_mortality*100000) %>%
   group_by(nuts_code, year, month, week)  %>% 
   mutate(date = as.factor(paste(year, month, week, sep = "-")))  %>% 
   #mutate(temperature = temperature + 273.15) %>%
-  filter(!(dates >= as.Date("2020-03-01") & dates <= as.Date("2022-03-31"))) 
+  filter(!(dates >= as.Date("2020-03-01") & dates <= as.Date("2022-03-05"))) 
 
 data_temp <- data_temp %>% 
   mutate(temp_bin = case_when(
@@ -42,12 +42,14 @@ pdata <- pdata.frame(data_temp, index = c("nuts_code","date"))
 
 pdata$lag_pcap <- lag(pdata$gas_ppi, 8)
 
+pdata$lag_pecep <- lag(pdata$elect_ppi, 8)
+
 pdata <- pdata %>% 
   mutate(temp_bin = as_factor(pdata$temp_bin))
 
 pdata <- na.omit(pdata, cols = "temp_bin")
 
-pdata$temp_bin <- relevel(pdata$temp_bin, ref = "15-20")
+pdata$temp_bin <- relevel(pdata$temp_bin, ref = "10-15")
 
 
 # Regression --------------------------------------------------------------
@@ -95,7 +97,7 @@ summary(reg_2)
 reg_3 = plm(age_adjusted_mortality ~ log(lag_pcap), 
             effect = "twoways",    
             model = "within",
-            data = pdata %>% filter(month %in% c(10, 11, 12, 1, 2, 3)))
+            data = pdata %>% filter(month %in% c(11, 12, 1, 2, 3)))
 
 summary(reg_3)
 
@@ -125,7 +127,7 @@ reg_6 = plm(age_adjusted_mortality ~ log(elect_ppi) + temperature + I(temperatur
 summary(reg_6)
 
 
-plot(260:300, -1.5166e+02 + -4.5153e+00 * (260:300) + 7.8668e-03 * I((260:300)^2) + 1.0503e+00 * (260:300) + (-1.8161e-03 * (I((260:300))^2)))
+plot(260:300, -1.5166e+02 + -4.5153e+00 * (260:300) + 7.8668e-03 * I((260:300))*2 + 1.0503e+00 * (260:300) + (-1.8161e-03 * (I((260:300))*2)))
 
 
 reg_7 = plm(age_adjusted_mortality ~  log(lag_pcap) + temperature + log(lag_pcap):temperature, 
@@ -160,12 +162,29 @@ reg_9 = plm((age_adjusted_mortality) ~ temp_bin + log(gas_ppi) + log(gas_ppi):te
 
 summary(reg_9)
 
-reg_10 = plm(age_adjusted_mortality ~ temp_bin + log(lag_pcap) + log(lag_pcap):temp_bin, 
+reg_10 = plm(log(age_adjusted_mortality) ~ temp_bin + (lag_pcap) + (lag_pcap):temp_bin, 
             data = pdata, 
             model = "within", 
             effect = "twoways")
 
 summary(reg_10)
+
+reg_11 = plm((age_adjusted_mortality) ~ temp_bin + log(lag_pcap) + log(lag_pcap):temp_bin, 
+             data = pdata, 
+             model = "within", 
+             effect = "twoways")
+summary(reg_11)
+
+
+reg_12 = plm((age_adjusted_mortality) ~ temp_bin + log(lag_pcap/lag_pecep)*temp_bin, 
+             data = pdata, 
+             model = "within", 
+             effect = "twoways")
+summary(reg_12)
+
+
+
+
 
 
 
