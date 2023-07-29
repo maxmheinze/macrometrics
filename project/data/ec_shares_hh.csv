@@ -1,0 +1,537 @@
+"ccode","year","energy_carrier","shares"
+"AL",2017,"Electricity",0.4358
+"AL",2017,"Natural gas",0.1929
+"AL",2017,"renewables",0.3713
+"AL",2018,"Electricity",0.4576
+"AL",2018,"Natural gas",0.1928
+"AL",2018,"renewables",0.3496
+"AL",2019,"Electricity",0.502
+"AL",2019,"Natural gas",0.206
+"AL",2019,"renewables",0.292
+"AL",2020,"Electricity",0.5222
+"AL",2020,"Natural gas",0.1989
+"AL",2020,"renewables",0.2789
+"AL",2021,"Electricity",0.521
+"AL",2021,"Natural gas",0.2122
+"AL",2021,"renewables",0.2668
+"AT",2017,"Electricity",0.0442
+"AT",2017,"Natural gas",0.456
+"AT",2017,"renewables",0.4998
+"AT",2018,"Electricity",0.0479
+"AT",2018,"Natural gas",0.4472
+"AT",2018,"renewables",0.505
+"AT",2019,"Electricity",0.0476
+"AT",2019,"Natural gas",0.4545
+"AT",2019,"renewables",0.498
+"AT",2020,"Electricity",0.0466
+"AT",2020,"Natural gas",0.4534
+"AT",2020,"renewables",0.5001
+"AT",2021,"Electricity",0.0459
+"AT",2021,"Natural gas",0.4448
+"AT",2021,"renewables",0.5094
+"BA",2017,"Electricity",0.0082
+"BA",2017,"Natural gas",0.2765
+"BA",2017,"renewables",0.7153
+"BA",2018,"Electricity",0.0039
+"BA",2018,"Natural gas",0.099
+"BA",2018,"renewables",0.897
+"BA",2019,"Electricity",0.0041
+"BA",2019,"Natural gas",0.0778
+"BA",2019,"renewables",0.9181
+"BA",2020,"Electricity",0.0038
+"BA",2020,"Natural gas",0.0857
+"BA",2020,"renewables",0.9105
+"BA",2021,"Electricity",0.004
+"BA",2021,"Natural gas",0.0893
+"BA",2021,"renewables",0.9067
+"BE",2017,"Electricity",0.0308
+"BE",2017,"Natural gas",0.8629
+"BE",2017,"renewables",0.1064
+"BE",2018,"Electricity",0.0312
+"BE",2018,"Natural gas",0.8597
+"BE",2018,"renewables",0.1093
+"BE",2019,"Electricity",0.0329
+"BE",2019,"Natural gas",0.8536
+"BE",2019,"renewables",0.1134
+"BE",2020,"Electricity",0.0308
+"BE",2020,"Natural gas",0.8605
+"BE",2020,"renewables",0.1088
+"BE",2021,"Electricity",0.0347
+"BE",2021,"Natural gas",0.8427
+"BE",2021,"renewables",0.1226
+"BG",2017,"Electricity",0.0872
+"BG",2017,"Natural gas",0.168
+"BG",2017,"renewables",0.7448
+"BG",2018,"Electricity",0.0882
+"BG",2018,"Natural gas",0.1482
+"BG",2018,"renewables",0.7637
+"BG",2019,"Electricity",0.0945
+"BG",2019,"Natural gas",0.1447
+"BG",2019,"renewables",0.7609
+"BG",2020,"Electricity",0.0858
+"BG",2020,"Natural gas",0.136
+"BG",2020,"renewables",0.7782
+"BG",2021,"Electricity",0.0919
+"BG",2021,"Natural gas",0.1795
+"BG",2021,"renewables",0.7286
+"CY",2018,"Electricity",0.1326
+"CY",2018,"Natural gas",0.6417
+"CY",2018,"renewables",0.2257
+"CY",2019,"Electricity",0.149
+"CY",2019,"Natural gas",0.6399
+"CY",2019,"renewables",0.2111
+"CY",2020,"Electricity",0.1612
+"CY",2020,"Natural gas",0.6294
+"CY",2020,"renewables",0.2094
+"CY",2021,"Electricity",0.1703
+"CY",2021,"Natural gas",0.6035
+"CY",2021,"renewables",0.2262
+"CZ",2017,"Electricity",0.0463
+"CZ",2017,"Natural gas",0.4652
+"CZ",2017,"renewables",0.4886
+"CZ",2018,"Electricity",0.0473
+"CZ",2018,"Natural gas",0.4364
+"CZ",2018,"renewables",0.5163
+"CZ",2019,"Electricity",0.0509
+"CZ",2019,"Natural gas",0.3995
+"CZ",2019,"renewables",0.5496
+"CZ",2020,"Electricity",0.0502
+"CZ",2020,"Natural gas",0.3981
+"CZ",2020,"renewables",0.5516
+"CZ",2021,"Electricity",0.0555
+"CZ",2021,"Natural gas",0.3811
+"CZ",2021,"renewables",0.5634
+"DE",2017,"Electricity",0.0189
+"DE",2017,"Natural gas",0.7165
+"DE",2017,"renewables",0.2647
+"DE",2018,"Electricity",0.0173
+"DE",2018,"Natural gas",0.7212
+"DE",2018,"renewables",0.2614
+"DE",2019,"Electricity",0.0166
+"DE",2019,"Natural gas",0.7176
+"DE",2019,"renewables",0.2657
+"DE",2020,"Electricity",0.0166
+"DE",2020,"Natural gas",0.7266
+"DE",2020,"renewables",0.2568
+"DE",2021,"Electricity",0.0181
+"DE",2021,"Natural gas",0.6862
+"DE",2021,"renewables",0.2957
+"DK",2017,"Electricity",0.0289
+"DK",2017,"Natural gas",0.1896
+"DK",2017,"renewables",0.7815
+"DK",2018,"Electricity",0.0307
+"DK",2018,"Natural gas",0.1696
+"DK",2018,"renewables",0.7997
+"DK",2019,"Electricity",0.0332
+"DK",2019,"Natural gas",0.2064
+"DK",2019,"renewables",0.7605
+"DK",2020,"Electricity",0.0387
+"DK",2020,"Natural gas",0.2041
+"DK",2020,"renewables",0.7572
+"DK",2021,"Electricity",0.0351
+"DK",2021,"Natural gas",0.1802
+"DK",2021,"renewables",0.7847
+"EE",2017,"Electricity",0.053
+"EE",2017,"Natural gas",0.0648
+"EE",2017,"renewables",0.8821
+"EE",2018,"Electricity",0.0505
+"EE",2018,"Natural gas",0.063
+"EE",2018,"renewables",0.8865
+"EE",2019,"Electricity",0.0553
+"EE",2019,"Natural gas",0.0649
+"EE",2019,"renewables",0.8798
+"EE",2020,"Electricity",0.0546
+"EE",2020,"Natural gas",0.0646
+"EE",2020,"renewables",0.8809
+"EE",2021,"Electricity",0.0604
+"EE",2021,"Natural gas",0.0658
+"EE",2021,"renewables",0.8738
+"EL",2017,"Electricity",0.0534
+"EL",2017,"Natural gas",0.6197
+"EL",2017,"renewables",0.3269
+"EL",2018,"Electricity",0.0492
+"EL",2018,"Natural gas",0.5838
+"EL",2018,"renewables",0.3671
+"EL",2019,"Electricity",0.0316
+"EL",2019,"Natural gas",0.6435
+"EL",2019,"renewables",0.3249
+"EL",2020,"Electricity",0.0519
+"EL",2020,"Natural gas",0.6377
+"EL",2020,"renewables",0.3105
+"EL",2021,"Electricity",0.053
+"EL",2021,"Natural gas",0.6578
+"EL",2021,"renewables",0.2893
+"ES",2017,"Electricity",0.0784
+"ES",2017,"Natural gas",0.5978
+"ES",2017,"renewables",0.3239
+"ES",2018,"Electricity",0.0786
+"ES",2018,"Natural gas",0.6094
+"ES",2018,"renewables",0.312
+"ES",2019,"Electricity",0.0813
+"ES",2019,"Natural gas",0.5832
+"ES",2019,"renewables",0.3355
+"ES",2020,"Electricity",0.0802
+"ES",2020,"Natural gas",0.5871
+"ES",2020,"renewables",0.3327
+"ES",2021,"Electricity",0.0793
+"ES",2021,"Natural gas",0.589
+"ES",2021,"renewables",0.3317
+"FI",2017,"Electricity",0.235
+"FI",2017,"Natural gas",0.0707
+"FI",2017,"renewables",0.6944
+"FI",2018,"Electricity",0.245
+"FI",2018,"Natural gas",0.0649
+"FI",2018,"renewables",0.6902
+"FI",2019,"Electricity",0.2379
+"FI",2019,"Natural gas",0.0611
+"FI",2019,"renewables",0.7011
+"FI",2020,"Electricity",0.2479
+"FI",2020,"Natural gas",0.0581
+"FI",2020,"renewables",0.694
+"FI",2021,"Electricity",0.2437
+"FI",2021,"Natural gas",0.0475
+"FI",2021,"renewables",0.7088
+"FR",2017,"Electricity",0.1566
+"FR",2017,"Natural gas",0.5118
+"FR",2017,"renewables",0.3317
+"FR",2018,"Electricity",0.1571
+"FR",2018,"Natural gas",0.4956
+"FR",2018,"renewables",0.3473
+"FR",2019,"Electricity",0.1588
+"FR",2019,"Natural gas",0.4792
+"FR",2019,"renewables",0.362
+"FR",2020,"Electricity",0.1532
+"FR",2020,"Natural gas",0.4774
+"FR",2020,"renewables",0.3694
+"FR",2021,"Electricity",0.1626
+"FR",2021,"Natural gas",0.455
+"FR",2021,"renewables",0.3823
+"GE",2017,"Electricity",0.0172
+"GE",2017,"Natural gas",0.5789
+"GE",2017,"renewables",0.4039
+"GE",2018,"Electricity",0.0211
+"GE",2018,"Natural gas",0.6338
+"GE",2018,"renewables",0.3451
+"GE",2019,"Electricity",0.0201
+"GE",2019,"Natural gas",0.6851
+"GE",2019,"renewables",0.2949
+"GE",2020,"Electricity",0.0192
+"GE",2020,"Natural gas",0.7322
+"GE",2020,"renewables",0.2487
+"GE",2021,"Electricity",0.0166
+"GE",2021,"Natural gas",0.6524
+"GE",2021,"renewables",0.3311
+"HR",2017,"Electricity",0.0119
+"HR",2017,"Natural gas",0.2706
+"HR",2017,"renewables",0.7176
+"HR",2018,"Electricity",0.0134
+"HR",2018,"Natural gas",0.2688
+"HR",2018,"renewables",0.7178
+"HR",2019,"Electricity",0.014
+"HR",2019,"Natural gas",0.2668
+"HR",2019,"renewables",0.7192
+"HR",2020,"Electricity",0.0131
+"HR",2020,"Natural gas",0.2785
+"HR",2020,"renewables",0.7084
+"HR",2021,"Electricity",0.0133
+"HR",2021,"Natural gas",0.2685
+"HR",2021,"renewables",0.7182
+"HU",2017,"Electricity",0.0078
+"HU",2017,"Natural gas",0.5653
+"HU",2017,"renewables",0.4269
+"HU",2018,"Electricity",0.0082
+"HU",2018,"Natural gas",0.5883
+"HU",2018,"renewables",0.4035
+"HU",2019,"Electricity",0.0084
+"HU",2019,"Natural gas",0.5963
+"HU",2019,"renewables",0.3953
+"HU",2020,"Electricity",0.0161
+"HU",2020,"Natural gas",0.6056
+"HU",2020,"renewables",0.3783
+"HU",2021,"Electricity",0.0209
+"HU",2021,"Natural gas",0.6145
+"HU",2021,"renewables",0.3645
+"IE",2017,"Electricity",0.0359
+"IE",2017,"Natural gas",0.9426
+"IE",2017,"renewables",0.0215
+"IE",2018,"Electricity",0.036
+"IE",2018,"Natural gas",0.9425
+"IE",2018,"renewables",0.0216
+"IE",2019,"Electricity",0.0363
+"IE",2019,"Natural gas",0.941
+"IE",2019,"renewables",0.0228
+"IE",2020,"Electricity",0.036
+"IE",2020,"Natural gas",0.9408
+"IE",2020,"renewables",0.0232
+"IE",2021,"Electricity",0.0386
+"IE",2021,"Natural gas",0.9359
+"IE",2021,"renewables",0.0256
+"IT",2017,"Electricity",0.0042
+"IT",2017,"Natural gas",0.6668
+"IT",2017,"renewables",0.3291
+"IT",2018,"Electricity",0.0043
+"IT",2018,"Natural gas",0.6659
+"IT",2018,"renewables",0.3298
+"IT",2019,"Electricity",0.0042
+"IT",2019,"Natural gas",0.6663
+"IT",2019,"renewables",0.3294
+"IT",2020,"Electricity",0.0043
+"IT",2020,"Natural gas",0.6683
+"IT",2020,"renewables",0.3274
+"IT",2021,"Electricity",0.004
+"IT",2021,"Natural gas",0.6713
+"IT",2021,"renewables",0.3247
+"LT",2017,"Electricity",0.0126
+"LT",2017,"Natural gas",0.1664
+"LT",2017,"renewables",0.8209
+"LT",2018,"Electricity",0.013
+"LT",2018,"Natural gas",0.1684
+"LT",2018,"renewables",0.8186
+"LT",2019,"Electricity",0.0138
+"LT",2019,"Natural gas",0.1663
+"LT",2019,"renewables",0.82
+"LT",2020,"Electricity",0.0151
+"LT",2020,"Natural gas",0.1712
+"LT",2020,"renewables",0.8138
+"LT",2021,"Electricity",0.0172
+"LT",2021,"Natural gas",0.187
+"LT",2021,"renewables",0.7958
+"LU",2017,"Electricity",0.0427
+"LU",2017,"Natural gas",0.9
+"LU",2017,"renewables",0.0574
+"LU",2018,"Electricity",0.0382
+"LU",2018,"Natural gas",0.8955
+"LU",2018,"renewables",0.0663
+"LU",2019,"Electricity",0.0361
+"LU",2019,"Natural gas",0.9121
+"LU",2019,"renewables",0.0518
+"LU",2020,"Electricity",0.0696
+"LU",2020,"Natural gas",0.8847
+"LU",2020,"renewables",0.0458
+"LU",2021,"Electricity",0.077
+"LU",2021,"Natural gas",0.8697
+"LU",2021,"renewables",0.0532
+"LV",2017,"Electricity",0.0075
+"LV",2017,"Natural gas",0.1144
+"LV",2017,"renewables",0.8781
+"LV",2018,"Electricity",0.0073
+"LV",2018,"Natural gas",0.1137
+"LV",2018,"renewables",0.879
+"LV",2019,"Electricity",0.0075
+"LV",2019,"Natural gas",0.1102
+"LV",2019,"renewables",0.8824
+"LV",2020,"Electricity",0.0087
+"LV",2020,"Natural gas",0.115
+"LV",2020,"renewables",0.8764
+"LV",2021,"Electricity",0.0082
+"LV",2021,"Natural gas",0.1094
+"LV",2021,"renewables",0.8824
+"MD",2017,"Electricity",0.0047
+"MD",2017,"Natural gas",0.191
+"MD",2017,"renewables",0.8042
+"MD",2018,"Electricity",0.0046
+"MD",2018,"Natural gas",0.1893
+"MD",2018,"renewables",0.8061
+"MD",2019,"Electricity",0.0053
+"MD",2019,"Natural gas",0.2362
+"MD",2019,"renewables",0.7586
+"MD",2020,"Electricity",0.0054
+"MD",2020,"Natural gas",0.2385
+"MD",2020,"renewables",0.7561
+"MD",2021,"Electricity",0.0055
+"MD",2021,"Natural gas",0.2688
+"MD",2021,"renewables",0.7256
+"MK",2017,"Electricity",0.2769
+"MK",2017,"Natural gas",0.0209
+"MK",2017,"renewables",0.7022
+"MK",2018,"Electricity",0.2656
+"MK",2018,"Natural gas",0.02
+"MK",2018,"renewables",0.7144
+"MK",2019,"Electricity",0.3573
+"MK",2019,"Natural gas",0.0149
+"MK",2019,"renewables",0.6277
+"MK",2020,"Electricity",0.3741
+"MK",2020,"Natural gas",0.0142
+"MK",2020,"renewables",0.6118
+"MK",2021,"Electricity",0.3778
+"MK",2021,"Natural gas",0.0138
+"MK",2021,"renewables",0.6084
+"MT",2017,"Electricity",0.3646
+"MT",2017,"Natural gas",0.2636
+"MT",2017,"renewables",0.3718
+"MT",2018,"Electricity",0.345
+"MT",2018,"Natural gas",0.2145
+"MT",2018,"renewables",0.4406
+"MT",2019,"Electricity",0.3018
+"MT",2019,"Natural gas",0.2256
+"MT",2019,"renewables",0.4726
+"MT",2020,"Electricity",0.3394
+"MT",2020,"Natural gas",0.1916
+"MT",2020,"renewables",0.469
+"MT",2021,"Electricity",0.4226
+"MT",2021,"Natural gas",0.1542
+"MT",2021,"renewables",0.4232
+"NL",2017,"Electricity",0.0193
+"NL",2017,"Natural gas",0.8747
+"NL",2017,"renewables",0.106
+"NL",2018,"Electricity",0.0212
+"NL",2018,"Natural gas",0.8679
+"NL",2018,"renewables",0.1108
+"NL",2019,"Electricity",0.0248
+"NL",2019,"Natural gas",0.8589
+"NL",2019,"renewables",0.1163
+"NL",2020,"Electricity",0.0295
+"NL",2020,"Natural gas",0.8459
+"NL",2020,"renewables",0.1247
+"NL",2021,"Electricity",0.0291
+"NL",2021,"Natural gas",0.852
+"NL",2021,"renewables",0.1189
+"NO",2017,"Electricity",0.6356
+"NO",2017,"Natural gas",0.0248
+"NO",2017,"renewables",0.3396
+"NO",2018,"Electricity",0.637
+"NO",2018,"Natural gas",0.0182
+"NO",2018,"renewables",0.3448
+"NO",2019,"Electricity",0.6377
+"NO",2019,"Natural gas",0.0052
+"NO",2019,"renewables",0.3571
+"NO",2020,"Electricity",0.6317
+"NO",2020,"Natural gas",0.0023
+"NO",2020,"renewables",0.366
+"NO",2021,"Electricity",0.6144
+"NO",2021,"Natural gas",0.0021
+"NO",2021,"renewables",0.3835
+"PL",2017,"Electricity",0.0085
+"PL",2017,"Natural gas",0.5995
+"PL",2017,"renewables",0.3922
+"PL",2018,"Electricity",0.0073
+"PL",2018,"Natural gas",0.4879
+"PL",2018,"renewables",0.5048
+"PL",2019,"Electricity",0.0081
+"PL",2019,"Natural gas",0.4668
+"PL",2019,"renewables",0.5251
+"PL",2020,"Electricity",0.0084
+"PL",2020,"Natural gas",0.4887
+"PL",2020,"renewables",0.5029
+"PL",2021,"Electricity",0.0083
+"PL",2021,"Natural gas",0.4784
+"PL",2021,"renewables",0.5133
+"PT",2017,"Electricity",0.0511
+"PT",2017,"Natural gas",0.0754
+"PT",2017,"renewables",0.8735
+"PT",2018,"Electricity",0.0525
+"PT",2018,"Natural gas",0.0804
+"PT",2018,"renewables",0.867
+"PT",2019,"Electricity",0.0524
+"PT",2019,"Natural gas",0.075
+"PT",2019,"renewables",0.8727
+"PT",2020,"Electricity",0.0524
+"PT",2020,"Natural gas",0.079
+"PT",2020,"renewables",0.8685
+"PT",2021,"Electricity",0.0541
+"PT",2021,"Natural gas",0.0722
+"PT",2021,"renewables",0.8736
+"RO",2017,"Electricity",0.0019
+"RO",2017,"Natural gas",0.2958
+"RO",2017,"renewables",0.7022
+"RO",2018,"Electricity",0.0019
+"RO",2018,"Natural gas",0.3063
+"RO",2018,"renewables",0.6917
+"RO",2019,"Electricity",0.002
+"RO",2019,"Natural gas",0.3102
+"RO",2019,"renewables",0.6878
+"RO",2020,"Electricity",0.002
+"RO",2020,"Natural gas",0.3268
+"RO",2020,"renewables",0.6712
+"RO",2021,"Electricity",0.0019
+"RO",2021,"Natural gas",0.3513
+"RO",2021,"renewables",0.6468
+"RS",2017,"Electricity",0.0835
+"RS",2017,"Natural gas",0.2684
+"RS",2017,"renewables",0.6481
+"RS",2018,"Electricity",0.0802
+"RS",2018,"Natural gas",0.2538
+"RS",2018,"renewables",0.6659
+"RS",2019,"Electricity",0.0797
+"RS",2019,"Natural gas",0.2547
+"RS",2019,"renewables",0.6657
+"RS",2020,"Electricity",0.0618
+"RS",2020,"Natural gas",0.2189
+"RS",2020,"renewables",0.7193
+"RS",2021,"Electricity",0.062
+"RS",2021,"Natural gas",0.1868
+"RS",2021,"renewables",0.7512
+"SE",2017,"Electricity",0.2808
+"SE",2017,"Natural gas",0.0486
+"SE",2017,"renewables",0.6706
+"SE",2018,"Electricity",0.2931
+"SE",2018,"Natural gas",0.0462
+"SE",2018,"renewables",0.6606
+"SE",2019,"Electricity",0.293
+"SE",2019,"Natural gas",0.0444
+"SE",2019,"renewables",0.6626
+"SE",2020,"Electricity",0.2867
+"SE",2020,"Natural gas",0.0493
+"SE",2020,"renewables",0.664
+"SE",2021,"Electricity",0.296
+"SE",2021,"Natural gas",0.0146
+"SE",2021,"renewables",0.6893
+"SI",2017,"Electricity",0.0462
+"SI",2017,"Natural gas",0.2599
+"SI",2017,"renewables",0.694
+"SI",2018,"Electricity",0.0538
+"SI",2018,"Natural gas",0.2607
+"SI",2018,"renewables",0.6855
+"SI",2019,"Electricity",0.0641
+"SI",2019,"Natural gas",0.2629
+"SI",2019,"renewables",0.6731
+"SI",2020,"Electricity",0.0759
+"SI",2020,"Natural gas",0.2608
+"SI",2020,"renewables",0.6633
+"SI",2021,"Electricity",0.0755
+"SI",2021,"Natural gas",0.2331
+"SI",2021,"renewables",0.6913
+"SK",2017,"Electricity",0.0566
+"SK",2017,"Natural gas",0.6637
+"SK",2017,"renewables",0.2797
+"SK",2018,"Electricity",0.0572
+"SK",2018,"Natural gas",0.6691
+"SK",2018,"renewables",0.2737
+"SK",2019,"Electricity",0.0551
+"SK",2019,"Natural gas",0.4808
+"SK",2019,"renewables",0.4641
+"SK",2020,"Electricity",0.0703
+"SK",2020,"Natural gas",0.4789
+"SK",2020,"renewables",0.4508
+"SK",2021,"Electricity",0.0704
+"SK",2021,"Natural gas",0.4643
+"SK",2021,"renewables",0.4654
+"UA",2017,"Electricity",0.0188
+"UA",2017,"Natural gas",0.5698
+"UA",2017,"renewables",0.4115
+"UA",2018,"Electricity",0.0184
+"UA",2018,"Natural gas",0.6004
+"UA",2018,"renewables",0.3813
+"UA",2019,"Electricity",0.0213
+"UA",2019,"Natural gas",0.5665
+"UA",2019,"renewables",0.4123
+"UK",2017,"Electricity",0.0652
+"UK",2017,"Natural gas",0.8476
+"UK",2017,"renewables",0.0872
+"UK",2018,"Electricity",0.0644
+"UK",2018,"Natural gas",0.8455
+"UK",2018,"renewables",0.0901
+"XK",2017,"Electricity",0.1036
+"XK",2017,"renewables",0.8965
+"XK",2018,"Electricity",0.1002
+"XK",2018,"Natural gas",0.0467
+"XK",2018,"renewables",0.8531
+"XK",2019,"Electricity",0.1096
+"XK",2019,"Natural gas",0.0254
+"XK",2019,"renewables",0.865
+"XK",2020,"Electricity",0.1206
+"XK",2020,"Natural gas",0.0134
+"XK",2020,"renewables",0.866
+"XK",2021,"Electricity",0.1401
+"XK",2021,"Natural gas",0.0275
+"XK",2021,"renewables",0.8323
