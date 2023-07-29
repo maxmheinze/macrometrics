@@ -22,10 +22,12 @@ prices <- read_csv("./project/data/prices.csv")
 
 temperature <- read_csv("./project/data/temperature_weekly.csv")
 
+
 # Data Merge --------------------------------------------------------------
 
-temp_mort <- temperature %>%
-  left_join(age_adjusted_weekly_mortality, by = c("nuts_code", "nuts_level", "week", "year"))
+
+temp_mort <- age_adjusted_weekly_mortality %>%
+  left_join(temperature, by = c("nuts_code", "nuts_level", "week", "year"))
 
 prices_1 <- prices %>%
   mutate(country = countrycode(prices$country_clean, "country.name", "eurostat"))
@@ -40,8 +42,5 @@ temp_mort_prices <- temp_mort_date %>%
   left_join(prices_1, by = c("country", "year", "month")) %>%
   select(!c(capital, country, country_code, country_clean)) %>%
   select(nuts_code, nuts_level, dates, year, month, week, temperature, age_adjusted_mortality, gas_ppi, elect_ppi)
-
-
-
 
 
