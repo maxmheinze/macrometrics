@@ -1,8 +1,19 @@
+
+
+# Header ------------------------------------------------------------------
+
 pacman::p_load(
   dplyr,
   tidyr,
   countrycode
 )
+
+
+
+
+# EC shares ---------------------------------------------------------------
+
+
 
 EC_shares_HH <- read.csv("...") %>%
   filter(!siec=="TOTAL") %>%
@@ -18,4 +29,26 @@ EC_shares_HH <- read.csv("...") %>%
   select(ccode,cname,year,energy_carrier,values_TJ,shares) %>%
   arrange(ccode)
 
-write.csv(EC_shares_HH, file = "...", row.names = FALSE)
+
+#Summarizing to Shares 
+EC_shares_HH <- EC_shares_HH %>%
+  group_by(ccode, year, energy_carrier) %>%
+  mutate(energy_carrier = case_when(
+          energy_carrier == "Electricity" ~ "Electricity",
+          energy_carrier == "Renewables and biofuels"  ~ "renewables",
+          energy_carrier == "Heat"  ~ "renewables", 
+          energy_carrier == "Oil and petroleum products" ~ "Natural gas", 
+          energy_carrier == "Solid fossil fuels" ~ "Natural gas", 
+  )) 
+
+EC_shares_HH <- EC_shares_HH %>%
+  mutate(energy_carrier = case_when(
+    is.na(energy_carrier) ~ "Natural gas",
+    energy_carrier == "Electricity" ~ "Electricity",
+    energy_carrier == "renewables" ~ "renewables", 
+    energy_carrier == "Natural gas" ~ "Natural gas"
+  )) %>%
+  group_by(ccode, year, energy_carrier) %>%
+  summarize(shares = sum(shares))
+
+write.csv(EC_shares_HH, file = "./project/data/ec_shares_hh.csv", row.names = FALSE)

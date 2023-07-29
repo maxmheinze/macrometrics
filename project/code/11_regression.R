@@ -40,7 +40,8 @@ data_temp <- temp_mort_prices %>%
            !(dates >= as.Date("2020-03-01") & dates <= as.Date("2022-03-05"))) %>%
   mutate(age_adjusted_mortality = age_adjusted_mortality*100000) %>%
   group_by(nuts_code, year, month, week)  %>% 
-  mutate(date = paste(year, month, week, sep = "-"))
+  mutate(date = paste(year, month, week, sep = "-")) %>%
+  select(!dates)
 
 breaks <- c(-Inf, 0, 5, 10, 15, 20, 25, 30, Inf)
 labels <- c("<0", "0-5", "5-10", "10-15", "15-20", "20-25", "25-30", ">30")
@@ -108,7 +109,7 @@ summary(reg_3)
 reg_4 = plm(age_adjusted_mortality ~ log(lag_pcap) + temperature + I(temperature^2) + log(lag_pcap):temperature + log(lag_pcap):I(temperature^2), 
             effect = "twoways",
             model = "within",
-            data = pdata)
+            data = pdata %>% mutate(temperature = temperature + 273.15))
 
 summary(reg_4)
 
