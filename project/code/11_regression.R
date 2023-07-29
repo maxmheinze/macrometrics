@@ -64,7 +64,7 @@ data_temp <- data_temp %>%
 
 pdata <- pdata.frame(data_temp, index = c("nuts_code","date"))
 
-pdata$lag_pcap <- lag(pdata$gas_ppi, 8)
+pdata$lag_pcap <- lag(pdata$gas_ppi, 12)
 
 pdata$lag_pecep <- lag(pdata$elect_ppi, 8)
 
@@ -98,20 +98,26 @@ reg_2 = plm((age_adjusted_mortality) ~ log(lag_pcap),
 
 summary(reg_2)
 
-
-reg_3 = plm((age_adjusted_mortality) ~ temp_bin + log(lag_pcap) + log(lag_pcap):temp_bin, 
-             data = pdata, 
-             model = "within", 
-             effect = "twoways")
+reg_3 = plm((age_adjusted_mortality) ~ temp_bin + (lag_pcap) + (lag_pcap):temp_bin, 
+            data = pdata, 
+            model = "within", 
+            effect = "twoways")
 summary(reg_3)
 
+reg_4 = plm((age_adjusted_mortality) ~ temp_bin + log(lag_pcap) + log(lag_pcap):temp_bin, 
+            data = pdata, 
+            model = "within", 
+            effect = "twoways")
+summary(reg_4)
 
-reg_4 = plm(age_adjusted_mortality ~ log(lag_pcap) + temperature + I(temperature^2) + log(lag_pcap):temperature + log(lag_pcap):I(temperature^2), 
+
+reg_5 = plm(age_adjusted_mortality ~ log(lag_pcap) + temperature + I(temperature^2) + log(lag_pcap):temperature + log(lag_pcap):I(temperature^2), 
             effect = "twoways",
             model = "within",
             data = pdata %>% mutate(temperature = temperature + 273.15))
 
-summary(reg_4)
+summary(reg_5)
+
 
 
 # Garbage -----------------------------------------------------------------

@@ -12,11 +12,13 @@ pacman::p_load(
   plm, 
   nlme, 
   lme4, 
-  lmerTest, 
+  lmerTest 
 )
 
 source("./project/code/07_data_merge.R")
 
+
+ec_shares_hh <- read_csv("./project/data/ec_shares_hh.csv")
 
 
 # Data Wrangling ----------------------------------------------------------
@@ -25,7 +27,7 @@ temp_mort_prices$dates <- as.Date(temp_mort_prices$dates)
 
 # combine filter conditions and avoid converting date to factor
 data_temp <- temp_mort_prices %>% 
-  filter(nuts_level == 3  & 
+  filter(nuts_level == 0  & 
            !(dates >= as.Date("2020-03-01") & dates <= as.Date("2022-03-05"))) %>%
   mutate(age_adjusted_mortality = age_adjusted_mortality*100000) %>%
   group_by(nuts_code, year, month, week)  %>% 
@@ -48,8 +50,14 @@ pdata <- na.omit(pdata, cols = "temp_bin")
 
 pdata$temp_bin <- relevel(pdata$temp_bin, ref = "10-15")
 
+ec_shares_hh_1 <- ec_shares_hh %>% 
+  rename(nuts_code = ccode) %>% 
+  filter(energy_carrier == "Natural gas") %>%
+  select(nuts_code, shares, year)
+
+test <- pdata %>%
+  left_join(ec_shares_hh_1, by = c("nuts_code", "year")) 
 
 # Shift Share Regression --------------------------------------------------
 
-ec_shares_hh <- read_csv("./project/data/ec_shares_hh.csv")
 
