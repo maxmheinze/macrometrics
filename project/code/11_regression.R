@@ -36,7 +36,7 @@ temp_mort_prices$dates <- as.Date(temp_mort_prices$dates)
 
 # combine filter conditions and avoid converting date to factor
 data_temp <- temp_mort_prices %>% 
-  filter(nuts_level == 3 & 
+  filter(nuts_level == 3  & 
            !(dates >= as.Date("2020-03-01") & dates <= as.Date("2022-03-05"))) %>%
   mutate(age_adjusted_mortality = age_adjusted_mortality*100000) %>%
   group_by(nuts_code, year, month, week)  %>% 
@@ -75,6 +75,9 @@ pdata <- na.omit(pdata, cols = "temp_bin")
 pdata$temp_bin <- relevel(pdata$temp_bin, ref = "10-15")
 
 
+
+
+
 # regression analysis --------------------------------------------------------------
 
 # preferred specification -------------------------------------------------
@@ -90,10 +93,9 @@ summary(reg_1)
 reg_2 = plm((age_adjusted_mortality) ~ log(lag_pcap), 
             effect = "twoways",    
             model = "within",
-            data = pdata %>% filter(month %in% c(11, 12, 1, 2))
+            data = pdata %>% filter(month %in% c(11, 12, 1, 2)))
 
 summary(reg_2)
-
 
 
 reg_3 = plm((age_adjusted_mortality) ~ temp_bin + log(lag_pcap) + log(lag_pcap):temp_bin, 
@@ -109,7 +111,6 @@ reg_4 = plm(age_adjusted_mortality ~ log(lag_pcap) + temperature + I(temperature
             data = pdata)
 
 summary(reg_4)
-
 
 
 # Garbage -----------------------------------------------------------------
