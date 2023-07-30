@@ -131,9 +131,15 @@ dfpdata_nuts <- dfpdata %>%
 
 #lmer uses the same syntax as brms 
 
-model_lmer <- lmer(age_adjusted_mortality ~ log(lag_gas) * temp_bin + (1|country/nuts_1/nuts_2/nuts_3) + (1|date), data = dfpdata_nuts)
-summary(model_lmer)
+model <- brm(
+  formula = age_adjusted_mortality ~  log(lag_gas) * temp_bin + (1|country/nuts_1/nuts_2/nuts_3) + (1|date),
+  data = dfpdata_nuts, 
+  family = gaussian(), 
+  iter = 2000, 
+  chains = 4
+)
 
+summary(model)
 
 
 model3 <- brm(popular ~ 1 + sex + extrav + (1 + sex + extrav | class),  
