@@ -272,8 +272,8 @@ dfpdata_nuts <- dfpdata %>%
   mutate(country = as.factor(substr(nuts_code, 1, 2))) %>%
   mutate(nuts_1 = as.factor(substr(nuts_code, 1, 3))) %>%
   mutate(nuts_2 = as.factor(substr(nuts_code, 1, 4))) %>%
-  mutate(nuts_3 = as.factor(substr(nuts_code, 1, 5))) %>%
+  mutate(nuts_3 = as.factor(substr(nuts_code, 1, 5))) 
   
-model_lmer <- lmer(age_adjusted_mortality ~ log(lag_gas) * temp_bin + (1|country/nuts_1/nuts_2/nuts_3) + (1|date), data = dfpdata)
+model_lmer <- lmer(age_adjusted_mortality ~ log(lag_gas) * temp_bin + (1|country/nuts_1/nuts_2/nuts_3) + (1|date), data = dfpdata_nuts)
 summary(model_lmer)
 
