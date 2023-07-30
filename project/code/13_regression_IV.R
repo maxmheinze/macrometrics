@@ -77,29 +77,26 @@ final <- pdata %>%
   left_join(df_full, by = c("nuts_code", "year")) 
 
 
-
+final <- final %>% 
+  group_by(nuts_code, year) %>%
+  mutate(share_2017 = case_when(shares ))
 
 
 # Shift Share Regression --------------------------------------------------
 
 
-reg_1 = plm(age_adjusted_mortality ~ I(log(lag_pcap/lag_pecep)*shares), 
+reg_1 = plm(log(age_adjusted_mortality) ~ I(log(lag_pcap/lag_pecep)*shares), 
             data = final, 
             model = "within", 
             effect = "twoways")
 summary(reg_1)
 
-reg_2 = plm(age_adjusted_mortality ~ I(log(lag_pcap/lag_pecep)*shares), 
+reg_2 = plm(log(age_adjusted_mortality) ~ I(log(lag_pcap/lag_pecep)*shares), 
              data = (final %>% filter(month %in% c(11, 12, 1, 2, 3))), 
              model = "within", 
              effect = "twoways")
 summary(reg_2)
 
 
-reg_3 = plm(age_adjusted_mortality ~ I(log(lag_pcap/lag_pecep)*shares), 
-            data = final, 
-            model = "within", 
-            effect = "twoways")
-summary(reg_3)
 
 
