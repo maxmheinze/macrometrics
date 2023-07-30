@@ -20,7 +20,6 @@ full_data <- temp_mort_prices %>%
 # Fit Model ---------------------------------------------------------------
 
 
-
 # Fit the model
 model <- brm(
   formula = age_adjusted_mortality ~ gas_ppi * temperature + (1 | nuts_code),

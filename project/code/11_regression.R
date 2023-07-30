@@ -51,29 +51,13 @@ labels <- c("<0", "0-5", "5-10", "10-15", "15-20", "20-25", "25-30", ">30")
 data_temp <- data_temp %>% 
   mutate(temp_bin = cut(temperature, breaks = breaks, labels = labels, right = FALSE, include.lowest = TRUE))
 
-#### 
 
-#data_temp <- data_temp %>% 
-#  mutate(temp_bin = case_when(
-#      temperature < 0 ~ "<0",
-#      temperature >= 0 & temperature < 5 ~ "0-5",
-#      temperature >= 5 & temperature < 10 ~ "5-10",
-#      temperature >= 10 & temperature < 15 ~ "10-15",
-#      temperature >= 15 & temperature < 20 ~ "15-20",
-#      temperature >= 20 & temperature < 25 ~ "20-25",
-#      temperature >= 25 & temperature < 30 ~ "25-30",
-#      temperature >= 30 ~ ">30")) 
 
 pdata <- pdata.frame(data_temp, index = c("nuts_code","date"))
 
 pdata$lag_gas <- lag(pdata$gas_ppi, 8)
 
 pdata$lag_elect <- lag(pdata$elect_ppi, 8)
-
-#pdata <- pdata %>% 
-#  mutate(temp_bin = as_factor(pdata$temp_bin))
-
-#pdata <- na.omit(pdata, cols = "temp_bin")
 
 pdata$temp_bin <- relevel(pdata$temp_bin, ref = "10-15")
 
@@ -280,7 +264,16 @@ reg_12 = plm((age_adjusted_mortality) ~ temp_bin + log(lag_pcap/lag_pecep)*temp_
 summary(reg_12)
 
 
+# Trying out some mixed models --------------------------------------------
 
+dfpdata <- as.data.frame(pdata)
 
-
+dfpdata_nuts <- dfpdata %>% 
+  mutate(country = as.factor(substr(nuts_code, 1, 2))) %>%
+  mutate(nuts_1 = as.factor(substr(nuts_code, 1, 3))) %>%
+  mutate(nuts_2 = as.factor(substr(nuts_code, 1, 4))) %>%
+  mutate(nuts_3 = as.factor(substr(nuts_code, 1, 5))) %>%
+  
+model_lmer <- lmer(age_adjusted_mortality ~ log(lag_gas) * temp_bin + (1|country/nuts_1/nuts_2/nuts_3) + (1|date), data = dfpdata)
+summary(model_lmer)
 
