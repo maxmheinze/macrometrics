@@ -12,8 +12,9 @@ pacman::p_load(
   plm, 
   nlme, 
   lme4, 
-  lmerTest, 
-  sandwich
+  lmtest, 
+  sandwich, 
+  stargazer
 )
 
 source("./project/code/07_data_merge.R")
@@ -65,9 +66,9 @@ data_temp <- data_temp %>%
 
 pdata <- pdata.frame(data_temp, index = c("nuts_code","date"))
 
-pdata$lag_pcap <- lag(pdata$gas_ppi, 8)
+pdata$lag_gas <- lag(pdata$gas_ppi, 8)
 
-pdata$lag_pecep <- lag(pdata$elect_ppi, 8)
+pdata$lag_elect <- lag(pdata$elect_ppi, 8)
 
 #pdata <- pdata %>% 
 #  mutate(temp_bin = as_factor(pdata$temp_bin))
@@ -76,89 +77,119 @@ pdata$lag_pecep <- lag(pdata$elect_ppi, 8)
 
 pdata$temp_bin <- relevel(pdata$temp_bin, ref = "10-15")
 
-pdata <- pdata %>% mutate(winter = case_when(
+pdata <- pdata %>% mutate(winter = as.integer(case_when(
   month %in% c(11, 12, 1, 2, 3) ~ "1", 
-  month %in% c(4, 5, 6, 7, 8, 9, 10) ~ "0"))
-
+  month %in% c(4, 5, 6, 7, 8, 9, 10) ~ "0")))
 
 # regression analysis --------------------------------------------------------------
 
-# preferred specification -------------------------------------------------
 
-reg_1 = plm(age_adjusted_mortality ~ log(lag_pecep), 
-            effect = "twoways",
+# TABLE 1 -----------------------------------------------------------------
+
+reg_1 = plm(age_adjusted_mortality ~ log(lag_elect), 
+            effect = "twoways",    
             model = "within",
             data = pdata)
 
 summary(reg_1)
 
 
-reg_1 = plm(age_adjusted_mortality ~ log(lag_pcap) + winter*log(lag_pcap), 
-            effect = "twoways",
+reg_2 = plm(age_adjusted_mortality ~ log(lag_gas), 
+            effect = "twoways",    
             model = "within",
             data = pdata)
 
-summary(reg_1)
-
-reg_2 = plm(age_adjusted_mortality ~ log(lag_pcap), 
-            effect = "twoways",    
-            model = "within",
-            data = pdata %>% 
-              filter(winter == "1"))
-
 summary(reg_2)
 
-reg_2 = plm((age_adjusted_mortality) ~ log(lag_pcap), 
-            effect = "twoways",    
+reg_3 = plm(age_adjusted_mortality ~ log(lag_elect) + winter* log(lag_elect), 
+            effect = "twoways",
             model = "within",
-            data = pdata %>% 
-              filter(winter == "0"))
-
-summary(reg_2)
-
-reg_3 = plm((age_adjusted_mortality) ~ log(lag_pcap), 
-            effect = "twoways",    
-            model = "within",
-            data = pdata %>% filter(month %in% c(4, 5, 6, 7, 8, 9, 10)))
+            data = pdata)
 
 summary(reg_3)
 
+reg_4 = plm(age_adjusted_mortality ~ log(lag_gas) + winter*log(lag_gas), 
+            effect = "twoways",
+            model = "within",
+            data = pdata)
 
-
-reg_4 = plm((age_adjusted_mortality) ~ temp_bin + log(lag_pcap) + log(lag_pcap):temp_bin, 
-            data = pdata, 
-            model = "within", 
-            effect = "twoways")
 summary(reg_4)
 
-lmtestcoeftest(reg_4, vcov=vcovHC(reg_4,type="HC0",cluster="group"))
+stargazer(reg_1, reg_2, reg_3, reg_4, 
+          se=list(coeftest(reg_1, vcovHC(reg_1,type="HC0",cluster="group"))[,"Std. Error"],
+                  coeftest(reg_2, vcovHC(reg_2,type="HC0",cluster="group"))[,"Std. Error"],
+                  coeftest(reg_3, vcovHC(reg_3,type="HC0",cluster="group"))[,"Std. Error"],
+                  coeftest(reg_4, vcovHC(reg_4,type="HC0",cluster="group"))[,"Std. Error"]))
 
-reg_5 = plm((age_adjusted_mortality) ~ temp_bin + log(lag_pcap) + log(lag_pcap):temp_bin, 
+
+
+# TABLE 1 END -------------------------------------------------------------
+
+
+
+# TABLE 2 -----------------------------------------------------------------
+
+
+# TABLE 2 END -------------------------------------------------------------
+
+
+# temperature -------------------------------------------------------------
+
+reg_3 = plm(age_adjusted_mortality ~ temp_bin, 
+            data = pdata, 
+            model = "within", 
+            effect = "twoways")
+summary(reg_3, vcov=vcovHC(reg_3,type="HC0",cluster="group"))
+
+reg_4 = plm(age_adjusted_mortality ~ temp_bin + log(lag_gas) + log(lag_gas):temp_bin, 
+            data = pdata, 
+            model = "within", 
+            effect = "twoways")
+summary(reg_4, vcov=vcovHC(reg_4,type="HC0",cluster="group"))
+
+lmtest::coeftest(reg_4, vcov=vcovHC(reg_4,type="HC0",cluster="group"))
+
+reg_5 = plm(age_adjusted_mortality ~ temp_bin + log(lag_elect) + log(lag_elect):temp_bin, 
+            data = pdata, 
+            model = "within", 
+            effect = "twoways")
+summary(reg_5, vcov=vcovHC(reg_5,type="HC0",cluster="group"))
+
+lmtest::coeftest(reg_5, vcov=vcovHC(reg_5,type="HC0",cluster="group"))
+
+
+stargazer(reg_3, reg_4, reg_5, 
+          se=list(coeftest(reg_3, vcovHC(reg_3,type="HC0",cluster="group"))[,"Std. Error"],
+                  coeftest(reg_4, vcovHC(reg_4,type="HC0",cluster="group"))[,"Std. Error"],
+                  coeftest(reg_5, vcovHC(reg_5,type="HC0",cluster="group"))[,"Std. Error"]))
+
+
+
+
+reg_5 = plm(age_adjusted_mortality ~ temp_bin + log(lag_elect) + log(lag_elect):temp_bin, 
             data = pdata, 
             model = "within", 
             effect = "twoways")
 summary(reg_5)
 
+lmtest::coeftest(reg_5, vcov=vcovHC(reg_5,type="HC0",cluster="group"))
 
-reg_5 = plm((age_adjusted_mortality) ~ temp_bin + log(lag_pecep) + log(lag_pecep):temp_bin, 
-            data = pdata, 
-            model = "within", 
-            effect = "twoways")
-summary(reg_5)
-
-reg_5 = plm(age_adjusted_mortality ~ log(lag_pcap) + temperature + I(temperature^2) + log(lag_pcap):temperature + log(lag_pcap):I(temperature^2), 
+reg_5 = plm(age_adjusted_mortality ~ log(lag_gas) + temperature + I(temperature^2) + log(lag_gas):temperature + log(lag_gas):I(temperature^2), 
             effect = "twoways",
             model = "within",
             data = pdata %>% mutate(temperature = temperature + 273.15))
 
 summary(reg_5)
 
-reg_6 = plm(age_adjusted_mortality ~ log(lag_pecep) + temperature + I(temperature^2) + log(lag_pecep):temperature + log(lag_pecep):I(temperature^2), 
+reg_6 = plm(age_adjusted_mortality ~ log(lag_elect) + temperature + I(temperature^2) + log(lag_elect):temperature + log(lag_elect):I(temperature^2), 
             effect = "twoways",
             model = "within",
             data = pdata %>% mutate(temperature = temperature + 273.15))
 
-summary(reg_6)
+summary(reg_6, clutster = "nuts_code")
+
+
+
 
 
 # Garbage -----------------------------------------------------------------
