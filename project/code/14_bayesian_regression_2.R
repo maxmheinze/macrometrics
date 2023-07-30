@@ -3,7 +3,8 @@
 
 pacman::p_load(
   tidyverse,
-  brms
+  brms, 
+  plm
 )
 
 source("./project/code/07_data_merge.R")
