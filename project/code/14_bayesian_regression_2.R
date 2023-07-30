@@ -50,25 +50,26 @@ model <- brm(
 summary(model)
 
 
+nuts_3_hier <- full_data %>%
+  dplyr::filter(nuts_level == 3)
 
 
+nuts_3_hier$nuts0 <- substr(nuts_3_hier$nuts_code, 1, 2)
+nuts_3_hier$nuts1 <- substr(nuts_3_hier$nuts_code, 1, 3)
+nuts_3_hier$nuts2 <- substr(nuts_3_hier$nuts_code, 1, 4)
+nuts_3_hier$nuts3 <- nuts_3_hier$nuts_code
 
-your_dataframe$nuts0 <- substr(your_dataframe$nuts_code, 1, 2)
-your_dataframe$nuts1 <- substr(your_dataframe$nuts_code, 1, 3)
-your_dataframe$nuts2 <- substr(your_dataframe$nuts_code, 1, 4)
-your_dataframe$nuts3 <- your_dataframe$nuts_code
-
-
+nuts_3_hier$datechar <- as.character(nuts_3_hier$dates)
 
 
 
 # Fit the model
 model <- brm(
-  formula = age_adjusted_mortality ~ gas_ppi * temperature * year + (1 | nuts0/nuts1/nuts2/nuts3),
-  data = your_dataframe, 
+  formula = age_adjusted_mortality ~ 1 + datechar + (1 + gas_ppi * temperature| nuts0/nuts1/nuts2/nuts3),
+  data = nuts_3_hier, 
   family = gaussian(), 
   iter = 2000, 
-  chains = 4
+  chains = 2
 )
 
 # Check the summary of the model
