@@ -34,46 +34,46 @@ summary(model)
 
 
 
-# From Chat GPT, needs check ----------------------------------------------
-
-
-# Fit the model
-model <- brm(
-  formula = age_adjusted_mortality ~ gas_ppi * temperature * year + (1 | nuts_code),
-  data = your_dataframe, # replace with your actual dataframe name
-  family = gaussian(), # adjust if needed; gaussian is for continuous outcomes
-  iter = 2000, 
-  chains = 4
-)
-
-# Check the summary of the model
-summary(model)
-
-
-nuts_3_hier <- full_data %>%
-  dplyr::filter(nuts_level == 3)
-
-
-nuts_3_hier$nuts0 <- substr(nuts_3_hier$nuts_code, 1, 2)
-nuts_3_hier$nuts1 <- substr(nuts_3_hier$nuts_code, 1, 3)
-nuts_3_hier$nuts2 <- substr(nuts_3_hier$nuts_code, 1, 4)
-nuts_3_hier$nuts3 <- nuts_3_hier$nuts_code
-
-nuts_3_hier$datechar <- as.character(nuts_3_hier$dates)
-
-
-
-# Fit the model
-model <- brm(
-  formula = age_adjusted_mortality ~ 1 + datechar + (1 + gas_ppi * temperature| nuts0/nuts1/nuts2/nuts3),
-  data = nuts_3_hier, 
-  family = gaussian(), 
-  iter = 2000, 
-  chains = 2
-)
-
-# Check the summary of the model
-summary(model)
+## From Chat GPT, needs check ----------------------------------------------
+#
+#
+## Fit the model
+#model <- brm(
+#  formula = age_adjusted_mortality ~ gas_ppi * temperature * year + (1 | nuts_code),
+#  data = your_dataframe, # replace with your actual dataframe name
+#  family = gaussian(), # adjust if needed; gaussian is for continuous outcomes
+#  iter = 2000, 
+#  chains = 4
+#)
+#
+## Check the summary of the model
+#summary(model)
+#
+#
+#nuts_3_hier <- full_data %>%
+#  dplyr::filter(nuts_level == 3)
+#
+#
+#nuts_3_hier$nuts0 <- substr(nuts_3_hier$nuts_code, 1, 2)
+#nuts_3_hier$nuts1 <- substr(nuts_3_hier$nuts_code, 1, 3)
+#nuts_3_hier$nuts2 <- substr(nuts_3_hier$nuts_code, 1, 4)
+#nuts_3_hier$nuts3 <- nuts_3_hier$nuts_code
+#
+#nuts_3_hier$datechar <- as.character(nuts_3_hier$dates)
+#
+#
+#
+## Fit the model
+#model <- brm(
+#  formula = age_adjusted_mortality ~ 1 + datechar + (1 + gas_ppi * temperature| nuts0/nuts1/nuts2/nuts3),
+#  data = nuts_3_hier, 
+#  family = gaussian(), 
+#  iter = 2000, 
+#  chains = 2
+#)
+#
+## Check the summary of the model
+#summary(model)
 
 
 
@@ -133,6 +133,14 @@ dfpdata_nuts <- dfpdata %>%
 
 model_lmer <- lmer(age_adjusted_mortality ~ log(lag_gas) * temp_bin + (1|country/nuts_1/nuts_2/nuts_3) + (1|date), data = dfpdata_nuts)
 summary(model_lmer)
+
+
+
+model3 <- brm(popular ~ 1 + sex + extrav + (1 + sex + extrav | class),  
+              data = popular2data, 
+              warmup = 1000, iter = 3000, 
+              cores = 2, chains = 2, 
+              seed = 123) #to run the model
 
 
 
