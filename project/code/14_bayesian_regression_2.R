@@ -4,7 +4,8 @@
 pacman::p_load(
   tidyverse,
   brms, 
-  plm
+  plm, 
+  rstanarm
 )
 
 source("./project/code/07_data_merge.R")
@@ -152,6 +153,29 @@ model3 <- brm(popular ~ 1 + sex + extrav + (1 + sex + extrav | class),
 
 
 
+
+# rstanarm ----------------------------------------------------------------
+
+stan_lm(age_adjusted_mortality ~ temp_bin*log(lag_gas) + nuts_code + date, 
+        data = dfpdata_nuts)
+
+model <- stan_lm(
+  age_adjusted_mortality ~ temp_bin*log(lag_gas) + nuts_code + date, 
+  data = dfpdata_nuts, 
+  family = gaussian(), 
+  chains = 2, 
+  iter = 200,
+  seed = 123
+)
+
+model <- stan_glmer(
+  age_adjusted_mortality ~ log(lag_gas) + (1 | nuts_3/country),
+  data = dfpdata_nuts, 
+  family = gaussian(), 
+  chains = 4, 
+  iter = 100,
+  seed = 123
+)
 
 
 
