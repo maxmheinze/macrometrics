@@ -40,10 +40,10 @@ data_temp_1 <- data_temp %>%
 breaks <- c(-Inf, 0, 5, 10, 15, 20, 25, 30, Inf)
 labels <- c("<0", "0-5", "5-10", "10-15", "15-20", "20-25", "25-30", ">30")
 
-data_temp <- data_temp %>% 
+data_temp_2 <- data_temp_1 %>% 
   mutate(temp_bin = cut(temperature, breaks = breaks, labels = labels, right = FALSE, include.lowest = TRUE))
 
-pdata <- pdata.frame(data_temp, index = c("nuts_code","date"))
+pdata <- pdata.frame(data_temp_2, index = c("nuts_code","date"))
 
 pdata$lag_gas <- lag(pdata$gas_ppi, 8)
 
@@ -63,5 +63,4 @@ dfpdata_nuts <- dfpdata %>%
   mutate(nuts_1 = as.factor(substr(nuts_code, 1, 3))) %>%
   mutate(nuts_2 = as.factor(substr(nuts_code, 1, 4))) %>%
   mutate(nuts_3 = as.factor(substr(nuts_code, 1, 5))) 
-
 
