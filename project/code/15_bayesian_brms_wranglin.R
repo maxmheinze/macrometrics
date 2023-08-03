@@ -22,7 +22,7 @@ full_data <- temp_mort_prices %>%
 
 # combine filter conditions and avoid converting date to factor
 data_temp <- full_data %>% 
-  filter(nuts_level == 3) %>%  
+  filter(nuts_level == 0) %>%  
   group_by(nuts_code, year, month, week)  %>% 
   mutate(date = paste(year, month, week, sep = "-")) 
 
@@ -57,10 +57,43 @@ pdata <- pdata %>% mutate(winter = as.integer(case_when(
 
 dfpdata <- as.data.frame(pdata)
 
+dfpdata$row_number <- as.factor(dfpdata$row_number)
+
 dfpdata_nuts <- dfpdata %>% 
   filter(!is.na(lag_gas)) %>%
   mutate(country = as.factor(substr(nuts_code, 1, 2))) %>%
   mutate(nuts_1 = as.factor(substr(nuts_code, 1, 3))) %>%
   mutate(nuts_2 = as.factor(substr(nuts_code, 1, 4))) %>%
   mutate(nuts_3 = as.factor(substr(nuts_code, 1, 5))) 
+
+model_stan_1 <- stan_lm(
+  age_adjusted_mortality ~ log(lag_gas)*temp_bin + row_number + nuts_3,
+  data = dfpdata_nuts, 
+  chains = 4, 
+  prior = NULL,
+  iter = 2000,
+  seed = 1232
+)
+
+posterior_summary(model_stan_1)
+
+model_stan_2 <- stan_glmer(
+  age_adjusted_mortality ~ log(lag_gas) + temp_bin + (1 | row_number) + (1 | nuts_3/country),
+  data = dfpdata_nuts, 
+  chains = 4, 
+  prior = NULL,
+  iter = 2000,
+  seed = 123
+)
+
+dfpdata_nuts$row_number <- as.character(dfpdata_nuts$row_number)
+
+model_stan_3 <- stan_lm(
+  age_adjusted_mortality ~ log(lag_gas)*temp_bin + row_number + nuts_3,
+  data = dfpdata_nuts, 
+  chains = 4, 
+  prior = NULL,
+  iter = 2000,
+  seed = 1232
+)
 
