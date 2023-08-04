@@ -22,7 +22,7 @@ full_data <- temp_mort_prices %>%
 
 # combine filter conditions and avoid converting date to factor
 data_temp <- full_data %>% 
-  filter(nuts_level == 0) %>%  
+  filter(nuts_level == 1) %>%  
   group_by(nuts_code, year, month, week)  %>% 
   mutate(date = paste(year, month, week, sep = "-")) 
 
@@ -88,15 +88,16 @@ model_stan_2 <- stan_glmer(
   seed = 123
 )
 
-
+#RUNNING THIS MODEL
 model_stan_3 <- stan_lm(
-  age_adjusted_mortality ~ log(lag_gas)*temp_bin + row_number + nuts_code,
-  data = dfpdata_nuts, 
+  age_adjusted_mortality ~ log(lag_gas)*temp_bin + date + nuts_code,
+  data = na.omit(dfpdata_nuts), 
   chains = 4, 
   prior = NULL,
-  iter = 2000,
+  iter = 5000,
   seed = 1232
 )
+#RUNNING THIS MODEL
 
 model_stan_4 <- stan_glmer(
   age_adjusted_mortality ~ log(lag_gas)*temp_bin + row_number + (1 + row_number | nuts_code),
