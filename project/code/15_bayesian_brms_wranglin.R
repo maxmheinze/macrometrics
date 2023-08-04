@@ -66,6 +66,8 @@ dfpdata_nuts <- dfpdata %>%
   mutate(nuts_2 = as.factor(substr(nuts_code, 1, 4))) %>%
   mutate(nuts_3 = as.factor(substr(nuts_code, 1, 5))) 
 
+dfpdata_nuts$row_number <- as.character(dfpdata_nuts$row_number)
+
 model_stan_1 <- stan_lm(
   age_adjusted_mortality ~ log(lag_gas)*temp_bin + row_number + nuts_3,
   data = dfpdata_nuts, 
@@ -86,14 +88,25 @@ model_stan_2 <- stan_glmer(
   seed = 123
 )
 
-dfpdata_nuts$row_number <- as.character(dfpdata_nuts$row_number)
 
 model_stan_3 <- stan_lm(
-  age_adjusted_mortality ~ log(lag_gas)*temp_bin + row_number + nuts_3,
+  age_adjusted_mortality ~ log(lag_gas)*temp_bin + row_number + nuts_code,
   data = dfpdata_nuts, 
   chains = 4, 
   prior = NULL,
   iter = 2000,
   seed = 1232
 )
+
+model_stan_4 <- stan_glmer(
+  age_adjusted_mortality ~ log(lag_gas)*temp_bin + row_number + (1 + row_number | nuts_code),
+  data = dfpdata_nuts, 
+  chains = 4, 
+  refresh = 1, 
+  prior = NULL,
+  iter = 2000,
+  seed = 123
+)
+
+readRDS("model3.RData")
 
