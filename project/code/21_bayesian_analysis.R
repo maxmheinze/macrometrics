@@ -13,17 +13,22 @@ pacman::p_load(
 
 load("/Users/heinzemax/Downloads/model3.RData")
 
+load("/Users/gustavpirich/Dropbox/Mac/Downloads/project_output/model_stan_rep_gas.RData")
+load("/Users/gustavpirich/Dropbox/Mac/Downloads/project_output/model_stan_rep_elec.RData")
+
 # Produce all posterior plots
-plot(model3)
+plot(model_stan_rep_gas)
 
 # Posterior Predictive Checks
-pp_check(model3, ndraws = 100)
+pp_check(model_stan_rep_gas, ndraws = 500)
 
 # Produce a concise summary table
-fixef(model3)
+fixef(model_stan_rep_gas)
+
+posterior_interval(model_stan_rep_gas)
 
 # Print Highest Density Intervals
-bayestestR::hdi(model3, ci = c(0.65, 0.70, 0.80, 0.89, 0.95))
+bayestestR::hdi(model_stan_rep_gas, ci = c(0.65, 0.70, 0.80, 0.89, 0.95))
 
 # Produce HDI Plots
-plot(bayestestR::hdi(model3, ci = c(0.65, 0.70, 0.80, 0.89, 0.95)))
+plot(bayestestR::hdi(model_stan_rep_gas, ci = c(0.65, 0.70, 0.80, 0.89, 0.95)))
