@@ -88,26 +88,40 @@ model_stan_2 <- stan_glmer(
   seed = 123
 )
 
-#RUNNING THIS MODEL
-model_stan_3 <- stan_lm(
+#RUNNING Those MODELs
+model_stan_rep_gas <- stan_lm(
   age_adjusted_mortality ~ log(lag_gas)*temp_bin + date + nuts_code,
   data = na.omit(dfpdata_nuts), 
-  chains = 4, 
   prior = NULL,
-  iter = 5000,
-  seed = 1232
-)
-#RUNNING THIS MODEL
-
-model_stan_4 <- stan_glmer(
-  age_adjusted_mortality ~ log(lag_gas)*temp_bin + row_number + (1 + row_number | nuts_code),
-  data = dfpdata_nuts, 
-  chains = 4, 
-  refresh = 1, 
-  prior = NULL,
-  iter = 2000,
-  seed = 123
+  iter = 6000,
+  seed = 1232, 
+  chains = 4,
+  cores = 2,
+  refresh = 1
 )
 
-readRDS("model3.RData")
+model_stan_rep_elec <- stan_lm(
+  age_adjusted_mortality ~ log(lag_elect)*temp_bin + date + nuts_code,
+  data = na.omit(dfpdata_nuts), 
+  prior = NULL,
+  iter = 6000,
+  seed = 1232, 
+  chains = 4,
+  cores = 2,
+  refresh = 1
+)
+
+#RUNNING Those MODELs
+
+save()
+#model_stan_4 <- stan_glmer(
+#  age_adjusted_mortality ~ log(lag_gas)*temp_bin + row_number + (1 + row_number | nuts_code),
+#  data = dfpdata_nuts, 
+#  chains = 4, 
+#  refresh = 1, 
+#  prior = NULL,
+#  iter = 2000,
+#  seed = 123
+#)
+
 
