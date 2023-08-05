@@ -49,7 +49,14 @@ pdata$lag_gas <- lag(pdata$gas_ppi, 8)
 
 pdata$lag_elect <- lag(pdata$elect_ppi, 8)
 
+#SELECT BASELINE LEVEL
+
+pdata$temp_bin <- relevel(pdata$temp_bin, ref = ">30")
+
 pdata$temp_bin <- relevel(pdata$temp_bin, ref = "10-15")
+
+#####
+
 
 pdata <- pdata %>% mutate(winter = as.integer(case_when(
   month %in% c(11, 12, 1, 2, 3) ~ "1", 
@@ -68,25 +75,25 @@ dfpdata_nuts <- dfpdata %>%
 
 dfpdata_nuts$row_number <- as.character(dfpdata_nuts$row_number)
 
-model_stan_1 <- stan_lm(
-  age_adjusted_mortality ~ log(lag_gas)*temp_bin + row_number + nuts_3,
-  data = dfpdata_nuts, 
-  chains = 4, 
-  prior = NULL,
-  iter = 2000,
-  seed = 1232
-)
+#model_stan_1 <- stan_lm(
+#  age_adjusted_mortality ~ log(lag_gas)*temp_bin + row_number + nuts_3,
+#  data = dfpdata_nuts, 
+#  chains = 4, 
+#  prior = NULL,
+#  iter = 2000,
+#  seed = 1232
+#)
 
-posterior_summary(model_stan_1)
+#posterior_summary(model_stan_1)
 
-model_stan_2 <- stan_glmer(
-  age_adjusted_mortality ~ log(lag_gas) + temp_bin + (1 | row_number) + (1 | nuts_3/country),
-  data = dfpdata_nuts, 
-  chains = 4, 
-  prior = NULL,
-  iter = 2000,
-  seed = 123
-)
+#model_stan_2 <- stan_glmer(
+#  age_adjusted_mortality ~ log(lag_gas) + temp_bin + (1 | row_number) + (1 | nuts_3/country),
+#  data = dfpdata_nuts, 
+#  chains = 4, 
+#  prior = NULL,
+#  iter = 2000,
+#  seed = 123
+#)
 
 #RUNNING Those MODELs
 model_stan_rep_gas <- stan_lm(
@@ -127,4 +134,19 @@ save(model_stan_rep_elec, file = "./project/output/model_stan_rep_elec.RData")
 #  seed = 123
 #)
 
+model7c <- brm(
+  age_adjusted_mortality ~ 
+    1 + log(lag_gas) + temp_bin + log(lag_gas):temp_bin + 
+    (1 | country) +
+    (1 | row_number),  
+  data = dfpdata_nuts,
+  chains = 4,
+  cores = 4,
+  refresh = 1,
+  prior = set_prior("normal(0,0.1)", class = "b"),
+  control = list(adapt_delta = 0.795, max_treedepth = 10)
+)
 
+posterior_summary(model7c)
+
+save(model7c, file = "./project/output/model7c.RData")
