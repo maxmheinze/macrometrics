@@ -113,7 +113,10 @@ model_stan_rep_elec <- stan_lm(
 
 #RUNNING Those MODELs
 
-save()
+save(model_stan_rep_gas, file = "./project/output/model_stan_rep_gas.RData")
+
+save(model_stan_rep_elec, file = "./project/output/model_stan_rep_elec.RData")
+
 #model_stan_4 <- stan_glmer(
 #  age_adjusted_mortality ~ log(lag_gas)*temp_bin + row_number + (1 + row_number | nuts_code),
 #  data = dfpdata_nuts, 
