@@ -144,9 +144,7 @@ model7c <- brm(
   cores = 4,
   refresh = 1,
   prior = set_prior("normal(0,0.1)", class = "b"),
-  control = list(adapt_delta = 0.795, max_treedepth = 10)
+  #control = list(adapt_delta = 0.795, max_treedepth = 10)
 )
-
-posterior_summary(model7c)
 
 save(model7c, file = "./project/output/model7c.RData")
