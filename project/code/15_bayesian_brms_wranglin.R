@@ -51,7 +51,7 @@ pdata$lag_elect <- lag(pdata$elect_ppi, 8)
 
 #SELECT BASELINE LEVEL
 
-pdata$temp_bin <- relevel(pdata$temp_bin, ref = ">30")
+#pdata$temp_bin <- relevel(pdata$temp_bin, ref = ">30")
 
 pdata$temp_bin <- relevel(pdata$temp_bin, ref = "10-15")
 
@@ -107,9 +107,31 @@ model_stan_rep_gas <- stan_lm(
   refresh = 1
 )
 
-model_stan_rep_elec <- stan_lm(
-  age_adjusted_mortality ~ log(lag_elect)*temp_bin + date + nuts_code,
-  data = na.omit(dfpdata_nuts), 
+model_stan_rep_gas_2 <- stan_lm(
+  age_adjusted_mortality ~ log(lag_gas)*temp_bin + date + nuts_code,
+  data = dfpdata_nuts, 
+  prior = NULL,
+  iter = 4000,
+  seed = 1232, 
+  chains = 4,
+  cores = 4,
+  refresh = 1
+)
+
+model_stan_rep_elec_2 <- stan_lm(
+  age_adjusted_mortality ~ log(lag_elect) + temp_bin + temp_bin:log(lag_elect) + row_number + nuts_code,
+  data = dfpdata_nuts, 
+  prior = NULL,
+  iter = 4000,
+  seed = 1232, 
+  chains = 4,
+  cores = 4,
+  refresh = 1
+)
+
+model_stan_rep_elec_2 <- stan_lm(
+  age_adjusted_mortality ~ log(lag_elect) + temp_bin + temp_bin:log(lag_elect) + row_number + nuts_code,
+  data = dfpdata_nuts, 
   prior = NULL,
   iter = 6000,
   seed = 1232, 
@@ -118,11 +140,8 @@ model_stan_rep_elec <- stan_lm(
   refresh = 1
 )
 
+
 #RUNNING Those MODELs
-
-save(model_stan_rep_gas, file = "./project/output/model_stan_rep_gas.RData")
-
-save(model_stan_rep_elec, file = "./project/output/model_stan_rep_elec.RData")
 
 #model_stan_4 <- stan_glmer(
 #  age_adjusted_mortality ~ log(lag_gas)*temp_bin + row_number + (1 + row_number | nuts_code),
@@ -134,17 +153,28 @@ save(model_stan_rep_elec, file = "./project/output/model_stan_rep_elec.RData")
 #  seed = 123
 #)
 
-model7c <- brm(
+dfpdata_nuts$temp_bin <- relevel(dfpdata_nuts$temp_bin, ref = "10-15")
+
+dfpdata_nuts <- dfpdata_nuts %>% mutate(temperature = temperature +273.15)
+
+model8 <- brm(
   age_adjusted_mortality ~ 
-    1 + log(lag_gas) + temp_bin + log(lag_gas):temp_bin + 
+    1 + log(lag_gas) + temperature + I(temperature^2) + log(lag_gas):temperature + I(temperature^2):log(lag_gas)
     (1 | country) +
     (1 | row_number),  
   data = dfpdata_nuts,
   chains = 4,
-  cores = 4,
+  cores = 2,
   refresh = 1,
-  prior = set_prior("normal(0,0.1)", class = "b"),
+  prior = set_prior("normal(0,0.1)", class = "b")
   #control = list(adapt_delta = 0.795, max_treedepth = 10)
 )
 
-save(model7c, file = "./project/output/model7c.RData")
+posterior_summary(model8)
+
+save(model7c, file = "./project/output/model7d.RData")
+
+
+save(model_stan_rep_gas, file = "./project/output/model_stan_rep_gas_2.RData")
+
+save(model_stan_rep_elec, file = "./project/output/model_stan_rep_elec_2.RData")
