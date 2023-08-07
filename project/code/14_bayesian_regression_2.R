@@ -217,16 +217,25 @@ model5 <- stan_glmer(
     breaks, 
     labels
   )
-}
 
 data_reduced_2 <- data_reduced_2 %>%
   as_tibble() %>%
   arrange(year, week) %>%
   group_by(year, week) %>%
   mutate(time_index = as.factor(cur_group_id()),
-         age_adjusted_mortality = age_adjusted_mortality / 10^5) %>%
+         age_adjusted_mortality = age_adjusted_mortality) %>%
   ungroup() %>%
   dplyr::select(nuts_code, country, time_index, temp_bin, lag_gas, age_adjusted_mortality)
+
+data_reduced_3 <- data_reduced_2 %>%
+  dplyr::filter(temp_bin == "cold") %>%
+  select(-temp_bin)
+
+data_reduced_4 <- data_reduced_2 %>%
+  mutate(cold = ifelse(temp_bin == "cold", 1, 0)) %>%
+  select(-temp_bin)
+  
+}
 
 model7 <- stan_glmer(
   age_adjusted_mortality ~ 
@@ -238,6 +247,74 @@ model7 <- stan_glmer(
   cores = 4,
   refresh = 1
 )
+
+prior7a <- c(set_prior("normal(0,1)", class = "b"),
+             set_prior("normal(0,10)", class = "Intercept"))
+
+model7a <- brm(
+  age_adjusted_mortality ~ 
+    1 + log(lag_gas) + temp_bin + log(lag_gas):temp_bin + 
+    (1 + log(lag_gas) + temp_bin + log(lag_gas):temp_bin | country) +
+    (1 | time_index),  
+  data = data_reduced_2,
+  chains = 4,
+  cores = 4,
+  iter = 4000,
+  refresh = 1,
+  prior = prior7a
+)
+
+get_prior(
+  age_adjusted_mortality ~ 
+    1 + log(lag_gas) + temp_bin + log(lag_gas):temp_bin + 
+    (1 + log(lag_gas) + temp_bin + log(lag_gas):temp_bin | country) +
+    (1 | time_index),  
+  data = data_reduced_2)
+
+model7e <- stan_lmer(
+  age_adjusted_mortality ~ 
+    1 + log(lag_gas) + temp_bin + log(lag_gas):temp_bin + 
+    (1 + log(lag_gas) + temp_bin + log(lag_gas):temp_bin | country) +
+    (1 | time_index),  
+  data = data_reduced_2,
+  chains = 2,
+  cores = 2,
+  iter = 1000,
+  refresh = 1 #seed???
+)
+
+
+
+model7g <- brm(
+  age_adjusted_mortality ~ 
+    1 + log(lag_gas) + 
+    (1 + log(lag_gas) | country) +
+    (1 | time_index),  
+  data = data_reduced_3,
+  chains = 2,
+  cores = 2,
+  iter = 2000,
+  refresh = 1,
+  seed = 5
+)
+
+model8 <- brm(
+  age_adjusted_mortality ~ 
+    1 + log(lag_gas) + cold + log(lag_gas):cold + 
+    (1 + log(lag_gas) + cold + log(lag_gas):cold | country) +
+    (1 | time_index),  
+  data = data_reduced_4,
+  chains = 2,
+  cores = 2,
+  iter = 2000,
+  refresh = 1,
+  seed = 5
+)
+
+save(model7g, file = "./project/output/model7g.RData")
+
+save(model8, file = "./project/output/model8.RData")
+
 
 # # rstanarm ----------------------------------------------------------------
 # 

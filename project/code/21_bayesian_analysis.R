@@ -1,4 +1,3 @@
-
 # Header ------------------------------------------------------------------
 
 pacman::p_load(
@@ -11,24 +10,23 @@ pacman::p_load(
 
 # Load Model Output -------------------------------------------------------
 
-load("/Users/heinzemax/Downloads/model3.RData")
+load("...")
 
-load("/Users/gustavpirich/Dropbox/Mac/Downloads/project_output/model_stan_rep_gas.RData")
-load("/Users/gustavpirich/Dropbox/Mac/Downloads/project_output/model_stan_rep_elec.RData")
+current_model <- model8
 
 # Produce all posterior plots
-plot(model3)
+plot(current_model)
 
 # Posterior Predictive Checks
-pp_check(model3, ndraws = 100)
+pp_check(current_model, ndraws = 100)
 
 # Produce a concise summary table
-fixef(model3)
+fixef(current_model)
 
-posterior_interval(model3)
+posterior_interval(current_model)
 
 # Print Highest Density Intervals
-bayestestR::hdi(model3, ci = c(0.65, 0.70, 0.80, 0.89, 0.95))
+bayestestR::hdi(current_model, ci = c(0.65, 0.70, 0.80, 0.89, 0.95))
 
 # Produce HDI Plots
-plot(bayestestR::hdi(model3, ci = c(0.65, 0.70, 0.80, 0.89, 0.95)))
+plot(bayestestR::hdi(current_model, ci = c(0.65, 0.70, 0.80, 0.89, 0.95)))
